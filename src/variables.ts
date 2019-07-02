@@ -39,6 +39,14 @@ export const colorTextGray = '#7c7f84'
 export const colorPink = '#ff75b6'
 export const colorVeryLightBlue = '#f8f9fc'
 export const colorDotGray = '#c8c8d0'
+export const colorStartHeader = "#5394f6"
+export const colorEndHeader = "#5565fb"
+export const colorStartButtonInput = "#7cabf8"
+export const colorEndButtonInput = "#7c91fb"
+export const colorShadow = "#4d69ff"
+export const colorPinkStart = "#ff4e98"
+export const colorPinkEnd = "#ff8ac7"
+export const colorOrangeText = "#fe8f0e"
 
 export const colorCoral = '#f25959'
 export const colorTomato = '#e83d3c'

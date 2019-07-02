@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colorBlueberry, colorBlueyGrey } from '../../variables'
+import { colorTextGray, colorBlack, colorEndHeader } from '../../variables'
 
 export default StyleSheet.create({
   container: {
@@ -14,19 +14,44 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     height: 32,
-    borderRadius: 4
+    borderRadius: 4,
+    position: 'relative'
   },
   itemText: {
-    color: colorBlueyGrey,
+    color: colorTextGray,
     fontSize: 12,
-    fontFamily: 'poppins'
+    fontFamily: 'montserrat-bold'
   },
   itemFirst: {},
   itemLast: {},
   itemSelected: {
-    backgroundColor: colorBlueberry,
+    backgroundColor: 'transparent',
   },
   itemSelectedText: {
-    color: 'white'
+    color: colorBlack
+  },
+  underline: {
+    position: 'absolute',
+    width: '45%',
+    height: 2,
+    borderRadius: 2,
+    bottom: 0,
+    left: 16,
+    alignItems: 'flex-end',
+  },
+  underlineWhiteDot: {
+    position: 'absolute',
+    right: 2,
+    backgroundColor: 'white',
+    width: 4,
+    height: 2,
+  },
+  underlineDot: {
+    position: 'absolute',
+    right: 0,
+    backgroundColor: colorEndHeader,
+    width: 2,
+    height: 2,
+    borderRadius: 2,
   }
 })

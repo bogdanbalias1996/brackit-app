@@ -3,21 +3,10 @@ import { StyleSheet } from 'react-native'
 export default StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    top: 0
-  },
-  content: {
-    position: 'absolute',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    top: 0,
-    left: 8,
-    right: 8,
-    bottom: 14,
-    alignItems: 'center'
-  },
-  header:{
+    paddingTop: 50,
+    paddingBottom: 15,
+    paddingHorizontal: 15,
     flexDirection: 'row',
-    flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center'
   },
@@ -29,7 +18,9 @@ export default StyleSheet.create({
     textAlign: 'center'
   },
   leftContainer: {
-    minWidth: 20
+    minWidth: 20,
+    flexGrow: 1,
+    paddingRight: 20,
   },
   rightContainer: {
     minWidth: 20

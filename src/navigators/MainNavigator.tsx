@@ -82,7 +82,7 @@ export const TabsNavigator = createBottomTabNavigator(
 
         switch (routeName) {
           case "Play":
-            iconName = focused ? MenuSearch : Play;
+            iconName = focused ? PlayActive : Play;
             break;
           case "Discover":
             iconName = focused ? MenuSearchActive : MenuSearch;

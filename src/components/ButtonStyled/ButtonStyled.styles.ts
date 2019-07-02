@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native'
+import { colorShadow } from '../../variables';
 
 export default StyleSheet.create({
   btn: {
     alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: 20,
-    shadowColor: "#4d69ff",
+    shadowColor: colorShadow,
     shadowOffset: {
       width: 0,
       height: 4,
