@@ -1,11 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import { IGlobalState } from "../../coreTypes";
 import { SafeAreaView } from "react-navigation";
 
 import { PlayScreenProps } from ".";
+import { navigate } from "../../navigationService";
 import { ChallengeItems } from "./ChallengeItem";
+import { TournamentItems } from "./TournamentItem";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import { ButtonInputStyled } from "../../components/ButtonInputStyled/ButtonInputStyled";
@@ -21,7 +23,7 @@ const Header = props => (
     getLeftComponent={() => {
       return (
         <ButtonInputStyled
-          onPress={() => alert("ok")}
+          onPress={() => navigate({ routeName: "PlayStepOne" })}
           text="Create a challenge …"
         />
       );
@@ -45,7 +47,7 @@ export class Component extends React.PureComponent<PlayScreenProps> {
   };
 
   render() {
-    const data = [
+    const dataChallange = [
       {
         id: "1",
         name: "Katayama Fumiki",
@@ -75,14 +77,36 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         comments: 2
       }
     ];
+    const dataTournament = [
+      {
+        id: "1",
+        statusTournament: "super 1000",
+        title: "Who can beat me in ping pong?",
+        whenText: "12 June, 6:00 pm",
+        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
+        prize: "12 000",
+        entryFee: "100",
+        categories: ["U10", "U15", "U17"]
+      },
+      {
+        id: "2",
+        statusTournament: "super 100",
+        title: "Who can beat me in ping pong?",
+        whenText: "12 June, 6:00 pm",
+        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
+        prize: "12 000",
+        entryFee: "100",
+        categories: ["U10", "U15", "U17", "CD", "BS", "WD", "XD"]
+      }
+    ];
     const tabsConfig = [
       {
         title: "Challenges",
-        component: () => <ChallengeItems data={data} />
+        component: () => <ChallengeItems data={dataChallange} />
       },
       {
         title: "Tournaments",
-        component: () => <Text>Issues Component2</Text>
+        component: () => <TournamentItems data={dataTournament} />
       }
     ];
     return (
@@ -108,6 +132,7 @@ export const PlayScreen = connect(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
+    backgroundColor: "white",
+    marginBottom: 70
   }
 });

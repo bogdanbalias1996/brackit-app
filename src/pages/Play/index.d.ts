@@ -13,8 +13,19 @@ export type ChallengeItem = {
     btnText: string,
     comments: number
 }
+export type TournamentItem = {
+    id: string,
+    statusTournament: string,
+    title: string,
+    whenText: string,
+    whereText: string,
+    prize: string,
+    entryFee: string,
+    categories: any
+}
 export interface PlayScreenStateProps {
-    politicianUpdates: Array<ChallengeItem>
+    ChallengeItems: Array<ChallengeItem>
+    TournamentItems: Array<TournamentItem>
 }
 
 export type PlayScreenDispatchProps = {}

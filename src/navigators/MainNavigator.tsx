@@ -11,6 +11,8 @@ import { DiscoverScreen } from "../pages/Discover/Discover";
 import { ProfileScreen } from "../pages/Profile/Profile";
 import { NotificationsScreen } from "../pages/Notifications/Notifications";
 import { StoreScreen } from "../pages/Store/Store";
+import { PlayStepOneScreen } from "../pages/PlayStepOne/PlayStepOne";
+import { PlayStepTwoScreen } from "../pages/PlayStepTwo/PlayStepTwo";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -45,9 +47,23 @@ const formatScreenProps = (ScreenName, ScreenComponent) => {
   };
 };
 
+const PlayNavigator = createStackNavigator({
+  Play: {
+    screen: PlayScreen
+  },
+  PlayStepOne: {
+    screen: PlayStepOneScreen
+  },
+  PlayStepTwo: {
+    screen: PlayStepTwoScreen
+  }
+});
+
 export const TabsNavigator = createBottomTabNavigator(
   {
-    Play: formatScreenProps("Play", PlayScreen),
+    Play: {
+      screen: PlayNavigator
+    },
     Discover: formatScreenProps("Discover", DiscoverScreen),
     Profile: formatScreenProps("Profile", ProfileScreen),
     Notifications: formatScreenProps("Notifications", NotificationsScreen),

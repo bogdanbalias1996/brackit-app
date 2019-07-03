@@ -25,13 +25,14 @@ export const HeaderRounded = props => {
     >
       <View style={styles.leftContainer}>
         {getLeftComponent === null && navigation.state.routes.length > 1 && (
-          <TouchableOpacity onPress={goBack}>
-            <Icon size={25} name={"back"} color={"white"} />
+          <TouchableOpacity style={styles.back} onPress={goBack}>
+            <Icon size={22} name={"left"} color={"white"} />
           </TouchableOpacity>
         )}
         {!!getLeftComponent && getLeftComponent()}
+
+        {title ? <Text style={styles.title}>{title}</Text> : null}
       </View>
-      {title ? <Text style={styles.title}>{title}</Text> : null}
       <View style={styles.rightContainer}>{getRightComponent()}</View>
     </LinearGradient>
   );

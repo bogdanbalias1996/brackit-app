@@ -8,21 +8,26 @@ export default StyleSheet.create({
     paddingHorizontal: 15,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   title: {
     color: 'white',
-    fontSize: 17,
-    fontFamily: 'poppins-bold',
-    flex: 1,
+    fontSize: 18,
+    fontFamily: 'righteous-regular',
     textAlign: 'center'
   },
   leftContainer: {
     minWidth: 20,
     flexGrow: 1,
-    paddingRight: 20,
+    maxWidth: '90%',
+    paddingRight: 5,
+    flexDirection: 'row',
   },
   rightContainer: {
-    minWidth: 20
+    minWidth: 20,
+    flexShrink: 1,
+  },
+  back: {
+    marginRight: 15
   }
 })

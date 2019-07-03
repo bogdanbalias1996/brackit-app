@@ -24,7 +24,6 @@ import { Icon } from "../../components/Icon/Icon";
 
 export const renderItem = ({ item }) => {
   const {
-    id,
     name,
     avatar,
     avatarRate,
@@ -56,29 +55,32 @@ export const renderItem = ({ item }) => {
           <View>
             <Text style={styles.headerCardTitle}>{name}</Text>
             <Text style={styles.headerCardDate}>
-              {postTime + "/" + postCity}
+              {postTime + " / " + postCity}
             </Text>
           </View>
         </View>
         <View style={styles.headerCardRate}>
+          <Image
+            style={styles.rateIcon}
+            source={require("../../../assets/coin2x.png")}
+            resizeMode="contain"
+          />
           <Text style={styles.headerCardRateText}>{postRate}</Text>
         </View>
       </View>
       <Text style={styles.cardTitle}>{title}</Text>
       <View style={styles.questionItem}>
+        <View style={styles.itemDot} />
         <Text style={styles.qestionText}>when?</Text>
         <Text style={styles.answerText}>{whenText}</Text>
       </View>
       <View style={styles.questionItem}>
+        <View style={styles.itemDot} />
         <Text style={styles.qestionText}>where?</Text>
         <Text style={styles.answerText}>{whereText}</Text>
       </View>
       <View style={styles.footerCard}>
-        <ButtonStyled
-          // style={styles.cardButton}
-          onPress={() => alert("ok")}
-          text={btnText}
-        />
+        <ButtonStyled onPress={() => alert("ok")} text={btnText} />
         <TouchableOpacity
           onPress={() => alert("ok")}
           style={styles.commentsBlock}
@@ -87,8 +89,8 @@ export const renderItem = ({ item }) => {
             <Icon size={24} name="comment" color={colorTextGray} />
           </View>
           <View>
-            <Text>{comments}</Text>
-            <Text>Comments</Text>
+            <Text style={styles.commentsText}>{comments}</Text>
+            <Text style={styles.commentsText}>Comments</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -110,7 +112,8 @@ const styles = StyleSheet.create({
   card: {
     padding: 15,
     paddingLeft: 25,
-    marginBottom: 15,
+    marginVertical: 10,
+    marginRight: 30,
     backgroundColor: "white",
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
@@ -119,7 +122,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 4
     },
-    shadowOpacity: 0.4,
+    shadowOpacity: 0.2,
     shadowRadius: 5,
     elevation: 6
   },
@@ -140,7 +143,7 @@ const styles = StyleSheet.create({
   },
   avatarRate: {
     position: "absolute",
-    bottom: 10,
+    bottom: 0,
     width: 40,
     height: 15,
     borderRadius: 15,
@@ -164,9 +167,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colorTextGray
   },
+  rateIcon: {
+    width: 15,
+    height: 15,
+    marginRight: 5,
+    marginTop: 2
+  },
   headerCardRate: {
     position: "relative",
-    marginLeft: 25
+    marginLeft: 25,
+    flexDirection: "row"
   },
   headerCardRateText: {
     fontFamily: "montserrat-semibold",
@@ -174,28 +184,57 @@ const styles = StyleSheet.create({
     color: colorOrangeText
   },
   cardTitle: {
-    fontSize: 18
+    fontSize: 18,
+    fontFamily: "montserrat-semibold",
+    color: colorBlack,
+    marginTop: 5,
+    marginBottom: 15
   },
   questionItem: {
-    marginVertical: 5
+    marginVertical: 8,
+    paddingLeft: 8,
+    position: "relative"
+  },
+  itemDot: {
+    position: "absolute",
+    top: 7,
+    left: 0,
+    width: 2,
+    height: 2,
+    borderRadius: 2,
+    backgroundColor: colorPinkStart
   },
   qestionText: {
-    fontSize: 12
+    fontSize: 12,
+    fontFamily: "montserrat-medium",
+    color: colorTextGray
   },
   answerText: {
-    fontSize: 16
+    fontSize: 16,
+    fontFamily: "montserrat-medium",
+    color: colorBlack
   },
   footerCard: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    marginTop: 10
   },
   commentsBlock: {
-    flexDirection: "row"
+    flexDirection: "row",
+    alignItems: "center"
   },
   commentsIcon: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: colorVeryLightBlue
+    backgroundColor: colorVeryLightBlue,
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 5
+  },
+  commentsText: {
+    fontSize: 12,
+    fontFamily: "montserrat-medium",
+    color: colorTextGray
   }
 });
