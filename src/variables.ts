@@ -47,6 +47,8 @@ export const colorShadow = "#4d69ff"
 export const colorPinkStart = "#ff4e98"
 export const colorPinkEnd = "#ff8ac7"
 export const colorOrangeText = "#fe8f0e"
+export const colorGrayStart = "rgba(255, 255, 255, 0)"
+export const colorGrayEnd = "rgba(238, 238, 238, 0.8)"
 
 export const colorCoral = '#f25959'
 export const colorTomato = '#e83d3c'

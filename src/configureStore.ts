@@ -8,6 +8,7 @@ import { PartiesReducer } from './pages/Parties/reducer'
 import { PoliticiansReducer } from './pages/Politicians/reducer'
 import { PartyReducer } from './pages/Party/reducer'
 import { IssuesReducer } from './pages/Issues/reducer'
+import { ChallengeReducer } from './pages/Play/reducer'
 
 const getReducerObject = () => ({
   LoginState: LoginReducer,
@@ -16,6 +17,7 @@ const getReducerObject = () => ({
   PoliticiansState: PoliticiansReducer,
   PartyState: PartyReducer,
   IssuesState: IssuesReducer,
+  ChallengeState: ChallengeReducer
 })
 
 const configureReducers = () => combineReducers<IGlobalState>(getReducerObject())

@@ -5,11 +5,8 @@ import { IGlobalState } from "../../coreTypes";
 import { SafeAreaView } from "react-navigation";
 
 import { PlayStepTwoScreenProps } from ".";
-import { navigate } from "../../navigationService";
 import { ListItems } from "./ListItem";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
-import { Icon } from "../../components/Icon/Icon";
-import { ButtonInputStyled } from "../../components/ButtonInputStyled/ButtonInputStyled";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 import { colorLightBlue } from "../../variables";
 
@@ -132,7 +129,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
           stylesItem={defaultTabsStyles.roundedTabs}
           stylesTabsContainer={{
             backgroundColor: "transparent",
-            marginBottom: 16
+            marginBottom: 10
           }}
         />
       </SafeAreaView>
@@ -149,7 +146,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    marginBottom: 70
+    marginBottom: 64
   },
   headerRightText: {
     fontFamily: "montserrat-semibold",

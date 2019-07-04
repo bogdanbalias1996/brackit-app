@@ -1,15 +1,11 @@
-
-export type ListItem = {
-    id: string,
-    name: string,
-    avatar: number,
-    address: string
-}
 export interface PlayStepTwoScreenStateProps {
-    ListItems: Array<ListItem>
+    data: any
     title: string
+    challengeUsers: any
 }
 
-export type PlayStepTwoScreenDispatchProps = {}
+export type PlayStepTwoScreenDispatchProps = {
+    setChallengeUsers: (userId: string) => void
+}
 
 export type PlayStepTwoScreenProps = PlayStepTwoScreenStateProps & PlayStepTwoScreenDispatchProps

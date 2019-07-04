@@ -116,7 +116,7 @@ export class Component extends React.PureComponent<PlayScreenProps> {
           stylesItem={defaultTabsStyles.roundedTabs}
           stylesTabsContainer={{
             backgroundColor: "transparent",
-            marginBottom: 16
+            marginBottom: 10
           }}
         />
       </SafeAreaView>
@@ -133,6 +133,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    marginBottom: 70
+    marginBottom: 64
   }
 });

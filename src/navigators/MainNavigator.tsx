@@ -3,7 +3,7 @@ import {
   createStackNavigator,
   createBottomTabNavigator
 } from "react-navigation";
-import { colorBlack, colorTextGray } from "../variables";
+import { colorBlack, colorTextGray, colorShadow } from "../variables";
 import { IconSvg } from "../components/IconSvg/IconSvg";
 
 import { PlayScreen } from "../pages/Play/Play";
@@ -73,7 +73,16 @@ export const TabsNavigator = createBottomTabNavigator(
     initialRouteName: "Play",
     tabBarOptions: {
       style: {
-        height: 62
+        height: 62,
+        borderTopColor: "transparent",
+        shadowColor: colorShadow,
+        shadowOffset: {
+          width: 0,
+          height: 4
+        },
+        shadowOpacity: 0.3,
+        shadowRadius: 5,
+        elevation: 7
       },
       activeTintColor: colorBlack,
       inactiveTintColor: colorTextGray,
