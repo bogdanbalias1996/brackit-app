@@ -18,14 +18,11 @@ export default StyleSheet.create({
   },
   leftContainer: {
     minWidth: 20,
-    flexGrow: 1,
-    maxWidth: '90%',
     paddingRight: 5,
     flexDirection: 'row',
   },
   rightContainer: {
     minWidth: 20,
-    flexShrink: 1,
   },
   back: {
     marginRight: 15

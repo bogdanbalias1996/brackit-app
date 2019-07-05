@@ -1,4 +1,4 @@
-export type ButtonInputStyledProps = {
+export type ButtonHeaderStyledProps = {
   onPress: Function
   text: String
   style?: any

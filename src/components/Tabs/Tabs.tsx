@@ -6,7 +6,7 @@ import { ButtonGroupItem } from "../../components/ButtonGroup";
 
 export class Tabs extends React.PureComponent<TabsProps> {
   state = {
-    activeTabIndex: 0
+    activeTabIndex: this.props.activeTabIndex ? this.props.activeTabIndex : 0
   };
 
   render() {

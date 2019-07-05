@@ -47,23 +47,9 @@ const formatScreenProps = (ScreenName, ScreenComponent) => {
   };
 };
 
-const PlayNavigator = createStackNavigator({
-  Play: {
-    screen: PlayScreen
-  },
-  PlayStepOne: {
-    screen: PlayStepOneScreen
-  },
-  PlayStepTwo: {
-    screen: PlayStepTwoScreen
-  }
-});
-
 export const TabsNavigator = createBottomTabNavigator(
   {
-    Play: {
-      screen: PlayNavigator
-    },
+    Play: formatScreenProps("Play", PlayScreen),
     Discover: formatScreenProps("Discover", DiscoverScreen),
     Profile: formatScreenProps("Profile", ProfileScreen),
     Notifications: formatScreenProps("Notifications", NotificationsScreen),
@@ -143,5 +129,7 @@ export const MainNavigator = createStackNavigator({
   ChooseImage: ChooseImageScreen,
   Settings: SettingsScreen,
   CountrySelection: CountrySelectionScreen,
-  WebView: WebViewScreen
+  WebView: WebViewScreen,
+  PlayStepOne: PlayStepOneScreen,
+  PlayStepTwo: PlayStepTwoScreen
 });

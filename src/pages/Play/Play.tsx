@@ -1,38 +1,51 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { StyleSheet, TouchableOpacity } from "react-native";
-import { IGlobalState } from "../../coreTypes";
+import { TouchableOpacity, Text, View, Image } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
+import { IGlobalState } from "../../coreTypes";
 import { PlayScreenProps } from ".";
 import { navigate } from "../../navigationService";
 import { ChallengeItems } from "./ChallengeItem";
 import { TournamentItems } from "./TournamentItem";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
-import { ButtonInputStyled } from "../../components/ButtonInputStyled/ButtonInputStyled";
+import { ButtonHeaderStyled } from "../../components/ButtonHeaderStyled/ButtonHeaderStyled";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
-import { colorLightBlue } from "../../variables";
+import styles from "./Play.styles";
 
 const Header = props => (
   <HeaderRounded
     {...props}
-    style={{
-      backgroundColor: props.feed ? "white" : colorLightBlue
-    }}
     getLeftComponent={() => {
       return (
-        <ButtonInputStyled
+        <ButtonHeaderStyled
           onPress={() => navigate({ routeName: "PlayStepOne" })}
-          text="Create a challenge …"
+          text="Post a challenge"
         />
       );
     }}
     getRightComponent={() => {
       return (
-        <TouchableOpacity onPress={() => alert("ok")}>
-          <Icon size={24} name="sort" color="white" />
-        </TouchableOpacity>
+        <View style={styles.wrapHeaderRight}>
+          <TouchableOpacity
+            style={styles.wrapHeaderRightIcon}
+            onPress={() => alert("ok")}
+          >
+            <Icon size={24} name="sort" color="white" />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.wrapHeaderRightIcon}
+            onPress={() => alert("ok")}
+          >
+            {/* <IconSvg width={20} height={20} name={CoinColor} /> */}
+            <Image
+              style={{ width: 20 }}
+              source={require("../../../assets/coin-color.png")}
+              resizeMode="contain"
+            />
+          </TouchableOpacity>
+        </View>
       );
     }}
   />
@@ -51,29 +64,33 @@ export class Component extends React.PureComponent<PlayScreenProps> {
       {
         id: "1",
         name: "Katayama Fumiki",
-        avatar: require("../../../assets/illustration1_2x.png"),
+        avatar: require("../../../assets/avatar.png"),
         avatarRate: 1500,
+        avatarStatus: "Advanced",
         postTime: "5 min ago",
         postCity: "New York",
-        postRate: 400,
+        coins: 400,
         title: "Who can beat me in ping pong?",
         whenText: "12 June, 6:00 pm",
         whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        btnText: "see proposals | 2",
+        shares: 4,
+        views: 4,
         comments: 2
       },
       {
         id: "2",
         name: "Anna Fali",
-        avatar: require("../../../assets/illustration2_2x.png"),
+        avatar: require("../../../assets/avatar.png"),
         avatarRate: 1500,
+        avatarStatus: "Beginner",
         postTime: "5 min ago",
         postCity: "New York",
-        postRate: 500,
+        coins: 500,
         title: "Who can beat me in ping pong?",
         whenText: "12 June, 6:00 pm",
         whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        btnText: "see proposals | 2",
+        shares: 4,
+        views: 4,
         comments: 2
       }
     ];
@@ -81,25 +98,37 @@ export class Component extends React.PureComponent<PlayScreenProps> {
       {
         id: "1",
         statusTournament: "super 1000",
+        avaliableEntries: 100,
+        entries: 95,
         title: "Who can beat me in ping pong?",
+        subTitle: "single elimination",
         whenText: "12 June, 6:00 pm",
         whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
         prize: "12 000",
-        entryFee: "100",
+        singleEntryFee: "50",
+        doubleEntryFee: "70",
         categories: ["U10", "U15", "U17"]
       },
       {
         id: "2",
         statusTournament: "super 100",
+        avaliableEntries: 100,
+        entries: 95,
         title: "Who can beat me in ping pong?",
+        subTitle: "single elimination",
         whenText: "12 June, 6:00 pm",
         whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
         prize: "12 000",
-        entryFee: "100",
+        singleEntryFee: "100",
+        doubleEntryFee: "70",
         categories: ["U10", "U15", "U17", "CD", "BS", "WD", "XD"]
       }
     ];
     const tabsConfig = [
+      {
+        title: "My matches",
+        component: () => <Text>My matches</Text>
+      },
       {
         title: "Challenges",
         component: () => <ChallengeItems data={dataChallange} />
@@ -113,6 +142,7 @@ export class Component extends React.PureComponent<PlayScreenProps> {
       <SafeAreaView style={styles.container}>
         <Tabs
           config={tabsConfig}
+          activeTabIndex={1}
           stylesItem={defaultTabsStyles.roundedTabs}
           stylesTabsContainer={{
             backgroundColor: "transparent",
@@ -128,11 +158,3 @@ export const PlayScreen = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    marginBottom: 64
-  }
-});

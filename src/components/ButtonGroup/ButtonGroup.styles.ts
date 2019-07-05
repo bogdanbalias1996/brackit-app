@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colorTextGray, colorBlack, colorEndHeader } from '../../variables'
+import { colorTextGray, colorBlack, colorEndHeader, colorTextBlue } from '../../variables'
 
 export default StyleSheet.create({
   container: {
@@ -28,7 +28,7 @@ export default StyleSheet.create({
     backgroundColor: 'transparent',
   },
   itemSelectedText: {
-    color: colorBlack
+    color: colorTextBlue
   },
   underline: {
     position: 'absolute',

@@ -27,13 +27,15 @@ export const renderItem = ({ item }) => {
     name,
     avatar,
     avatarRate,
+    avatarStatus,
     postTime,
     postCity,
-    postRate,
+    coins,
     title,
     whenText,
     whereText,
-    btnText,
+    shares,
+    views,
     comments
   } = item as ChallengeItem;
 
@@ -43,6 +45,9 @@ export const renderItem = ({ item }) => {
         <View style={{ flexDirection: "row" }}>
           <View style={styles.avatarWrap}>
             <Image style={styles.avatar} source={avatar} resizeMode="cover" />
+            <Text style={styles.avatarStatus}>
+              {avatarStatus.toUpperCase()}
+            </Text>
             <LinearGradient
               start={[0, 0.5]}
               end={[1, 0.5]}
@@ -61,38 +66,66 @@ export const renderItem = ({ item }) => {
         </View>
         <View style={styles.headerCardRate}>
           <Image
-            style={styles.rateIcon}
-            source={require("../../../assets/coin2x.png")}
+            style={{ width: 20 }}
+            source={require("../../../assets/coin-color.png")}
             resizeMode="contain"
           />
-          <Text style={styles.headerCardRateText}>{postRate}</Text>
+          <Text style={styles.headerCardRateText}>{coins}</Text>
         </View>
       </View>
-      <Text style={styles.cardTitle}>{title}</Text>
       <View style={styles.questionItem}>
-        <View style={styles.itemDot} />
-        <Text style={styles.qestionText}>when?</Text>
-        <Text style={styles.answerText}>{whenText}</Text>
+        <Icon
+          size={16}
+          style={styles.questionIcon}
+          name="play"
+          color={colorTextGray}
+        />
+        <Text style={styles.cardTitle}>{title}</Text>
       </View>
       <View style={styles.questionItem}>
-        <View style={styles.itemDot} />
-        <Text style={styles.qestionText}>where?</Text>
+        <Icon
+          size={16}
+          style={styles.questionIcon}
+          name="location"
+          color={colorTextGray}
+        />
         <Text style={styles.answerText}>{whereText}</Text>
       </View>
+      <View style={styles.questionItem}>
+        <Icon
+          size={16}
+          style={styles.questionIcon}
+          name="calendar"
+          color={colorTextGray}
+        />
+        <Text style={styles.answerText}>{whenText}</Text>
+      </View>
       <View style={styles.footerCard}>
-        <ButtonStyled onPress={() => alert("ok")} text={btnText} />
-        <TouchableOpacity
+        <ButtonStyled
           onPress={() => alert("ok")}
-          style={styles.commentsBlock}
-        >
-          <View style={styles.commentsIcon}>
-            <Icon size={24} name="comment" color={colorTextGray} />
-          </View>
-          <View>
-            <Text style={styles.commentsText}>{comments}</Text>
-            <Text style={styles.commentsText}>Comments</Text>
-          </View>
-        </TouchableOpacity>
+          text={"Accept".toUpperCase()}
+          type="left"
+        />
+        <View style={styles.wrapIcons}>
+          <TouchableOpacity onPress={() => alert("ok")} style={styles.wrapIcon}>
+            <View style={styles.icon}>
+              <Icon size={16} name="send" color={colorTextGray} />
+            </View>
+            <Text style={styles.iconText}>{shares}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => alert("ok")} style={styles.wrapIcon}>
+            <View style={styles.icon}>
+              <Icon size={24} name="show" color={colorTextGray} />
+            </View>
+            <Text style={styles.iconText}>{views}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => alert("ok")} style={styles.wrapIcon}>
+            <View style={styles.icon}>
+              <Icon size={18} name="comment" color={colorTextGray} />
+            </View>
+            <Text style={styles.iconText}>{comments}</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -110,8 +143,7 @@ export const ChallengeItems = ({ data }) => {
 
 const styles = StyleSheet.create({
   card: {
-    padding: 15,
-    paddingLeft: 25,
+    paddingVertical: 15,
     marginVertical: 10,
     marginRight: 30,
     backgroundColor: "white",
@@ -124,11 +156,13 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 5,
-    elevation: 6
+    elevation: 8
   },
   headerCard: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    paddingLeft: 20,
+    paddingRight: 15
   },
   avatarWrap: {
     position: "relative",
@@ -141,9 +175,16 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25
   },
+  avatarStatus: {
+    fontFamily: "montserrat-semibold",
+    fontSize: 8,
+    color: colorTextGray,
+    textAlign: "center",
+    marginTop: 5
+  },
   avatarRate: {
     position: "absolute",
-    bottom: 0,
+    bottom: 10,
     width: 40,
     height: 15,
     borderRadius: 15,
@@ -159,7 +200,7 @@ const styles = StyleSheet.create({
   },
   headerCardTitle: {
     fontFamily: "montserrat-semibold",
-    fontSize: 16,
+    fontSize: 14,
     color: colorBlack
   },
   headerCardDate: {
@@ -168,62 +209,57 @@ const styles = StyleSheet.create({
     color: colorTextGray
   },
   rateIcon: {
-    width: 15,
-    height: 15,
-    marginRight: 5,
-    marginTop: 2
+    marginRight: 5
   },
   headerCardRate: {
     position: "relative",
     marginLeft: 25,
-    flexDirection: "row"
+    flexDirection: "row",
+    marginTop: 10,
+    alignItems: "center"
   },
   headerCardRateText: {
     fontFamily: "montserrat-semibold",
-    fontSize: 16,
-    color: colorOrangeText
+    fontSize: 14,
+    color: colorOrangeText,
+    marginLeft: 5
   },
   cardTitle: {
-    fontSize: 18,
+    fontSize: 14,
     fontFamily: "montserrat-semibold",
-    color: colorBlack,
-    marginTop: 5,
-    marginBottom: 15
+    color: colorBlack
   },
   questionItem: {
-    marginVertical: 8,
-    paddingLeft: 8,
-    position: "relative"
+    marginVertical: 5,
+    paddingLeft: 45,
+    position: "relative",
+    paddingRight: 15
   },
-  itemDot: {
+  questionIcon: {
     position: "absolute",
-    top: 7,
-    left: 0,
-    width: 2,
-    height: 2,
-    borderRadius: 2,
-    backgroundColor: colorPinkStart
-  },
-  qestionText: {
-    fontSize: 12,
-    fontFamily: "montserrat-medium",
-    color: colorTextGray
+    top: 0,
+    left: 20
   },
   answerText: {
-    fontSize: 16,
+    fontSize: 13,
     fontFamily: "montserrat-medium",
     color: colorBlack
   },
   footerCard: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 10
+    marginTop: 10,
+    paddingRight: 15
   },
-  commentsBlock: {
+  wrapIcons: {
+    flexDirection: "row"
+  },
+  wrapIcon: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    marginLeft: 10
   },
-  commentsIcon: {
+  icon: {
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -232,7 +268,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginRight: 5
   },
-  commentsText: {
+  iconText: {
     fontSize: 12,
     fontFamily: "montserrat-medium",
     color: colorTextGray

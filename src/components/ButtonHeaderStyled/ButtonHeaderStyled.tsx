@@ -2,8 +2,8 @@ import * as React from "react";
 import { TouchableOpacity, Text } from "react-native";
 import { LinearGradient } from "expo";
 
-import { ButtonInputStyledProps } from "./";
-import styles from "./ButtonInputStyled.styles";
+import { ButtonHeaderStyledProps } from "./";
+import styles from "./ButtonHeaderStyled.styles";
 import {
   colorGradientBlue,
   colorGradientGreen,
@@ -11,7 +11,7 @@ import {
   colorEndButtonInput
 } from "../../variables";
 
-export const ButtonInputStyled: React.SFC<ButtonInputStyledProps> = ({
+export const ButtonHeaderStyled: React.SFC<ButtonHeaderStyledProps> = ({
   onPress = () => {},
   text = "",
   style = ""

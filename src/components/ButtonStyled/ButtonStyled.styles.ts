@@ -15,6 +15,30 @@ export default StyleSheet.create({
     shadowRadius: 5,
     elevation: 6,
   },
+  btnLeft: {
+    borderRadius: 0,
+    borderBottomRightRadius: 20,
+    borderTopRightRadius: 20,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
+  btnRight: {
+    borderRadius: 0,
+    borderBottomLeftRadius: 20,
+    borderTopLeftRadius: 20,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
   btnGradient: {
     borderRadius: 20,
     paddingVertical: 12,

@@ -1,20 +1,34 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { StyleSheet, Text } from "react-native";
-import { IGlobalState } from "../../coreTypes";
+import { Text, TouchableOpacity, Image, View, FlatList } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
-import { PlayStepTwoScreenProps } from ".";
-import { ListItems } from "./ListItem";
+import { navigate } from "../../navigationService";
+import {
+  PlayStepTwoScreenStateProps,
+  PlayStepTwoScreenDispatchProps,
+  PlayStepTwoScreenProps
+} from ".";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
-import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
-import { colorLightBlue } from "../../variables";
+import { Icon } from "../../components/Icon/Icon";
+import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
+import { setChallengeUsers } from "./actions";
+import styles from "./PlayStepTwo.styles";
+import { colorVeryLightBlue } from "../../variables";
 
 const Header = props => (
   <HeaderRounded
     {...props}
-    style={{
-      backgroundColor: props.feed ? "white" : colorLightBlue
+    getLeftComponent={() => {
+      return (
+        <TouchableOpacity
+          style={styles.iconCancel}
+          onPress={() => navigate({ routeName: "Play" })}
+        >
+          <Icon size={24} name="cancel" color="white" />
+        </TouchableOpacity>
+      );
     }}
     title={"Choose who".toUpperCase()}
     getRightComponent={() => {
@@ -25,12 +39,49 @@ const Header = props => (
   />
 );
 
-const mapStateToProps = (state: IGlobalState) => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapStateToProps = state => ({
+  challengeUsers: state.ChallengeState.challengeUsers
+});
+const mapDispatchToProps = (dispatch): PlayStepTwoScreenDispatchProps => ({
+  setChallengeUsers: (userId: string) => dispatch(setChallengeUsers(userId))
+});
 
 export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
   static navigationOptions = {
     header: props => <Header {...props} />
+  };
+
+  state = {
+    search: ""
+  };
+
+  ifExist = (array, id): any => {
+    return array.includes(id);
+  };
+
+  renderItem = ({ item }) => {
+    const { id, name, avatar, address } = item;
+    const { setChallengeUsers, challengeUsers } = this.props;
+
+    return (
+      <TouchableOpacity
+        onPress={() => setChallengeUsers(id)}
+        style={[
+          styles.card,
+          {
+            backgroundColor: this.ifExist(challengeUsers, id)
+              ? colorVeryLightBlue
+              : "white"
+          }
+        ]}
+      >
+        <Image style={styles.avatar} source={avatar} resizeMode="cover" />
+        <View>
+          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.address}>{address}</Text>
+        </View>
+      </TouchableOpacity>
+    );
   };
 
   render() {
@@ -102,36 +153,19 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
         address: "JP Nagar Bagaluru, Ind"
       }
     ];
-    const tabsConfig = [
-      {
-        title: "Open",
-        component: () => (
-          <ListItems
-            title="Your challenge can see anyone and accept it"
-            data={dataOpen}
-          />
-        )
-      },
-      {
-        title: "Buddies",
-        component: () => (
-          <ListItems
-            title="Your challenge can see only your friends"
-            data={dataOpen}
-          />
-        )
-      }
-    ];
+
     return (
       <SafeAreaView style={styles.container}>
-        <Tabs
-          config={tabsConfig}
-          stylesItem={defaultTabsStyles.roundedTabs}
-          stylesTabsContainer={{
-            backgroundColor: "transparent",
-            marginBottom: 10
-          }}
+        <SearchBar onChangeText={val => this.setState({ search: val })} />
+        <TouchableOpacity onPress={() => alert("ok")} style={styles.selectAll}>
+          <Text style={styles.selectAllText}>Select all</Text>
+        </TouchableOpacity>
+        <FlatList
+          data={dataOpen}
+          renderItem={this.renderItem}
+          keyExtractor={item => item.id}
         />
+        <ButtonStyled onPress={() => alert("ok")} text={"Next".toUpperCase()} />
       </SafeAreaView>
     );
   }
@@ -141,16 +175,3 @@ export const PlayStepTwoScreen = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    marginBottom: 64
-  },
-  headerRightText: {
-    fontFamily: "montserrat-semibold",
-    fontSize: 12,
-    color: "white"
-  }
-});

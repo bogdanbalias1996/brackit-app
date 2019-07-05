@@ -9,18 +9,33 @@ import { colorGradientBlue, colorGradientGreen } from "../../variables";
 export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
   onPress = () => {},
   text = "",
-  style = ""
+  style = "",
+  type
 }): JSX.Element => {
   return (
     <TouchableOpacity
-      style={[styles.btn].concat(style)}
+      style={[
+        styles.btn,
+        type === "left"
+          ? styles.btnLeft
+          : type === "right"
+          ? styles.btnLeft
+          : null
+      ].concat(style)}
       onPress={() => onPress()}
     >
       <LinearGradient
         start={[0, 0.5]}
         end={[1, 0.5]}
         colors={[colorGradientBlue, colorGradientGreen]}
-        style={styles.btnGradient}
+        style={[
+          styles.btnGradient,
+          type === "left"
+            ? styles.btnLeft
+            : type === "right"
+            ? styles.btnLeft
+            : null
+        ]}
       >
         <Text style={styles.btnText}>{text}</Text>
       </LinearGradient>

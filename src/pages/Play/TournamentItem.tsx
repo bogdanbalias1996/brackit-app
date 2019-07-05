@@ -4,66 +4,106 @@ import { View, Text, FlatList, StyleSheet, Image } from "react-native";
 import {
   colorShadow,
   colorTextGray,
-  colorPinkStart,
   colorBlack,
   colorGradientBlue,
   colorOrangeText
 } from "../../variables";
 import { TournamentItem } from "./";
+import { Icon } from "../../components/Icon/Icon";
 
 export const renderItem = ({ item }) => {
   const {
+    avaliableEntries,
+    entries,
     statusTournament,
     title,
+    subTitle,
     whenText,
     whereText,
     prize,
-    entryFee,
+    singleEntryFee,
+    doubleEntryFee,
     categories
   } = item as TournamentItem;
 
   return (
     <View style={styles.card}>
       <View style={styles.triangleShape} />
-      <Text style={styles.status}>{statusTournament.toUpperCase()}</Text>
-      <Text style={styles.cardTitle}>{title}</Text>
-      <View style={styles.questionItem}>
-        <View style={styles.itemDot} />
-        <Text style={styles.qestionText}>when?</Text>
-        <Text style={styles.answerText}>{whenText}</Text>
+      <View style={styles.wrapTopContent}>
+        <Text style={styles.status}>{statusTournament.toUpperCase()}</Text>
+        <View style={styles.wrapEntries}>
+          <View style={styles.entry}>
+            <Image
+              style={{ width: 20 }}
+              source={require("../../../assets/coin-color.png")}
+              resizeMode="contain"
+            />
+            <Text style={styles.entryText}>{avaliableEntries}</Text>
+          </View>
+          <View style={styles.entry}>
+            <Image
+              style={{ width: 20 }}
+              source={require("../../../assets/coin-color.png")}
+              resizeMode="contain"
+            />
+            <Text style={styles.entryText}>{entries}</Text>
+          </View>
+        </View>
       </View>
+      <Text style={styles.cardTitle}>{title}</Text>
+      <Text style={styles.cardSubTitle}>{subTitle}</Text>
       <View style={styles.questionItem}>
-        <View style={styles.itemDot} />
-        <Text style={styles.qestionText}>where?</Text>
+        <Icon
+          size={16}
+          style={styles.questionIcon}
+          name="location"
+          color={colorTextGray}
+        />
         <Text style={styles.answerText}>{whereText}</Text>
       </View>
       <View style={styles.questionItem}>
-        <View style={styles.itemDot} />
+        <Icon
+          size={16}
+          style={styles.questionIcon}
+          name="calendar"
+          color={colorTextGray}
+        />
+        <Text style={styles.answerText}>{whenText}</Text>
+      </View>
+      <View style={styles.questionItem}>
+        <Icon
+          size={16}
+          style={styles.questionIcon}
+          name="cup"
+          color={colorTextGray}
+        />
         <Text style={styles.qestionText}>prize money</Text>
-        <View style={styles.questionItemContent}>
-          <Image
-            style={styles.itemIcon}
-            source={require("../../../assets/coin2x.png")}
-            resizeMode="contain"
+        <Text style={styles.entryFeeText}>{prize + " INR"}</Text>
+      </View>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={styles.questionItem}>
+          <Icon
+            size={16}
+            style={styles.questionIcon}
+            name="coin-black"
+            color={colorTextGray}
           />
-          <Text style={styles.prizeText}>{prize}</Text>
+          <Text style={styles.qestionText}>singles entry fee</Text>
+          <Text style={styles.prizeText}>{singleEntryFee + " coins"}</Text>
+        </View>
+        <View style={styles.questionItem}>
+          <Icon
+            size={16}
+            style={styles.questionIcon}
+            name="coin-black"
+            color={colorTextGray}
+          />
+          <Text style={styles.qestionText}>doubles entry fee</Text>
+          <Text style={styles.prizeText}>{doubleEntryFee + " coins"}</Text>
         </View>
       </View>
-      <View style={styles.questionItem}>
-        <View style={styles.itemDot} />
-        <Text style={styles.qestionText}>entry fee</Text>
-        <View style={styles.questionItemContent}>
-          <Image
-            style={styles.itemIcon}
-            source={require("../../../assets/calendar2x.png")}
-            resizeMode="contain"
-          />
-          <Text style={styles.entryFeeText}>{entryFee}</Text>
-        </View>
-      </View>
-      <View style={styles.questionItem}>
-        <View style={styles.itemDot} />
-        <Text style={styles.qestionText}>categories</Text>
+      <View style={styles.eventsItem}>
+        <Text style={styles.qestionText}>events</Text>
         <View style={styles.categoriesWrap}>
           {categories.map((item, i) => {
             return (
@@ -122,6 +162,24 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0
   },
+  wrapTopContent: {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  wrapEntries: {
+    flexDirection: "row"
+  },
+  entry: {
+    flexDirection: "row",
+    marginLeft: 15,
+    alignItems: "center"
+  },
+  entryText: {
+    fontSize: 10,
+    fontFamily: "montserrat-medium",
+    color: colorBlack,
+    marginLeft: 5
+  },
   status: {
     fontSize: 10,
     fontFamily: "montserrat-bold",
@@ -129,25 +187,30 @@ const styles = StyleSheet.create({
     marginBottom: 5
   },
   cardTitle: {
-    fontSize: 18,
+    fontSize: 14,
     fontFamily: "montserrat-semibold",
     color: colorBlack,
-    marginTop: 5,
-    marginBottom: 15
+    marginTop: 5
+  },
+  cardSubTitle: {
+    fontSize: 10,
+    fontFamily: "montserrat-medium",
+    color: colorBlack
   },
   questionItem: {
-    marginVertical: 8,
-    paddingLeft: 8,
-    position: "relative"
+    marginVertical: 5,
+    paddingLeft: 25,
+    position: "relative",
+    paddingRight: 15
   },
-  itemDot: {
+  eventsItem: {
+    marginVertical: 5,
+    paddingRight: 15
+  },
+  questionIcon: {
     position: "absolute",
-    top: 7,
-    left: 0,
-    width: 2,
-    height: 2,
-    borderRadius: 2,
-    backgroundColor: colorPinkStart
+    top: 0,
+    left: 0
   },
   qestionText: {
     fontSize: 12,
@@ -155,18 +218,18 @@ const styles = StyleSheet.create({
     color: colorTextGray
   },
   answerText: {
-    fontSize: 16,
+    fontSize: 13,
     fontFamily: "montserrat-medium",
     color: colorBlack
   },
   prizeText: {
     fontFamily: "montserrat-semibold",
-    fontSize: 16,
+    fontSize: 14,
     color: colorOrangeText
   },
   entryFeeText: {
     fontFamily: "montserrat-semibold",
-    fontSize: 16,
+    fontSize: 14,
     color: colorGradientBlue
   },
   questionItemContent: {

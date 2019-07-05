@@ -1,22 +1,30 @@
 import * as React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
 import { Formik } from "formik";
-import { IGlobalState } from "../../coreTypes";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
+import { IGlobalState } from "../../coreTypes";
 import { navigate } from "../../navigationService";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { PlayStepOneScreenProps } from ".";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
-import { colorLightBlue } from "../../variables";
+import { Icon } from "../../components/Icon/Icon";
+import styles from "./PlayStepOne.styles";
 
 const Header = props => (
   <HeaderRounded
     {...props}
-    style={{
-      backgroundColor: props.feed ? "white" : colorLightBlue
+    getLeftComponent={() => {
+      return (
+        <TouchableOpacity
+          style={styles.iconCancel}
+          onPress={() => navigate({ routeName: "Play" })}
+        >
+          <Icon size={24} name="cancel" color="white" />
+        </TouchableOpacity>
+      );
     }}
     title={"Create challenge".toUpperCase()}
     getRightComponent={() => {
@@ -91,22 +99,3 @@ export const PlayStepOneScreen = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white"
-  },
-  headerRightText: {
-    fontFamily: "montserrat-semibold",
-    fontSize: 12,
-    color: "white"
-  },
-  form: {
-    flex: 1,
-    justifyContent: "space-between"
-  },
-  btnNext: {
-    marginBottom: 25
-  }
-});
