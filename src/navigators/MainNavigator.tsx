@@ -13,6 +13,7 @@ import { NotificationsScreen } from "../pages/Notifications/Notifications";
 import { StoreScreen } from "../pages/Store/Store";
 import { PlayStepOneScreen } from "../pages/PlayStepOne/PlayStepOne";
 import { PlayStepTwoScreen } from "../pages/PlayStepTwo/PlayStepTwo";
+import { PlayStepThreeScreen } from "../pages/PlayStepThree/PlayStepThree";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -131,5 +132,6 @@ export const MainNavigator = createStackNavigator({
   CountrySelection: CountrySelectionScreen,
   WebView: WebViewScreen,
   PlayStepOne: PlayStepOneScreen,
-  PlayStepTwo: PlayStepTwoScreen
+  PlayStepTwo: PlayStepTwoScreen,
+  PlayStepThree: PlayStepThreeScreen
 });

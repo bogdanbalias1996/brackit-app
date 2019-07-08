@@ -21,7 +21,6 @@ import {
 import { ChallengeItem } from "./";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { Icon } from "../../components/Icon/Icon";
-import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
 
 export const renderItem = ({ item }) => {
   const {
@@ -44,12 +43,21 @@ export const renderItem = ({ item }) => {
     <View style={styles.card}>
       <View style={styles.headerCard}>
         <View style={{ flexDirection: "row" }}>
-          <AvatarStatus
-            avatar={avatar}
-            avatarStatus={avatarStatus}
-            avatarRate={avatarRate}
-          />
-          <View style={styles.wrapCardTitle}>
+          <View style={styles.avatarWrap}>
+            <Image style={styles.avatar} source={avatar} resizeMode="cover" />
+            <Text style={styles.avatarStatus}>
+              {avatarStatus.toUpperCase()}
+            </Text>
+            <LinearGradient
+              start={[0, 0.5]}
+              end={[1, 0.5]}
+              colors={[colorPinkStart, colorPinkEnd]}
+              style={styles.avatarRate}
+            >
+              <Text style={styles.avatarRateText}>{avatarRate}</Text>
+            </LinearGradient>
+          </View>
+          <View>
             <Text style={styles.headerCardTitle}>{name}</Text>
             <Text style={styles.headerCardDate}>
               {postTime + " / " + postCity}
@@ -156,8 +164,39 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 15
   },
-  wrapCardTitle: {
-    marginLeft: 15
+  avatarWrap: {
+    position: "relative",
+    marginRight: 15,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  avatar: {
+    width: 50,
+    height: 50,
+    borderRadius: 25
+  },
+  avatarStatus: {
+    fontFamily: "montserrat-semibold",
+    fontSize: 8,
+    color: colorTextGray,
+    textAlign: "center",
+    marginTop: 5
+  },
+  avatarRate: {
+    position: "absolute",
+    bottom: 10,
+    width: 40,
+    height: 15,
+    borderRadius: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "white"
+  },
+  avatarRateText: {
+    fontFamily: "montserrat-semibold",
+    fontSize: 10,
+    color: "white"
   },
   headerCardTitle: {
     fontFamily: "montserrat-semibold",
@@ -176,15 +215,14 @@ const styles = StyleSheet.create({
     position: "relative",
     marginLeft: 25,
     flexDirection: "row",
-    alignItems: "flex-start",
-    marginTop: 5
+    marginTop: 10,
+    alignItems: "center"
   },
   headerCardRateText: {
     fontFamily: "montserrat-semibold",
     fontSize: 14,
     color: colorOrangeText,
-    marginLeft: 5,
-    marginTop: 3
+    marginLeft: 5
   },
   cardTitle: {
     fontSize: 14,

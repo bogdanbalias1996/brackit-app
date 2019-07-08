@@ -246,7 +246,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
         ) : null}
         <ButtonStyled
           style={styles.btnNext}
-          onPress={() => alert("ok")}
+          onPress={() => navigate({ routeName: "PlayStepThree" })}
           text={"Next".toUpperCase()}
         />
       </SafeAreaView>
