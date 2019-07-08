@@ -7,7 +7,6 @@ import { IGlobalState } from "../../coreTypes";
 import { PlayStepThreeScreenProps } from ".";
 import { navigate } from "../../navigationService";
 import { ChallengeItems } from "./ChallengeItem";
-import { TournamentItems } from "./TournamentItem";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
@@ -47,79 +46,31 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
     const dataChallange = [
       {
         id: "1",
-        name: "Katayama Fumiki",
+        title: "Katayama Fumiki",
         avatar: require("../../../assets/avatar.png"),
-        avatarRate: 1500,
-        avatarStatus: "Advanced",
-        postTime: "5 min ago",
-        postCity: "New York",
-        coins: 400,
-        title: "Who can beat me in ping pong?",
-        whenText: "12 June, 6:00 pm",
-        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        shares: 4,
-        views: 4,
-        comments: 2
+        text: "3 kms, 300 INR / hr"
       },
       {
         id: "2",
-        name: "Anna Fali",
+        title: "Katayama Fumiki",
         avatar: require("../../../assets/avatar.png"),
-        avatarRate: 1500,
-        avatarStatus: "Beginner",
-        postTime: "5 min ago",
-        postCity: "New York",
-        coins: 500,
-        title: "Who can beat me in ping pong?",
-        whenText: "12 June, 6:00 pm",
-        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        shares: 4,
-        views: 4,
-        comments: 2
-      }
-    ];
-    const dataTournament = [
-      {
-        id: "1",
-        statusTournament: "super 1000",
-        avaliableEntries: 100,
-        entries: 95,
-        title: "Who can beat me in ping pong?",
-        subTitle: "single elimination",
-        whenText: "12 June, 6:00 pm",
-        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        prize: "12 000",
-        singleEntryFee: "50",
-        doubleEntryFee: "70",
-        categories: ["U10", "U15", "U17"]
+        text: "3 kms, 300 INR / hr"
       },
       {
-        id: "2",
-        statusTournament: "super 100",
-        avaliableEntries: 100,
-        entries: 95,
-        title: "Who can beat me in ping pong?",
-        subTitle: "single elimination",
-        whenText: "12 June, 6:00 pm",
-        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        prize: "12 000",
-        singleEntryFee: "100",
-        doubleEntryFee: "70",
-        categories: ["U10", "U15", "U17", "CD", "BS", "WD", "XD"]
+        id: "3",
+        title: "Katayama Fumiki",
+        avatar: require("../../../assets/avatar.png"),
+        text: "3 kms, 300 INR / hr"
       }
     ];
     const tabsConfig = [
       {
-        title: "My matches",
+        title: "My favorites",
         component: () => <Text>My matches</Text>
       },
       {
-        title: "Challenges",
+        title: "Popular",
         component: () => <ChallengeItems data={dataChallange} />
-      },
-      {
-        title: "Tournaments",
-        component: () => <TournamentItems data={dataTournament} />
       }
     ];
     return (
