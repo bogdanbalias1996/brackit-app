@@ -5,6 +5,7 @@ import { colorVeryLightBlue, colorTextGray } from "../../variables";
 
 type SearchBarProps = {
   onChangeText: (searchText) => void;
+  placeholder: string;
 };
 
 export const SearchBar = (props: SearchBarProps) => {
@@ -12,7 +13,7 @@ export const SearchBar = (props: SearchBarProps) => {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder={"Search..."}
+        placeholder={props.placeholder}
         autoCorrect={false}
         numberOfLines={1}
         placeholderTextColor={colorTextGray}
@@ -32,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 40,
     marginBottom: 15,
-    marginHorizontal: 25,
+    marginHorizontal: 20,
     position: "relative"
   },
   icon: {

@@ -1,6 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Text, TouchableOpacity, Image, View, FlatList } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  Image,
+  View,
+  FlatList,
+  Switch
+} from "react-native";
 import { SafeAreaView } from "react-navigation";
 
 import { navigate } from "../../navigationService";
@@ -15,7 +22,7 @@ import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { setChallengeUsers } from "./actions";
 import styles from "./PlayStepTwo.styles";
-import { colorVeryLightBlue } from "../../variables";
+import { colorBlack, colorTextGray, colorEndHeader } from "../../variables";
 
 const Header = props => (
   <HeaderRounded
@@ -52,7 +59,12 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
   };
 
   state = {
-    search: ""
+    search: "",
+    showOpenAll: false
+  };
+
+  toggleSwitch = () => {
+    this.setState({ showOpenAll: !this.state.showOpenAll });
   };
 
   ifExist = (array, id): any => {
@@ -66,18 +78,39 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
     return (
       <TouchableOpacity
         onPress={() => setChallengeUsers(id)}
-        style={[
-          styles.card,
-          {
-            backgroundColor: this.ifExist(challengeUsers, id)
-              ? colorVeryLightBlue
-              : "white"
-          }
-        ]}
+        style={styles.card}
       >
-        <Image style={styles.avatar} source={avatar} resizeMode="cover" />
+        <View style={styles.avatarWrap}>
+          <Image
+            style={[
+              styles.avatar,
+              { opacity: this.ifExist(challengeUsers, id) ? 0.5 : 1 }
+            ]}
+            source={avatar}
+            resizeMode="cover"
+          />
+          {this.ifExist(challengeUsers, id) ? (
+            <Icon
+              size={24}
+              name="check"
+              color={colorEndHeader}
+              style={styles.checkIcon}
+            />
+          ) : null}
+        </View>
         <View>
-          <Text style={styles.name}>{name}</Text>
+          <Text
+            style={[
+              styles.name,
+              {
+                color: this.ifExist(challengeUsers, id)
+                  ? colorEndHeader
+                  : colorBlack
+              }
+            ]}
+          >
+            {name}
+          </Text>
           <Text style={styles.address}>{address}</Text>
         </View>
       </TouchableOpacity>
@@ -153,19 +186,69 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
         address: "JP Nagar Bagaluru, Ind"
       }
     ];
-
+    const { showOpenAll } = this.state;
     return (
       <SafeAreaView style={styles.container}>
-        <SearchBar onChangeText={val => this.setState({ search: val })} />
-        <TouchableOpacity onPress={() => alert("ok")} style={styles.selectAll}>
-          <Text style={styles.selectAllText}>Select all</Text>
-        </TouchableOpacity>
-        <FlatList
-          data={dataOpen}
-          renderItem={this.renderItem}
-          keyExtractor={item => item.id}
+        <SearchBar
+          placeholder="Search for players"
+          onChangeText={val => this.setState({ search: val })}
         />
-        <ButtonStyled onPress={() => alert("ok")} text={"Next".toUpperCase()} />
+        <View style={styles.clickableItem}>
+          <View style={styles.switchWrap}>
+            <Text
+              style={[
+                styles.title,
+                { color: showOpenAll ? colorBlack : colorTextGray }
+              ]}
+            >
+              {"Open to All".toUpperCase()}
+            </Text>
+            <Switch
+              trackColor={{ true: colorEndHeader, false: "grey" }}
+              thumbColor="white"
+              ios_backgroundColor="grey"
+              onValueChange={this.toggleSwitch}
+              value={showOpenAll}
+            />
+          </View>
+          <Text style={styles.text}>
+            Your challenge is open to everyone. Anyone can accept it.
+          </Text>
+        </View>
+        <View style={styles.clickableItem}>
+          <Text
+            style={[
+              styles.title,
+              { color: !showOpenAll ? colorBlack : colorTextGray }
+            ]}
+          >
+            {"Buddies".toUpperCase()}
+          </Text>
+          <Text style={styles.text}>
+            Your challenge is visible only to your buddies.
+          </Text>
+        </View>
+        {!this.state.showOpenAll ? (
+          <View>
+            <TouchableOpacity
+              onPress={() => alert("ok")}
+              style={styles.selectAll}
+            >
+              <Text style={styles.selectAllText}>Select all</Text>
+            </TouchableOpacity>
+            <FlatList
+              data={dataOpen}
+              renderItem={this.renderItem}
+              keyExtractor={item => item.id}
+              style={{ marginBottom: 240 }}
+            />
+          </View>
+        ) : null}
+        <ButtonStyled
+          style={styles.btnNext}
+          onPress={() => alert("ok")}
+          text={"Next".toUpperCase()}
+        />
       </SafeAreaView>
     );
   }

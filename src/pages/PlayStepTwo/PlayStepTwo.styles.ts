@@ -1,11 +1,12 @@
 import { StyleSheet } from 'react-native'
-import { colorBorder, colorBlack, colorTextGray } from '../../variables';
+import { colorBorder, colorBlack, colorTextGray, colorEndHeader } from '../../variables';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    marginBottom: 64
+    paddingTop: 15,
+    paddingBottom: 70,
   },
   headerRightText: {
     fontFamily: "montserrat-semibold",
@@ -27,7 +28,6 @@ export default StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    marginRight: 15
   },
   name: {
     fontFamily: "montserrat-semibold",
@@ -48,7 +48,39 @@ export default StyleSheet.create({
   selectAllText: {
     fontFamily: "montserrat-semibold",
     fontSize: 16,
-    color: colorBlack,
+    color: colorEndHeader,
     textAlign: "center"
   },
+  clickableItem: {
+    paddingHorizontal: 20,
+    marginBottom: 15,
+  },
+  text: {
+    fontFamily: "montserrat-medium",
+    fontSize: 13,
+    color: colorTextGray
+  },
+  title: {
+    fontFamily: "montserrat-bold",
+    fontSize: 14,
+    color: colorTextGray
+  },
+  switchWrap: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  avatarWrap: {
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 15
+  },
+  checkIcon: {
+    position: 'absolute'
+  },
+  btnNext: {
+    position: "absolute",
+    bottom: 15
+  }
 })
