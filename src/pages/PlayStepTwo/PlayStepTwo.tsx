@@ -20,7 +20,7 @@ import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
-import { setChallengeUsers } from "./actions";
+import { setChallengeUsers, setAllChallengeUsers } from "./actions";
 import styles from "./PlayStepTwo.styles";
 import { colorBlack, colorTextGray, colorEndHeader } from "../../variables";
 
@@ -50,7 +50,8 @@ const mapStateToProps = state => ({
   challengeUsers: state.ChallengeState.challengeUsers
 });
 const mapDispatchToProps = (dispatch): PlayStepTwoScreenDispatchProps => ({
-  setChallengeUsers: (userId: string) => dispatch(setChallengeUsers(userId))
+  setChallengeUsers: (userId: string) => dispatch(setChallengeUsers(userId)),
+  setAllChallengeUsers: (users: string) => dispatch(setAllChallengeUsers(users))
 });
 
 export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
@@ -71,10 +72,15 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
     return array.includes(id);
   };
 
+  setAllChallengeUsers = data => {
+    const { setAllChallengeUsers } = this.props;
+    let newArr = data.map(item => item.id);
+    setAllChallengeUsers(newArr);
+  };
+
   renderItem = ({ item }) => {
     const { id, name, avatar, address } = item;
     const { setChallengeUsers, challengeUsers } = this.props;
-
     return (
       <TouchableOpacity
         onPress={() => setChallengeUsers(id)}
@@ -187,6 +193,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
       }
     ];
     const { showOpenAll } = this.state;
+
     return (
       <SafeAreaView style={styles.container}>
         <SearchBar
@@ -229,9 +236,9 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
           </Text>
         </View>
         {!this.state.showOpenAll ? (
-          <View>
+          <View style={{ flex: 1 }}>
             <TouchableOpacity
-              onPress={() => alert("ok")}
+              onPress={() => this.setAllChallengeUsers(dataOpen)}
               style={styles.selectAll}
             >
               <Text style={styles.selectAllText}>Select all</Text>
@@ -240,7 +247,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
               data={dataOpen}
               renderItem={this.renderItem}
               keyExtractor={item => item.id}
-              style={{ marginBottom: 240 }}
+              style={{ flex: 1 }}
             />
           </View>
         ) : null}

@@ -6,7 +6,6 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     paddingTop: 15,
-    paddingBottom: 70,
   },
   headerRightText: {
     fontFamily: "montserrat-semibold",
@@ -80,7 +79,6 @@ export default StyleSheet.create({
     position: 'absolute'
   },
   btnNext: {
-    position: "absolute",
-    bottom: 15
+    marginVertical: 15
   }
 })

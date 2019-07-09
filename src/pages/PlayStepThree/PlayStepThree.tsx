@@ -1,12 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { TouchableOpacity, Text, View, Image } from "react-native";
+import { TouchableOpacity, Text } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
 import { IGlobalState } from "../../coreTypes";
 import { PlayStepThreeScreenProps } from ".";
 import { navigate } from "../../navigationService";
-import { ChallengeItems } from "./ChallengeItem";
+import { PlaceItems } from "./PlaceItem";
+import { FavouriteItems } from "./FavouriteItem";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
@@ -42,12 +43,16 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
     header: props => <Header {...props} />
   };
 
+  state = {
+    search: ""
+  };
+
   render() {
     const dataChallange = [
       {
         id: "1",
         title: "Katayama Fumiki",
-        avatar: require("../../../assets/avatar.png"),
+        avatar: require("../../../assets/illustration2_2x.png"),
         text: "3 kms, 300 INR / hr"
       },
       {
@@ -61,16 +66,40 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
         title: "Katayama Fumiki",
         avatar: require("../../../assets/avatar.png"),
         text: "3 kms, 300 INR / hr"
+      },
+      {
+        id: "4",
+        title: "Katayama Fumiki",
+        avatar: require("../../../assets/illustration2_2x.png"),
+        text: "3 kms, 300 INR / hr"
+      },
+      {
+        id: "5",
+        title: "Katayama Fumiki",
+        avatar: require("../../../assets/avatar.png"),
+        text: "3 kms, 300 INR / hr"
+      },
+      {
+        id: "6",
+        title: "Katayama Fumiki",
+        avatar: require("../../../assets/avatar.png"),
+        text: "3 kms, 300 INR / hr"
+      },
+      {
+        id: "7",
+        title: "Katayama Fumiki",
+        avatar: require("../../../assets/avatar.png"),
+        text: "3 kms, 300 INR / hr"
       }
     ];
     const tabsConfig = [
       {
         title: "My favorites",
-        component: () => <Text>My matches</Text>
+        component: () => <FavouriteItems data={dataChallange} />
       },
       {
         title: "Popular",
-        component: () => <ChallengeItems data={dataChallange} />
+        component: () => <PlaceItems data={dataChallange} />
       }
     ];
     return (
@@ -78,6 +107,7 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
         <Tabs
           config={tabsConfig}
           activeTabIndex={1}
+          style={{ flex: 1 }}
           stylesItem={defaultTabsStyles.roundedTabs}
           stylesTabsContainer={{
             backgroundColor: "transparent",

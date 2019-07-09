@@ -11,3 +11,11 @@ export const setChallengePlaces = (data) => {
     }
 }
 
+export const SET_FAVOURITE_PLACE = 'SET_FAVOURITE_PLACE'
+export const setFavouritePlace = (data) => {
+    return {
+        type: SET_FAVOURITE_PLACE,
+        data
+    }
+}
+

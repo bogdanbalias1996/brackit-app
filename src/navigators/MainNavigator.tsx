@@ -14,6 +14,7 @@ import { StoreScreen } from "../pages/Store/Store";
 import { PlayStepOneScreen } from "../pages/PlayStepOne/PlayStepOne";
 import { PlayStepTwoScreen } from "../pages/PlayStepTwo/PlayStepTwo";
 import { PlayStepThreeScreen } from "../pages/PlayStepThree/PlayStepThree";
+import { PlayStepFourScreen } from "../pages/PlayStepFour/PlayStepFour";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -115,23 +116,29 @@ export const TabsNavigator = createBottomTabNavigator(
   }
 );
 
-export const MainNavigator = createStackNavigator({
-  Tabs: {
-    screen: TabsNavigator,
-    navigationOptions: {
-      header: null
-    }
-  },
-  Party: PartyScreen,
-  Politician: PoliticianScreen,
-  Issue: IssueScreen,
-  LeaveAnOpinion: LeaveAnOpinionScreen,
-  CreateAnIssue: CreateAnIssueScreen,
-  ChooseImage: ChooseImageScreen,
-  Settings: SettingsScreen,
-  CountrySelection: CountrySelectionScreen,
-  WebView: WebViewScreen,
-  PlayStepOne: PlayStepOneScreen,
-  PlayStepTwo: PlayStepTwoScreen,
-  PlayStepThree: PlayStepThreeScreen
-});
+export const MainNavigator = createStackNavigator(
+  {
+    Tabs: {
+      screen: TabsNavigator,
+      navigationOptions: {
+        header: null
+      }
+    },
+    Party: PartyScreen,
+    Politician: PoliticianScreen,
+    Issue: IssueScreen,
+    LeaveAnOpinion: LeaveAnOpinionScreen,
+    CreateAnIssue: CreateAnIssueScreen,
+    ChooseImage: ChooseImageScreen,
+    Settings: SettingsScreen,
+    CountrySelection: CountrySelectionScreen,
+    WebView: WebViewScreen,
+    PlayStepOne: PlayStepOneScreen,
+    PlayStepTwo: PlayStepTwoScreen,
+    PlayStepThree: PlayStepThreeScreen,
+    PlayStepFour: PlayStepFourScreen
+  }
+  // {
+  //   initialRouteName: "PlayStepThree"
+  // }
+);

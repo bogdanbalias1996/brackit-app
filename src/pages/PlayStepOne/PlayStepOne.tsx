@@ -8,7 +8,8 @@ import { IGlobalState } from "../../coreTypes";
 import { navigate } from "../../navigationService";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
-import { PlayStepOneScreenProps } from ".";
+import { PlayStepOneScreenProps, PlayStepOneScreenDispatchProps } from ".";
+import { setChallengeName } from "./actions";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./PlayStepOne.styles";
@@ -36,7 +37,9 @@ const Header = props => (
 );
 
 const mapStateToProps = (state: IGlobalState) => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = (dispatch): PlayStepOneScreenDispatchProps => ({
+  setChallengeName: (name: string) => dispatch(setChallengeName(name))
+});
 
 export class Component extends React.PureComponent<PlayStepOneScreenProps> {
   static navigationOptions = {
@@ -44,7 +47,9 @@ export class Component extends React.PureComponent<PlayStepOneScreenProps> {
   };
 
   handleSubmit = values => {
-    alert(JSON.stringify(values));
+    const { setChallengeName } = this.props;
+
+    setChallengeName(values.challengeName);
     navigate({ routeName: "PlayStepTwo" });
   };
 

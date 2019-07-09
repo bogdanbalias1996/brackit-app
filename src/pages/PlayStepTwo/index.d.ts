@@ -6,6 +6,7 @@ export interface PlayStepTwoScreenStateProps {
 
 export type PlayStepTwoScreenDispatchProps = {
     setChallengeUsers: (userId: string) => void
+    setAllChallengeUsers: (users: any) => void
 }
 
 export type PlayStepTwoScreenProps = PlayStepTwoScreenStateProps & PlayStepTwoScreenDispatchProps
