@@ -49,6 +49,7 @@ export const colorOrangeText = "#cd9a15";
 export const colorGrayStart = "rgba(255, 255, 255, 0)";
 export const colorGrayEnd = "rgba(238, 238, 238, 0.8)";
 export const colorBorderBlue = "#0091ff";
+export const colorLike = "#ff5252";
 
 export const colorGreenStart = "#58ea51";
 export const colorGreenEnd = "#6ce8d7";
