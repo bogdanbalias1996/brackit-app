@@ -8,7 +8,6 @@ import {
   TouchableOpacity
 } from "react-native";
 import { connect } from "react-redux";
-import { navigate } from "../../navigationService";
 
 import {
   PlayStepThreeScreenStateProps,
@@ -16,6 +15,10 @@ import {
   PlayStepThreeScreenProps
 } from ".";
 import { setChallengePlaces, setFavouritePlace } from "./actions";
+import { SearchBar } from "../../components/SearchBar/SearchBar";
+import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
+import { Icon } from "../../components/Icon/Icon";
+import { navigate } from "../../navigationService";
 import {
   colorTextGray,
   colorBlack,
@@ -23,9 +26,6 @@ import {
   colorBorder,
   colorLike
 } from "../../variables";
-import { SearchBar } from "../../components/SearchBar/SearchBar";
-import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
-import { Icon } from "../../components/Icon/Icon";
 
 const mapStateToProps = state => ({
   challengePlaces: state.ChallengeState.challengePlaces,

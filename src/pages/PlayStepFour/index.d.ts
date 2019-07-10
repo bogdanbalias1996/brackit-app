@@ -1,7 +1,7 @@
 export interface PlayStepFourScreenStateProps { }
 
 export type PlayStepFourScreenDispatchProps = {
-    setChallengeName: (name: string) => void
+    setChallengeDate: (date: any) => void
 }
 
 export type PlayStepFourScreenProps = PlayStepFourScreenStateProps & PlayStepFourScreenDispatchProps

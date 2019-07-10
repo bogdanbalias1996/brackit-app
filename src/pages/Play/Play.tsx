@@ -38,7 +38,6 @@ const Header = props => (
             style={styles.wrapHeaderRightIcon}
             onPress={() => alert("ok")}
           >
-            {/* <IconSvg width={20} height={20} name={CoinColor} /> */}
             <Image
               style={{ width: 20 }}
               source={require("../../../assets/coin-color.png")}

@@ -9,7 +9,7 @@ import { IGlobalState } from "../../coreTypes";
 import { navigate } from "../../navigationService";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { PlayStepFourScreenProps, PlayStepFourScreenDispatchProps } from ".";
-import { setChallengeName } from "./actions";
+import { setChallengeDate } from "./actions";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./PlayStepFour.styles";
@@ -38,7 +38,7 @@ const Header = props => (
 
 const mapStateToProps = (state: IGlobalState) => ({});
 const mapDispatchToProps = (dispatch): PlayStepFourScreenDispatchProps => ({
-  setChallengeName: (name: string) => dispatch(setChallengeName(name))
+  setChallengeDate: (date: string) => dispatch(setChallengeDate(date))
 });
 
 export class Component extends React.PureComponent<PlayStepFourScreenProps> {
@@ -65,6 +65,7 @@ export class Component extends React.PureComponent<PlayStepFourScreenProps> {
   };
 
   render() {
+    const { setChallengeDate } = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.wrapDataContent}>
@@ -85,7 +86,10 @@ export class Component extends React.PureComponent<PlayStepFourScreenProps> {
         </View>
         <ButtonStyled
           style={styles.btnNext}
-          onPress={() => alert("ok")}
+          onPress={() => {
+            setChallengeDate(this.state.date);
+            navigate({ routeName: "PlayStepFive" });
+          }}
           text={"Next".toUpperCase()}
         />
       </SafeAreaView>

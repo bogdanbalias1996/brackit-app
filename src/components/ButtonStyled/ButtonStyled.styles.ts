@@ -6,6 +6,8 @@ export default StyleSheet.create({
     alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: 20,
+  },
+  btnShadow: {
     shadowColor: colorShadow,
     shadowOffset: {
       width: 0,

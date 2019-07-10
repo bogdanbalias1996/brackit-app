@@ -7,21 +7,18 @@ import {
   Image,
   TouchableOpacity
 } from "react-native";
-import { LinearGradient } from "expo";
 
-import {
-  colorShadow,
-  colorTextGray,
-  colorPinkStart,
-  colorPinkEnd,
-  colorBlack,
-  colorOrangeText,
-  colorVeryLightBlue
-} from "../../variables";
 import { ChallengeItem } from "./";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { Icon } from "../../components/Icon/Icon";
 import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
+import {
+  colorShadow,
+  colorTextGray,
+  colorBlack,
+  colorOrangeText,
+  colorVeryLightBlue
+} from "../../variables";
 
 export const renderItem = ({ item }) => {
   const {
@@ -58,7 +55,7 @@ export const renderItem = ({ item }) => {
         </View>
         <View style={styles.headerCardRate}>
           <Image
-            style={{ width: 20 }}
+            style={{ width: 20, height: 20 }}
             source={require("../../../assets/coin-color.png")}
             resizeMode="contain"
           />
@@ -183,8 +180,7 @@ const styles = StyleSheet.create({
     fontFamily: "montserrat-semibold",
     fontSize: 14,
     color: colorOrangeText,
-    marginLeft: 5,
-    marginTop: 3
+    marginLeft: 5
   },
   cardTitle: {
     fontSize: 14,

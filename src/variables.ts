@@ -49,6 +49,8 @@ export const colorPinkEnd = "#ff8ac7"
 export const colorOrangeText = "#cd9a15"
 export const colorGrayStart = "rgba(255, 255, 255, 0)"
 export const colorGrayEnd = "rgba(238, 238, 238, 0.8)"
+export const colorGoldStart = "#ecb015"
+export const colorGoldEnd = "#f8cc38"
 export const colorLike = "#ff5252"
 
 export const colorCoral = '#f25959'

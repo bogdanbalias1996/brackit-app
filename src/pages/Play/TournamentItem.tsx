@@ -1,6 +1,8 @@
 import * as React from "react";
 import { View, Text, FlatList, StyleSheet, Image } from "react-native";
 
+import { TournamentItem } from "./";
+import { Icon } from "../../components/Icon/Icon";
 import {
   colorShadow,
   colorTextGray,
@@ -8,8 +10,6 @@ import {
   colorGradientBlue,
   colorOrangeText
 } from "../../variables";
-import { TournamentItem } from "./";
-import { Icon } from "../../components/Icon/Icon";
 
 export const renderItem = ({ item }) => {
   const {

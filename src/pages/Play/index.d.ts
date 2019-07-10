@@ -1,4 +1,3 @@
-
 export type ChallengeItem = {
     id: string,
     name: string,
