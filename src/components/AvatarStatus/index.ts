@@ -1,5 +1,5 @@
 export type AvatarStatusProps = {
-  avatar?: number
-  avatarStatus?: string
-  avatarRate?: number
-}
+  avatar: number;
+  avatarRate: number;
+  size: number;
+};

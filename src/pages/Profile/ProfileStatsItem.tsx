@@ -77,9 +77,9 @@ const styles = StyleSheet.create({
   statsItemPoints: {
     fontSize: 16,
     paddingVertical: 5,
-    fontFamily: "montserrat-bold"
+    fontFamily: "montserrat-semibold"
   },
-  statsItemName: { fontSize: 10, fontFamily: "montserrat-bold" }
+  statsItemName: { fontSize: 10, fontFamily: "montserrat-semibold" }
 });
 
 export default ProfileStatsItem;

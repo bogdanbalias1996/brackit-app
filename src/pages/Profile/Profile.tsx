@@ -1,30 +1,26 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { IGlobalState } from "../../coreTypes";
-import { SafeAreaView } from "react-navigation";
+import { SafeAreaView, FlatList } from "react-navigation";
 import { ProfileScreenProps } from ".";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Text, View, TouchableOpacity } from "react-native";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { Icon } from "../../components/Icon/Icon";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
+import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
 
-import {
-  colorLightBlue,
-  colorTextBlue,
-  colorBorderBlue
-} from "../../variables";
+import { colorTextGray } from "../../variables";
 
 import styles from "./Profile.styles";
 import ProfileStatsItem from "./ProfileStatsItem";
+import { navigate } from "../../navigationService";
+import TabListItem from "../../components/TabListItem/TabListItem";
 
 const Header = props => (
   <HeaderRounded
     {...props}
     title={"Profile".toUpperCase()}
-    style={{
-      backgroundColor: props.feed ? "white" : colorLightBlue
-    }}
     getRightComponent={() => {
       return (
         <TouchableOpacity
@@ -32,11 +28,7 @@ const Header = props => (
             alert("ok");
           }}
         >
-          <Icon
-            size={24}
-            name="gamepad"
-            style={{ transform: [{ rotate: "45deg" }] }}
-          />
+          <Icon name="gamepad" style={{ transform: [{ rotate: "45deg" }] }} />
         </TouchableOpacity>
       );
     }}
@@ -76,6 +68,21 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
       }
     ];
 
+    const activities = [
+      {
+        title: "Challenges",
+        component: "ActivityChallenges"
+      },
+      {
+        title: "Tournaments",
+        component: "ActivityTournaments"
+      },
+      {
+        title: "Purchases",
+        component: "ActivityPurchases"
+      }
+    ];
+
     const tabsConfig = [
       {
         title: "Matches",
@@ -83,7 +90,13 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
       },
       {
         title: "Activity",
-        component: () => <Text>Activity</Text>
+        component: () => (
+          <FlatList
+            data={activities}
+            renderItem={TabListItem}
+            keyExtractor={item => item.title}
+          />
+        )
       },
       {
         title: "Diary",
@@ -93,34 +106,54 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <View style={styles.profileTop}>
+        <View style={styles.profileWrapper}>
+          <View style={styles.profileHeaderWrapper}>
+            <TouchableOpacity
+              style={styles.profileHeader}
+              onPress={() => navigate({ routeName: "ProfileEdit" })}
+            >
+              <AvatarStatus
+                avatar={require("../../../assets/avatar.png")}
+                avatarRate={1300}
+                size={56}
+              />
+
+              <View style={styles.profileHeaderInfoWrapper}>
+                <View style={styles.profileHeaderInfo}>
+                  <Text style={styles.profileHeaderInfoName}>Erika Mateo</Text>
+                  <Icon name="pencil" color={colorTextGray} />
+                </View>
+                <Text
+                  style={[
+                    styles.profileHeaderInfoLocation,
+                    styles.profileHeaderInfoText
+                  ]}
+                >
+                  Barcelona, Spain
+                </Text>
+                <Text style={styles.profileHeaderInfoText}>26y</Text>
+              </View>
+            </TouchableOpacity>
+
             <ButtonStyled
               text={"Buddy".toUpperCase()}
               onPress={() => alert("ok")}
-              style={{ shadowRadius: 0, shadowOffset: { width: 0, height: 0 } }}
+              style={styles.profileHeaderButton}
             />
           </View>
+
           <View>
-            <Text
-              style={{ paddingVertical: 15, fontFamily: "montserrat-medium" }}
-            >
-              Trains at <Text style={styles.levelUp}>Level Up Sports</Text>
+            <Text style={styles.profileMainTrains}>
+              Trains at{" "}
+              <Text style={styles.profileMainHighlighted}>Level Up Sports</Text>
             </Text>
-            <Text style={{ lineHeight: 21, fontFamily: "montserrat-medium" }}>
+            <Text style={styles.profileMainInfo}>
               Enthusiastically incubate front-end platforms whereas covalent
               ideas. Globally recaptiualize target cost effective services for
               athletes
             </Text>
           </View>
-          <View
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              paddingVertical: 20
-            }}
-          >
+          <View style={styles.profileStatsWrapper}>
             {statsItems.map((item, i) => (
               <ProfileStatsItem {...item} key={i} />
             ))}
@@ -130,25 +163,10 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
         <View>
           <Tabs
             config={tabsConfig}
-            activeTabIndex={0}
+            activeTabIndex={1}
             stylesItem={defaultTabsStyles.roundedTabs}
-            stylesItemText={{ fontSize: 13 }}
-            stylesTabsContainer={{
-              backgroundColor: "white",
-              marginTop: 10,
-              paddingTop: 0,
-              paddingBottom: 20,
-              marginBottom: 20,
-              shadowColor: "black",
-              shadowOffset: {
-                width: 0,
-                height: 10
-              },
-              justifyContent: "center",
-              shadowOpacity: 0.2,
-              shadowRadius: 5,
-              elevation: 5
-            }}
+            stylesItemText={styles.tabsItemText}
+            stylesTabsContainer={styles.tabsContainer}
           />
         </View>
       </SafeAreaView>

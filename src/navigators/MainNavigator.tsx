@@ -15,6 +15,10 @@ import { PlayStepOneScreen } from "../pages/PlayStepOne/PlayStepOne";
 import { PlayStepTwoScreen } from "../pages/PlayStepTwo/PlayStepTwo";
 import { PlayStepThreeScreen } from "../pages/PlayStepThree/PlayStepThree";
 import { PlayStepFourScreen } from "../pages/PlayStepFour/PlayStepFour";
+import { ProfileEditScreen } from "../pages/ProfileEdit/ProfileEdit";
+import { ActivityChallengesScreen } from "../pages/ActivityChallenges/ActivityChallenges";
+import { ActivityTournamentsScreen } from "../pages/ActivityTournaments/ActivityTournaments";
+import { ActivityPurchasesScreen } from "../pages/ActivityPurchases/ActivityPurchases";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -136,7 +140,11 @@ export const MainNavigator = createStackNavigator(
     PlayStepOne: PlayStepOneScreen,
     PlayStepTwo: PlayStepTwoScreen,
     PlayStepThree: PlayStepThreeScreen,
-    PlayStepFour: PlayStepFourScreen
+    PlayStepFour: PlayStepFourScreen,
+    ProfileEdit: ProfileEditScreen,
+    ActivityChallenges: ActivityChallengesScreen,
+    ActivityTournaments: ActivityTournamentsScreen,
+    ActivityPurchases: ActivityPurchasesScreen
   }
   // {
   //   initialRouteName: "PlayStepThree"
