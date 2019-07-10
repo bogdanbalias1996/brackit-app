@@ -56,7 +56,7 @@ export const TabsNavigator = createBottomTabNavigator(
     Store: formatScreenProps("Store", StoreScreen)
   },
   {
-    initialRouteName: "Play",
+    initialRouteName: "Profile",
     tabBarOptions: {
       style: {
         height: 62,

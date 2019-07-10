@@ -92,6 +92,22 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         shares: 4,
         views: 4,
         comments: 2
+      },
+      {
+        id: "3",
+        name: "Anna Fali",
+        avatar: require("../../../assets/avatar.png"),
+        avatarRate: 1500,
+        avatarStatus: "Beginner",
+        postTime: "5 min ago",
+        postCity: "New York",
+        coins: 500,
+        title: "Who can beat me in ping pong?",
+        whenText: "12 June, 6:00 pm",
+        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
+        shares: 4,
+        views: 4,
+        comments: 2
       }
     ];
     const dataTournament = [
