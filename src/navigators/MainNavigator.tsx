@@ -19,6 +19,8 @@ import { ProfileEditScreen } from "../pages/ProfileEdit/ProfileEdit";
 import { ActivityChallengesScreen } from "../pages/ActivityChallenges/ActivityChallenges";
 import { ActivityTournamentsScreen } from "../pages/ActivityTournaments/ActivityTournaments";
 import { ActivityPurchasesScreen } from "../pages/ActivityPurchases/ActivityPurchases";
+import { MatchesChallengesScreen } from "../pages/MatchesChallenges/MatchesChallenges";
+import { MatchesTournamentsScreen } from "../pages/MatchesTournaments/MatchesTournaments";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -144,7 +146,9 @@ export const MainNavigator = createStackNavigator(
     ProfileEdit: ProfileEditScreen,
     ActivityChallenges: ActivityChallengesScreen,
     ActivityTournaments: ActivityTournamentsScreen,
-    ActivityPurchases: ActivityPurchasesScreen
+    ActivityPurchases: ActivityPurchasesScreen,
+    MatchesChallenges: MatchesChallengesScreen,
+    MatchesTournaments: MatchesTournamentsScreen
   }
   // {
   //   initialRouteName: "PlayStepThree"

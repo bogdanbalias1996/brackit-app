@@ -44,7 +44,7 @@ export const renderItem = ({ item }) => {
     <View style={styles.card}>
       <View style={styles.headerCard}>
         <View style={{ flexDirection: "row" }}>
-          <AvatarStatus avatar={avatar} avatarRate={avatarRate} size={50} />
+          <AvatarStatus avatar={avatar} avatarRate={avatarRate} />
           <View style={styles.wrapCardTitle}>
             <Text style={styles.headerCardTitle}>{name}</Text>
             <Text style={styles.headerCardDate}>

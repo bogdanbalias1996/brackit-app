@@ -20,7 +20,7 @@ const Header = props => (
     getLeftComponent={() => {
       return (
         <TouchableOpacity style={styles.iconCancel} onPress={() => goBack()}>
-          <Icon size={24} name="left" color="white" />
+          <Icon name="left" />
         </TouchableOpacity>
       );
     }}
@@ -42,7 +42,7 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
     const { setChallengeName } = this.props;
 
     setChallengeName(values.challengeName);
-    navigate({ routeName: "PlayStepTwo" });
+    navigate({ routeName: "Profile" });
   };
 
   render() {
@@ -54,7 +54,7 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
       >
         <Formik
           initialValues={{
-            challengeName: ""
+            fullName: "Erika Mateo"
           }}
           onSubmit={this.handleSubmit}
         >
@@ -65,22 +65,21 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
               <View style={styles.form}>
                 <TextInputStyled
                   borderTop={true}
-                  name="challengeName"
-                  label="challenge title"
+                  name="fullName"
+                  label="full name"
+                  value={values.fullName}
                   formProps={props}
                 />
-                <View
-                  style={{ opacity: values.challengeName.length ? 1 : 0.2 }}
-                >
+                <View style={{ opacity: values.fullName.length ? 1 : 0.2 }}>
                   <ButtonStyled
                     style={[
                       styles.btnNext,
-                      { elevation: values.challengeName.length ? 6 : 0 }
+                      { elevation: values.fullName.length ? 6 : 0 }
                     ]}
                     onPress={() => {
-                      values.challengeName.length && handleSubmit();
+                      values.fullName.length && handleSubmit();
                     }}
-                    text={"Next".toUpperCase()}
+                    text={"Save".toUpperCase()}
                   />
                 </View>
               </View>

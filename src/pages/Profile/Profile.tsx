@@ -83,10 +83,27 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
       }
     ];
 
+    const matches = [
+      {
+        title: "Challenges",
+        component: "MatchesChallenges"
+      },
+      {
+        title: "Tournaments",
+        component: "MatchesTournaments"
+      }
+    ];
+
     const tabsConfig = [
       {
         title: "Matches",
-        component: () => <Text>Matches</Text>
+        component: () => (
+          <FlatList
+            data={matches}
+            renderItem={TabListItem}
+            keyExtractor={item => item.title}
+          />
+        )
       },
       {
         title: "Activity",
