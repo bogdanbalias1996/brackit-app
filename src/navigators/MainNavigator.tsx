@@ -17,6 +17,12 @@ import { PlayStepThreeScreen } from "../pages/PlayStepThree/PlayStepThree";
 import { PlayStepFourScreen } from "../pages/PlayStepFour/PlayStepFour";
 import { PlayStepFiveScreen } from "../pages/PlayStepFive/PlayStepFive";
 import { CheckChallengeScreen } from "../pages/CheckChallenge/CheckChallenge";
+import { ProfileEditScreen } from "../pages/ProfileEdit/ProfileEdit";
+import { ActivityChallengesScreen } from "../pages/ActivityChallenges/ActivityChallenges";
+import { ActivityTournamentsScreen } from "../pages/ActivityTournaments/ActivityTournaments";
+import { ActivityPurchasesScreen } from "../pages/ActivityPurchases/ActivityPurchases";
+import { MatchesChallengesScreen } from "../pages/MatchesChallenges/MatchesChallenges";
+import { MatchesTournamentsScreen } from "../pages/MatchesTournaments/MatchesTournaments";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -60,7 +66,7 @@ export const TabsNavigator = createBottomTabNavigator(
     Store: formatScreenProps("Store", StoreScreen)
   },
   {
-    initialRouteName: "Play",
+    initialRouteName: "Profile",
     tabBarOptions: {
       style: {
         height: 62,
@@ -140,7 +146,13 @@ export const MainNavigator = createStackNavigator(
     PlayStepThree: PlayStepThreeScreen,
     PlayStepFour: PlayStepFourScreen,
     PlayStepFive: PlayStepFiveScreen,
-    CheckChallenge: CheckChallengeScreen
+    CheckChallenge: CheckChallengeScreen,
+    ProfileEdit: ProfileEditScreen,
+    ActivityChallenges: ActivityChallengesScreen,
+    ActivityTournaments: ActivityTournamentsScreen,
+    ActivityPurchases: ActivityPurchasesScreen,
+    MatchesChallenges: MatchesChallengesScreen,
+    MatchesTournaments: MatchesTournamentsScreen
   }
   // {
   //   initialRouteName: "PlayStepFive"

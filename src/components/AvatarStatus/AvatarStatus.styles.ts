@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import { colorTextGray } from '../../variables';
+import { StyleSheet } from "react-native";
+import { colorTextGray } from "../../variables";
 
 export default StyleSheet.create({
   avatarWrap: {
@@ -34,5 +34,5 @@ export default StyleSheet.create({
     fontFamily: "montserrat-semibold",
     fontSize: 10,
     color: "white"
-  },
-})
+  }
+});
