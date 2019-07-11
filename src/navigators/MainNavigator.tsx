@@ -16,6 +16,7 @@ import { PlayStepTwoScreen } from "../pages/PlayStepTwo/PlayStepTwo";
 import { PlayStepThreeScreen } from "../pages/PlayStepThree/PlayStepThree";
 import { PlayStepFourScreen } from "../pages/PlayStepFour/PlayStepFour";
 import { PlayStepFiveScreen } from "../pages/PlayStepFive/PlayStepFive";
+import { CheckChallengeScreen } from "../pages/CheckChallenge/CheckChallenge";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -138,9 +139,10 @@ export const MainNavigator = createStackNavigator(
     PlayStepTwo: PlayStepTwoScreen,
     PlayStepThree: PlayStepThreeScreen,
     PlayStepFour: PlayStepFourScreen,
-    PlayStepFive: PlayStepFiveScreen
-  },
-  {
-    initialRouteName: "PlayStepFive"
+    PlayStepFive: PlayStepFiveScreen,
+    CheckChallenge: CheckChallengeScreen
   }
+  // {
+  //   initialRouteName: "PlayStepFive"
+  // }
 );

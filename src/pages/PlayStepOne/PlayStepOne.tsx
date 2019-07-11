@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Formik } from "formik";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { IGlobalState } from "../../coreTypes";
+import { clearChallengeData } from "../Play/actions";
 import { navigate } from "../../navigationService";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
@@ -21,7 +21,10 @@ const Header = props => (
       return (
         <TouchableOpacity
           style={styles.iconCancel}
-          onPress={() => navigate({ routeName: "Play" })}
+          onPress={() => {
+            navigate({ routeName: "Play" });
+            props.clearChallengeData();
+          }}
         >
           <Icon size={24} name="cancel" color="white" />
         </TouchableOpacity>
@@ -36,14 +39,24 @@ const Header = props => (
   />
 );
 
-const mapStateToProps = (state: IGlobalState) => ({});
+const ConnectedHeader = connect(
+  null,
+  dispatch => ({
+    clearChallengeData: () => dispatch(clearChallengeData())
+  })
+)(Header);
+
+const mapStateToProps = state => ({
+  challengeName: state.ChallengeState.challengeName
+});
 const mapDispatchToProps = (dispatch): PlayStepOneScreenDispatchProps => ({
-  setChallengeName: (name: string) => dispatch(setChallengeName(name))
+  setChallengeName: (name: string) => dispatch(setChallengeName(name)),
+  clearChallengeData: () => dispatch(clearChallengeData())
 });
 
 export class Component extends React.PureComponent<PlayStepOneScreenProps> {
   static navigationOptions = {
-    header: props => <Header {...props} />
+    header: props => <ConnectedHeader {...props} />
   };
 
   handleSubmit = values => {
@@ -54,6 +67,7 @@ export class Component extends React.PureComponent<PlayStepOneScreenProps> {
   };
 
   render() {
+    const { challengeName } = this.props;
     return (
       <KeyboardAwareScrollView
         contentContainerStyle={styles.container}
@@ -62,7 +76,7 @@ export class Component extends React.PureComponent<PlayStepOneScreenProps> {
       >
         <Formik
           initialValues={{
-            challengeName: ""
+            challengeName: challengeName
           }}
           onSubmit={this.handleSubmit}
         >
@@ -81,10 +95,7 @@ export class Component extends React.PureComponent<PlayStepOneScreenProps> {
                   style={{ opacity: values.challengeName.length ? 1 : 0.2 }}
                 >
                   <ButtonStyled
-                    style={[
-                      styles.btnNext,
-                      { elevation: values.challengeName.length ? 6 : 0 }
-                    ]}
+                    style={styles.btnNext}
                     onPress={() => {
                       values.challengeName.length && handleSubmit();
                     }}

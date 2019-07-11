@@ -1,13 +1,7 @@
-import { Dispatch } from 'redux'
-import { ApiOperation } from '../../api/api'
-import { request } from '../../api/network'
-import { IAction } from '../../coreTypes'
-
-export const SET_CHALLENGE_USERS = 'SET_CHALLENGE_USERS'
-export const setChallengeUsers = (data) => {
+export const CLEAR_CHALLENGE_DATA = 'CLEAR_CHALLENGE_DATA'
+export const clearChallengeData = () => {
   return {
-    type: SET_CHALLENGE_USERS,
-    data
+    type: CLEAR_CHALLENGE_DATA,
   }
 }
 

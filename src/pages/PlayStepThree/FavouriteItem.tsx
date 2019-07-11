@@ -14,7 +14,7 @@ import {
   PlayStepThreeScreenDispatchProps,
   PlayStepThreeScreenProps
 } from ".";
-import { setChallengePlaces, setFavouritePlace } from "./actions";
+import { setChallengePlace, setFavouritePlaces } from "./actions";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { Icon } from "../../components/Icon/Icon";
@@ -28,91 +28,96 @@ import {
 } from "../../variables";
 
 const mapStateToProps = state => ({
-  challengePlaces: state.ChallengeState.challengePlaces,
-  favouritePlaces: state.ChallengeState.favoritePlaces
+  challengePlace: state.ChallengeState.challengePlace,
+  favouritePlaces: state.ChallengeState.favouritePlaces
 });
 const mapDispatchToProps = (dispatch): PlayStepThreeScreenDispatchProps => ({
-  setChallengePlaces: (placeId: string) =>
-    dispatch(setChallengePlaces(placeId)),
-  setFavouritePlace: (placeId: string) => dispatch(setFavouritePlace(placeId))
+  setChallengePlace: (place: string) => dispatch(setChallengePlace(place)),
+  setFavouritePlaces: (place: string) => dispatch(setFavouritePlaces(place))
 });
 
 export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
   renderItem = ({ item }) => {
     const {
-      challengePlaces,
+      challengePlace,
       favouritePlaces,
-      setChallengePlaces,
-      setFavouritePlace
+      setChallengePlace,
+      setFavouritePlaces
     } = this.props;
     return (
-      this.ifExist(favouritePlaces, item.id) && (
-        <TouchableOpacity
-          onPress={() => {
-            setChallengePlaces(item.id);
-          }}
-          style={styles.card}
-        >
-          <View style={styles.wrapContent}>
-            <View style={styles.avatarWrap}>
-              <Image
-                style={[
-                  styles.avatar,
-                  { opacity: this.ifExist(challengePlaces, item.id) ? 0.5 : 1 }
-                ]}
-                source={item.avatar}
-                resizeMode="cover"
-              />
-              {this.ifExist(challengePlaces, item.id) ? (
-                <Icon
-                  size={24}
-                  name="check"
-                  color={colorEndHeader}
-                  style={styles.checkIcon}
-                />
-              ) : null}
-            </View>
-            <View>
-              <Text
-                style={[
-                  styles.name,
-                  {
-                    color: this.ifExist(challengePlaces, item.id)
-                      ? colorEndHeader
-                      : colorBlack
-                  }
-                ]}
-              >
-                {item.title}
-              </Text>
-              <Text style={styles.address}>{item.text}</Text>
-            </View>
-          </View>
-          <TouchableOpacity
-            style={styles.wrapFavorite}
-            onPress={() => setFavouritePlace(item.id)}
-          >
-            <Icon
-              size={24}
-              name="favorite"
-              color={
-                this.ifExist(favouritePlaces, item.id)
-                  ? colorLike
-                  : colorTextGray
-              }
+      <TouchableOpacity
+        onPress={() => {
+          setChallengePlace(item);
+        }}
+        style={styles.card}
+      >
+        <View style={styles.wrapContent}>
+          <View style={styles.avatarWrap}>
+            <Image
+              style={[
+                styles.avatar,
+                { opacity: this.ifExist(challengePlace, item) ? 0.5 : 1 }
+              ]}
+              source={item.avatar}
+              resizeMode="cover"
             />
-          </TouchableOpacity>
+            {this.ifExist(challengePlace, item) ? (
+              <Icon
+                size={24}
+                name="check"
+                color={colorEndHeader}
+                style={styles.checkIcon}
+              />
+            ) : null}
+          </View>
+          <View>
+            <Text
+              style={[
+                styles.name,
+                {
+                  color: this.ifExist(challengePlace, item)
+                    ? colorEndHeader
+                    : colorBlack
+                }
+              ]}
+            >
+              {item.title}
+            </Text>
+            <Text style={styles.address}>{item.text}</Text>
+          </View>
+        </View>
+        <TouchableOpacity
+          style={styles.wrapFavorite}
+          onPress={() => setFavouritePlaces(item)}
+        >
+          <Icon
+            size={24}
+            name="favorite"
+            color={
+              this.ifExistInArray(favouritePlaces, item)
+                ? colorLike
+                : colorTextGray
+            }
+          />
         </TouchableOpacity>
-      )
+      </TouchableOpacity>
     );
   };
 
-  ifExist = (array, id): any => {
-    return array.includes(id);
+  ifExist = (obj1, obj): any => {
+    if (obj1.id === obj.id) {
+      return true;
+    }
+  };
+
+  ifExistInArray = (array, obj): any => {
+    if (array.find(x => x.id === obj.id)) {
+      return true;
+    }
   };
 
   render() {
-    const { data, challengePlaces, favouritePlaces } = this.props;
+    const { challengePlace, favouritePlaces } = this.props;
 
     return (
       <View style={{ flex: 1, flexShrink: 0, position: "relative" }}>
@@ -128,17 +133,22 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
           onChangeText={val => this.setState({ search: val })}
         />
         <FlatList
-          data={data}
-          extraData={{ challengePlaces, favouritePlaces }}
+          data={favouritePlaces}
+          extraData={{ challengePlace }}
           renderItem={this.renderItem}
           keyExtractor={item => item.id}
           style={{ flex: 1 }}
         />
-        <ButtonStyled
-          style={styles.btnNext}
-          onPress={() => navigate({ routeName: "PlayStepThree" })}
-          text={"Next".toUpperCase()}
-        />
+        <View style={{ opacity: Object.keys(challengePlace).length ? 1 : 0.2 }}>
+          <ButtonStyled
+            style={styles.btnNext}
+            onPress={() =>
+              Object.keys(challengePlace).length &&
+              navigate({ routeName: "PlayStepThree" })
+            }
+            text={"Next".toUpperCase()}
+          />
+        </View>
       </View>
     );
   }

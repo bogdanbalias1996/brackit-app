@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colorTextGray, colorOrangeText, colorTextBlue } from '../../variables';
+import { colorTextGray, colorOrangeText, colorTextBlue, colorBlack } from '../../variables';
 
 export default StyleSheet.create({
 	container: {
@@ -76,7 +76,8 @@ export default StyleSheet.create({
 	modalOverlayStyle: {
 		backgroundColor: "rgba(0,0,0,0.4)",
 		padding: 10,
-		paddingTop: 100
+		paddingTop: 300,
+		justifyContent: 'flex-end',
 	},
 	modalCancelTextStyle: {
 		color: "#1d7ee2",
@@ -87,5 +88,9 @@ export default StyleSheet.create({
 		backgroundColor: "white",
 		borderRadius: 12,
 		paddingHorizontal: 0
+	},
+	modalOptionTextStyle: {
+		color: colorBlack,
+		fontSize: 20,
 	}
 })

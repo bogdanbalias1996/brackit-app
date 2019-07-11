@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-navigation";
 import DateTimePicker from "react-native-modal-datetime-picker";
 import { format } from "date-fns";
 
-import { IGlobalState } from "../../coreTypes";
+import { clearChallengeData } from "../Play/actions";
 import { navigate } from "../../navigationService";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { PlayStepFourScreenProps, PlayStepFourScreenDispatchProps } from ".";
@@ -21,7 +21,10 @@ const Header = props => (
       return (
         <TouchableOpacity
           style={styles.iconCancel}
-          onPress={() => navigate({ routeName: "Play" })}
+          onPress={() => {
+            navigate({ routeName: "Play" });
+            props.clearChallengeData();
+          }}
         >
           <Icon size={24} name="cancel" color="white" />
         </TouchableOpacity>
@@ -36,19 +39,31 @@ const Header = props => (
   />
 );
 
-const mapStateToProps = (state: IGlobalState) => ({});
+const ConnectedHeader = connect(
+  null,
+  dispatch => ({
+    clearChallengeData: () => dispatch(clearChallengeData())
+  })
+)(Header);
+
+const mapStateToProps = state => ({
+  challengeDate: state.ChallengeState.challengeDate
+});
 const mapDispatchToProps = (dispatch): PlayStepFourScreenDispatchProps => ({
-  setChallengeDate: (date: string) => dispatch(setChallengeDate(date))
+  setChallengeDate: (date: string) => dispatch(setChallengeDate(date)),
+  clearChallengeData: () => dispatch(clearChallengeData())
 });
 
 export class Component extends React.PureComponent<PlayStepFourScreenProps> {
   static navigationOptions = {
-    header: props => <Header {...props} />
+    header: props => <ConnectedHeader {...props} />
   };
 
   state = {
     isDateTimePickerVisible: false,
-    date: new Date()
+    date: Object.keys(this.props.challengeDate).length
+      ? this.props.challengeDate
+      : new Date()
   };
 
   showDateTimePicker = () => {
@@ -61,11 +76,12 @@ export class Component extends React.PureComponent<PlayStepFourScreenProps> {
 
   handleDatePicked = date => {
     this.setState({ date: date });
+    this.props.setChallengeDate(date.toString());
     this.hideDateTimePicker();
   };
 
   render() {
-    const { setChallengeDate } = this.props;
+    const { challengeDate } = this.props;
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.wrapDataContent}>
@@ -74,7 +90,7 @@ export class Component extends React.PureComponent<PlayStepFourScreenProps> {
               Choose date and time for your challenge
             </Text>
             <Text style={styles.dateText}>
-              {format(this.state.date, "MM.DD.YYYY H:m")}
+              {format(this.state.date, "D MMMM, HH:mm a")}
             </Text>
           </TouchableOpacity>
           <DateTimePicker
@@ -84,14 +100,16 @@ export class Component extends React.PureComponent<PlayStepFourScreenProps> {
             onCancel={this.hideDateTimePicker}
           />
         </View>
-        <ButtonStyled
-          style={styles.btnNext}
-          onPress={() => {
-            setChallengeDate(this.state.date);
-            navigate({ routeName: "PlayStepFive" });
-          }}
-          text={"Next".toUpperCase()}
-        />
+        <View style={{ opacity: Object.keys(challengeDate).length ? 1 : 0.2 }}>
+          <ButtonStyled
+            style={styles.btnNext}
+            onPress={() => {
+              Object.keys(challengeDate).length &&
+                navigate({ routeName: "PlayStepFive" });
+            }}
+            text={"Next".toUpperCase()}
+          />
+        </View>
       </SafeAreaView>
     );
   }

@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
+import { clearChallengeData } from "../Play/actions";
 import { navigate } from "../../navigationService";
 import {
   PlayStepTwoScreenStateProps,
@@ -31,7 +32,10 @@ const Header = props => (
       return (
         <TouchableOpacity
           style={styles.iconCancel}
-          onPress={() => navigate({ routeName: "Play" })}
+          onPress={() => {
+            navigate({ routeName: "Play" });
+            props.clearChallengeData();
+          }}
         >
           <Icon size={24} name="cancel" color="white" />
         </TouchableOpacity>
@@ -46,17 +50,26 @@ const Header = props => (
   />
 );
 
+const ConnectedHeader = connect(
+  null,
+  dispatch => ({
+    clearChallengeData: () => dispatch(clearChallengeData())
+  })
+)(Header);
+
 const mapStateToProps = state => ({
   challengeUsers: state.ChallengeState.challengeUsers
 });
 const mapDispatchToProps = (dispatch): PlayStepTwoScreenDispatchProps => ({
-  setChallengeUsers: (userId: string) => dispatch(setChallengeUsers(userId)),
-  setAllChallengeUsers: (users: string) => dispatch(setAllChallengeUsers(users))
+  setChallengeUsers: (user: string) => dispatch(setChallengeUsers(user)),
+  setAllChallengeUsers: (users: string) =>
+    dispatch(setAllChallengeUsers(users)),
+  clearChallengeData: () => dispatch(clearChallengeData())
 });
 
 export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
   static navigationOptions = {
-    header: props => <Header {...props} />
+    header: props => <ConnectedHeader {...props} />
   };
 
   state = {
@@ -68,14 +81,10 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
     this.setState({ showOpenAll: !this.state.showOpenAll });
   };
 
-  ifExist = (array, id): any => {
-    return array.includes(id);
-  };
-
-  setAllChallengeUsers = data => {
-    const { setAllChallengeUsers } = this.props;
-    let newArr = data.map(item => item.id);
-    setAllChallengeUsers(newArr);
+  ifExist = (array, obj): any => {
+    if (array.find(x => x.id === obj.id)) {
+      return true;
+    }
   };
 
   renderItem = ({ item }) => {
@@ -83,19 +92,19 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
     const { setChallengeUsers, challengeUsers } = this.props;
     return (
       <TouchableOpacity
-        onPress={() => setChallengeUsers(id)}
+        onPress={() => setChallengeUsers(item)}
         style={styles.card}
       >
         <View style={styles.avatarWrap}>
           <Image
             style={[
               styles.avatar,
-              { opacity: this.ifExist(challengeUsers, id) ? 0.5 : 1 }
+              { opacity: this.ifExist(challengeUsers, item) ? 0.5 : 1 }
             ]}
             source={avatar}
             resizeMode="cover"
           />
-          {this.ifExist(challengeUsers, id) ? (
+          {this.ifExist(challengeUsers, item) ? (
             <Icon
               size={24}
               name="check"
@@ -109,7 +118,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
             style={[
               styles.name,
               {
-                color: this.ifExist(challengeUsers, id)
+                color: this.ifExist(challengeUsers, item)
                   ? colorEndHeader
                   : colorBlack
               }
@@ -193,6 +202,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
       }
     ];
     const { showOpenAll } = this.state;
+    const { setAllChallengeUsers, challengeUsers } = this.props;
 
     return (
       <SafeAreaView style={styles.container}>
@@ -238,7 +248,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
         {!this.state.showOpenAll ? (
           <View style={{ flex: 1 }}>
             <TouchableOpacity
-              onPress={() => this.setAllChallengeUsers(dataOpen)}
+              onPress={() => setAllChallengeUsers(dataOpen)}
               style={styles.selectAll}
             >
               <Text style={styles.selectAllText}>Select all</Text>
@@ -251,11 +261,15 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
             />
           </View>
         ) : null}
-        <ButtonStyled
-          style={styles.btnNext}
-          onPress={() => navigate({ routeName: "PlayStepThree" })}
-          text={"Next".toUpperCase()}
-        />
+        <View style={{ opacity: challengeUsers.length ? 1 : 0.2 }}>
+          <ButtonStyled
+            style={styles.btnNext}
+            onPress={() =>
+              challengeUsers.length && navigate({ routeName: "PlayStepThree" })
+            }
+            text={"Next".toUpperCase()}
+          />
+        </View>
       </SafeAreaView>
     );
   }

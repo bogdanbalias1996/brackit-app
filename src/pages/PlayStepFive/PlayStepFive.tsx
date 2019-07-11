@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-navigation";
 import { LinearGradient } from "expo";
 import ModalSelector from "react-native-modal-selector";
 
-import { IGlobalState } from "../../coreTypes";
+import { clearChallengeData } from "../Play/actions";
 import { navigate } from "../../navigationService";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { PlayStepFiveScreenProps, PlayStepFiveScreenDispatchProps } from ".";
@@ -13,11 +13,7 @@ import { setChallengeCoins } from "./actions";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./PlayStepFive.styles";
-import {
-  colorGradientBlue,
-  colorGradientGreen,
-  colorTextBlue
-} from "../../variables";
+import { colorGradientBlue, colorGradientGreen } from "../../variables";
 
 const Header = props => (
   <HeaderRounded
@@ -26,7 +22,10 @@ const Header = props => (
       return (
         <TouchableOpacity
           style={styles.iconCancel}
-          onPress={() => navigate({ routeName: "Play" })}
+          onPress={() => {
+            navigate({ routeName: "Play" });
+            props.clearChallengeData();
+          }}
         >
           <Icon size={24} name="cancel" color="white" />
         </TouchableOpacity>
@@ -41,14 +40,24 @@ const Header = props => (
   />
 );
 
-const mapStateToProps = (state: IGlobalState) => ({});
+const ConnectedHeader = connect(
+  null,
+  dispatch => ({
+    clearChallengeData: () => dispatch(clearChallengeData())
+  })
+)(Header);
+
+const mapStateToProps = state => ({
+  challengeCoins: state.ChallengeState.challengeCoins
+});
 const mapDispatchToProps = (dispatch): PlayStepFiveScreenDispatchProps => ({
-  setChallengeCoins: (coins: string) => dispatch(setChallengeCoins(coins))
+  setChallengeCoins: (coins: string) => dispatch(setChallengeCoins(coins)),
+  clearChallengeData: () => dispatch(clearChallengeData())
 });
 
 export class Component extends React.PureComponent<PlayStepFiveScreenProps> {
   static navigationOptions = {
-    header: props => <Header {...props} />
+    header: props => <ConnectedHeader {...props} />
   };
 
   state = {
@@ -56,7 +65,7 @@ export class Component extends React.PureComponent<PlayStepFiveScreenProps> {
   };
 
   render() {
-    const { setChallengeCoins } = this.props;
+    const { setChallengeCoins, challengeCoins } = this.props;
     const data = [
       { key: 1, label: "1" },
       { key: 2, label: "2" },
@@ -119,21 +128,28 @@ export class Component extends React.PureComponent<PlayStepFiveScreenProps> {
         </View>
         <ModalSelector
           data={data}
-          initValue="Choose quantity"
+          initValue={challengeCoins.length ? challengeCoins : "0"}
           onChange={option => {
             this.setState({ coinValue: option.label });
+            setChallengeCoins(option.label);
           }}
           cancelStyle={styles.modalCancelStyle}
           overlayStyle={styles.modalOverlayStyle}
           cancelTextStyle={styles.modalCancelTextStyle}
           optionContainerStyle={styles.modalOptionContainer}
+          optionTextStyle={styles.modalOptionTextStyle}
           cancelText="Cancel"
         />
-        <ButtonStyled
-          style={styles.btnNext}
-          onPress={() => setChallengeCoins(this.state.coinValue)}
-          text={"Next".toUpperCase()}
-        />
+        <View style={{ opacity: challengeCoins.length ? 1 : 0.2 }}>
+          <ButtonStyled
+            style={styles.btnNext}
+            onPress={() => {
+              challengeCoins.length &&
+                navigate({ routeName: "CheckChallenge" });
+            }}
+            text={"Next".toUpperCase()}
+          />
+        </View>
       </SafeAreaView>
     );
   }

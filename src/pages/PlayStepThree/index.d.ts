@@ -1,12 +1,13 @@
 export interface PlayStepThreeScreenStateProps {
     data: any
-    challengePlaces: any
+    challengePlace: any
     favouritePlaces: any
 }
 
 export type PlayStepThreeScreenDispatchProps = {
-    setChallengePlaces: (placeId: string) => void
-    setFavouritePlace: (placeId: string) => void
+    setChallengePlace: (place: any) => void
+    setFavouritePlaces: (place: any) => void
+    clearChallengeData: () => void
 }
 
 export type PlayStepThreeScreenProps = PlayStepThreeScreenStateProps & PlayStepThreeScreenDispatchProps

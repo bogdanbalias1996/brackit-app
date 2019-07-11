@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { TouchableOpacity, Text } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
-import { IGlobalState } from "../../coreTypes";
+import { clearChallengeData } from "../Play/actions";
 import { PlayStepThreeScreenProps } from ".";
 import { navigate } from "../../navigationService";
 import { PlaceItems } from "./PlaceItem";
@@ -20,7 +20,10 @@ const Header = props => (
       return (
         <TouchableOpacity
           style={styles.iconCancel}
-          onPress={() => navigate({ routeName: "Play" })}
+          onPress={() => {
+            navigate({ routeName: "Play" });
+            props.clearChallengeData();
+          }}
         >
           <Icon size={24} name="cancel" color="white" />
         </TouchableOpacity>
@@ -35,12 +38,21 @@ const Header = props => (
   />
 );
 
-const mapStateToProps = (state: IGlobalState) => ({});
-const mapDispatchToProps = dispatch => ({});
+const ConnectedHeader = connect(
+  null,
+  dispatch => ({
+    clearChallengeData: () => dispatch(clearChallengeData())
+  })
+)(Header);
+
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({
+  clearChallengeData: () => dispatch(clearChallengeData())
+});
 
 export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
   static navigationOptions = {
-    header: props => <Header {...props} />
+    header: props => <ConnectedHeader {...props} />
   };
 
   state = {
@@ -50,43 +62,43 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
   render() {
     const dataChallange = [
       {
-        id: "1",
+        id: "01",
+        title: "Level Up Academy",
+        avatar: require("../../../assets/illustration2_2x.png"),
+        text: "3 kms, 300 INR / hr"
+      },
+      {
+        id: "02",
+        title: "Level Up Academy1",
+        avatar: require("../../../assets/avatar.png"),
+        text: "3 kms, 300 INR / hr"
+      },
+      {
+        id: "03",
+        title: "Katayama Fumiki",
+        avatar: require("../../../assets/avatar.png"),
+        text: "3 kms, 300 INR / hr"
+      },
+      {
+        id: "04",
         title: "Katayama Fumiki",
         avatar: require("../../../assets/illustration2_2x.png"),
         text: "3 kms, 300 INR / hr"
       },
       {
-        id: "2",
+        id: "05",
         title: "Katayama Fumiki",
         avatar: require("../../../assets/avatar.png"),
         text: "3 kms, 300 INR / hr"
       },
       {
-        id: "3",
+        id: "06",
         title: "Katayama Fumiki",
         avatar: require("../../../assets/avatar.png"),
         text: "3 kms, 300 INR / hr"
       },
       {
-        id: "4",
-        title: "Katayama Fumiki",
-        avatar: require("../../../assets/illustration2_2x.png"),
-        text: "3 kms, 300 INR / hr"
-      },
-      {
-        id: "5",
-        title: "Katayama Fumiki",
-        avatar: require("../../../assets/avatar.png"),
-        text: "3 kms, 300 INR / hr"
-      },
-      {
-        id: "6",
-        title: "Katayama Fumiki",
-        avatar: require("../../../assets/avatar.png"),
-        text: "3 kms, 300 INR / hr"
-      },
-      {
-        id: "7",
+        id: "07",
         title: "Katayama Fumiki",
         avatar: require("../../../assets/avatar.png"),
         text: "3 kms, 300 INR / hr"

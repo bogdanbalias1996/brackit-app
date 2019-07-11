@@ -14,7 +14,7 @@ import {
   PlayStepThreeScreenDispatchProps,
   PlayStepThreeScreenProps
 } from ".";
-import { setChallengePlaces, setFavouritePlace } from "./actions";
+import { setChallengePlace, setFavouritePlaces } from "./actions";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { Icon } from "../../components/Icon/Icon";
@@ -28,27 +28,26 @@ import {
 } from "../../variables";
 
 const mapStateToProps = state => ({
-  challengePlaces: state.ChallengeState.challengePlaces,
-  favouritePlaces: state.ChallengeState.favoritePlaces
+  challengePlace: state.ChallengeState.challengePlace,
+  favouritePlaces: state.ChallengeState.favouritePlaces
 });
 const mapDispatchToProps = (dispatch): PlayStepThreeScreenDispatchProps => ({
-  setChallengePlaces: (placeId: string) =>
-    dispatch(setChallengePlaces(placeId)),
-  setFavouritePlace: (placeId: string) => dispatch(setFavouritePlace(placeId))
+  setChallengePlace: (place: string) => dispatch(setChallengePlace(place)),
+  setFavouritePlaces: (place: string) => dispatch(setFavouritePlaces(place))
 });
 
 export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
   renderItem = ({ item }) => {
     const {
-      challengePlaces,
+      challengePlace,
       favouritePlaces,
-      setChallengePlaces,
-      setFavouritePlace
+      setChallengePlace,
+      setFavouritePlaces
     } = this.props;
     return (
       <TouchableOpacity
         onPress={() => {
-          setChallengePlaces(item.id);
+          setChallengePlace(item);
         }}
         style={styles.card}
       >
@@ -57,12 +56,12 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
             <Image
               style={[
                 styles.avatar,
-                { opacity: this.ifExist(challengePlaces, item.id) ? 0.5 : 1 }
+                { opacity: this.ifExist(challengePlace, item) ? 0.5 : 1 }
               ]}
               source={item.avatar}
               resizeMode="cover"
             />
-            {this.ifExist(challengePlaces, item.id) ? (
+            {this.ifExist(challengePlace, item) ? (
               <Icon
                 size={24}
                 name="check"
@@ -76,7 +75,7 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
               style={[
                 styles.name,
                 {
-                  color: this.ifExist(challengePlaces, item.id)
+                  color: this.ifExist(challengePlace, item)
                     ? colorEndHeader
                     : colorBlack
                 }
@@ -89,13 +88,15 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
         </View>
         <TouchableOpacity
           style={styles.wrapFavorite}
-          onPress={() => setFavouritePlace(item.id)}
+          onPress={() => setFavouritePlaces(item)}
         >
           <Icon
             size={24}
             name="favorite"
             color={
-              this.ifExist(favouritePlaces, item.id) ? colorLike : colorTextGray
+              this.ifExistInArray(favouritePlaces, item)
+                ? colorLike
+                : colorTextGray
             }
           />
         </TouchableOpacity>
@@ -103,12 +104,20 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
     );
   };
 
-  ifExist = (array, id): any => {
-    return array.includes(id);
+  ifExist = (obj1, obj): any => {
+    if (obj1.id === obj.id) {
+      return true;
+    }
+  };
+
+  ifExistInArray = (array, obj): any => {
+    if (array.find(x => x.id === obj.id)) {
+      return true;
+    }
   };
 
   render() {
-    const { data, challengePlaces, favouritePlaces } = this.props;
+    const { data, challengePlace, favouritePlaces } = this.props;
 
     return (
       <View style={{ flex: 1, flexShrink: 0, position: "relative" }}>
@@ -125,16 +134,21 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
         />
         <FlatList
           data={data}
-          extraData={{ challengePlaces, favouritePlaces }}
+          extraData={{ challengePlace, favouritePlaces }}
           renderItem={this.renderItem}
           keyExtractor={item => item.id}
           style={{ flex: 1 }}
         />
-        <ButtonStyled
-          style={styles.btnNext}
-          onPress={() => navigate({ routeName: "PlayStepFour" })}
-          text={"Next".toUpperCase()}
-        />
+        <View style={{ opacity: Object.keys(challengePlace).length ? 1 : 0.2 }}>
+          <ButtonStyled
+            style={styles.btnNext}
+            onPress={() =>
+              Object.keys(challengePlace).length &&
+              navigate({ routeName: "PlayStepFour" })
+            }
+            text={"Next".toUpperCase()}
+          />
+        </View>
       </View>
     );
   }
