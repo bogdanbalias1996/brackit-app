@@ -4,7 +4,7 @@ import { SET_CHALLENGE_USERS, SET_ALL_CHALLENGE_USERS } from "../PlayStepTwo/act
 import { SET_CHALLENGE_PLACE, SET_FAVOURITE_PLACES } from "../PlayStepThree/actions";
 import { SET_CHALLENGE_DATE } from "../PlayStepFour/actions";
 import { SET_CHALLENGE_COINS } from "../PlayStepFive/actions";
-import { CLEAR_CHALLENGE_DATA } from "./actions";
+import { CLEAR_CHALLENGE_DATA, SET_ACTIVE_TAB } from "./actions";
 
 export class ChallengeState {
   challengeName: string;
@@ -14,6 +14,7 @@ export class ChallengeState {
   challengeDate: string;
   challengeCoins: string;
   isDataLoading: boolean;
+  activeTab: number;
 
   constructor() {
     this.challengeName = "";
@@ -23,6 +24,7 @@ export class ChallengeState {
     this.challengeDate = "";
     this.challengeCoins = "";
     this.isDataLoading = false;
+    this.activeTab = null;
   }
 }
 
@@ -79,6 +81,12 @@ export const ChallengeReducer = (
       return {
         ...state,
         challengeCoins: action.data
+      };
+
+    case SET_ACTIVE_TAB:
+      return {
+        ...state,
+        activeTab: action.data
       };
 
     case CLEAR_CHALLENGE_DATA:

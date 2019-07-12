@@ -144,7 +144,7 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
             style={styles.btnNext}
             onPress={() =>
               Object.keys(challengePlace).length &&
-              navigate({ routeName: "PlayStepThree" })
+              navigate({ routeName: "PlayStepFour" })
             }
             text={"Next".toUpperCase()}
           />

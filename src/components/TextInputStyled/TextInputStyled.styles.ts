@@ -13,6 +13,11 @@ export default StyleSheet.create({
     borderBottomWidth: 1,
     borderColor: colorBorder,
   },
+  containerWithLabel: {
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    // width: undefined
+  },
   error: {
     borderBottomWidth: 1,
     borderColor: colorTomato,
@@ -47,5 +52,11 @@ export default StyleSheet.create({
     fontSize: 15,
     color: 'white',
     fontFamily: 'montserrat-medium',
+  },
+  labelIconStyle: {
+    fontSize: 12,
+    fontFamily: "montserrat-medium",
+    color: colorTextGray,
+    marginBottom: 5,
   }
 })

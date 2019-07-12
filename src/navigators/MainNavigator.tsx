@@ -23,6 +23,7 @@ import { ActivityTournamentsScreen } from "../pages/ActivityTournaments/Activity
 import { ActivityPurchasesScreen } from "../pages/ActivityPurchases/ActivityPurchases";
 import { MatchesChallengesScreen } from "../pages/MatchesChallenges/MatchesChallenges";
 import { MatchesTournamentsScreen } from "../pages/MatchesTournaments/MatchesTournaments";
+import { CreateTournamentScreen } from "../pages/CreateTournament/CreateTournament";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -152,9 +153,10 @@ export const MainNavigator = createStackNavigator(
     ActivityTournaments: ActivityTournamentsScreen,
     ActivityPurchases: ActivityPurchasesScreen,
     MatchesChallenges: MatchesChallengesScreen,
-    MatchesTournaments: MatchesTournamentsScreen
+    MatchesTournaments: MatchesTournamentsScreen,
+    CreateTournament: CreateTournamentScreen
+  },
+  {
+    initialRouteName: "CreateTournament"
   }
-  // {
-  //   initialRouteName: "PlayStepFive"
-  // }
 );

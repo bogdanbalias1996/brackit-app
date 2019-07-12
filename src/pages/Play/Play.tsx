@@ -12,13 +12,19 @@ import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import { ButtonHeaderStyled } from "../../components/ButtonHeaderStyled/ButtonHeaderStyled";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
+import { setActiveTab } from "./actions";
 import styles from "./Play.styles";
 
 const Header = props => (
   <HeaderRounded
     {...props}
     getLeftComponent={() => {
-      return (
+      return props.activeTab && props.activeTab === 2 ? (
+        <ButtonHeaderStyled
+          onPress={() => navigate({ routeName: "CreateTournament" })}
+          text="Post tournament"
+        />
+      ) : (
         <ButtonHeaderStyled
           onPress={() => navigate({ routeName: "PlayStepOne" })}
           text="Post a challenge"
@@ -50,13 +56,22 @@ const Header = props => (
   />
 );
 
-const mapStateToProps = (state: IGlobalState) => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapStateToProps = state => ({
+  activeTab: state.ChallengeState.activeTab
+});
+const mapDispatchToProps = dispatch => ({
+  setActiveTab: val => dispatch(setActiveTab(val))
+});
+
+const ConnectedHeader = connect(
+  mapStateToProps,
+  null
+)(Header);
 
 export class Component extends React.PureComponent<PlayScreenProps> {
-  static navigationOptions = {
-    header: props => <Header {...props} />
-  };
+  static navigationOptions = ({ navigation }) => ({
+    header: props => <ConnectedHeader {...props} />
+  });
 
   render() {
     const dataChallange = [
@@ -142,15 +157,18 @@ export class Component extends React.PureComponent<PlayScreenProps> {
     const tabsConfig = [
       {
         title: "My matches",
-        component: () => <Text>My matches</Text>
+        component: () => <Text>My matches</Text>,
+        onPress: () => this.props.setActiveTab(0)
       },
       {
         title: "Challenges",
-        component: () => <ChallengeItems data={dataChallange} />
+        component: () => <ChallengeItems data={dataChallange} />,
+        onPress: () => this.props.setActiveTab(1)
       },
       {
         title: "Tournaments",
-        component: () => <TournamentItems data={dataTournament} />
+        component: () => <TournamentItems data={dataTournament} />,
+        onPress: () => this.props.setActiveTab(2)
       }
     ];
     return (
