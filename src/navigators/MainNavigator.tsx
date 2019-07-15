@@ -24,6 +24,7 @@ import { ActivityPurchasesScreen } from "../pages/ActivityPurchases/ActivityPurc
 import { MatchesChallengesScreen } from "../pages/MatchesChallenges/MatchesChallenges";
 import { MatchesTournamentsScreen } from "../pages/MatchesTournaments/MatchesTournaments";
 import { CreateTournamentScreen } from "../pages/CreateTournament/CreateTournament";
+import { TournamentDetailScreen } from "../pages/TournamentDetail/TournamentDetail";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -67,7 +68,6 @@ export const TabsNavigator = createBottomTabNavigator(
     Store: formatScreenProps("Store", StoreScreen)
   },
   {
-    initialRouteName: "Profile",
     tabBarOptions: {
       style: {
         height: 62,
@@ -154,9 +154,10 @@ export const MainNavigator = createStackNavigator(
     ActivityPurchases: ActivityPurchasesScreen,
     MatchesChallenges: MatchesChallengesScreen,
     MatchesTournaments: MatchesTournamentsScreen,
-    CreateTournament: CreateTournamentScreen
-  },
-  {
-    initialRouteName: "CreateTournament"
+    CreateTournament: CreateTournamentScreen,
+    TournamentDetail: TournamentDetailScreen
   }
+  // {
+  //   initialRouteName: "CreateTournament"
+  // }
 );

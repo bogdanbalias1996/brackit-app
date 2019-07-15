@@ -141,6 +141,7 @@ export class Component extends React.PureComponent<
                 <TextInputIconStyled
                   name="tournamentPrize"
                   placeholder="Enter prize money"
+                  keyboardType="numeric"
                   label="prize money"
                   iconName="cup"
                   formProps={props}
@@ -160,6 +161,7 @@ export class Component extends React.PureComponent<
                       <TextInputIconStyled
                         name="tournamentStartDate"
                         pointerEvents="none"
+                        editable={false}
                         placeholder="Start date"
                         label="tournament start date"
                         iconName="calendar"
@@ -189,6 +191,7 @@ export class Component extends React.PureComponent<
                     >
                       <TextInputIconStyled
                         pointerEvents="none"
+                        editable={false}
                         name="tournamentEndDate"
                         label="tournament end date"
                         iconName="calendar"
@@ -260,6 +263,7 @@ export class Component extends React.PureComponent<
                     <TextInputIconStyled
                       name="tournamentEntrySingle"
                       placeholder="Singles"
+                      keyboardType="numeric"
                       label="singles entry fee"
                       iconName="coin-black"
                       formProps={props}
@@ -269,6 +273,7 @@ export class Component extends React.PureComponent<
                     <TextInputIconStyled
                       name="tournamentEntryDouble"
                       placeholder="Doubles"
+                      keyboardType="numeric"
                       label="doubles entry fee"
                       iconName="coin-black"
                       formProps={props}
@@ -284,6 +289,7 @@ export class Component extends React.PureComponent<
                     name="tournamentEntryCloseDate"
                     placeholder="Choose entry close date"
                     pointerEvents="none"
+                    editable={false}
                     label="entry close date"
                     iconName="calendar"
                     formProps={props}
@@ -315,11 +321,13 @@ export class Component extends React.PureComponent<
                   placeholder="Enter contact phone"
                   label="phone"
                   iconName="phone"
+                  keyboardType="phone-pad"
                   formProps={props}
                 />
                 <TextInputIconStyled
                   name="tournamentPersonEmail"
                   placeholder="Enter contact email"
+                  keyboardType="email-address"
                   label="email"
                   iconName="envelope"
                   formProps={props}

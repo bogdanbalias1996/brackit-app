@@ -137,7 +137,36 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         prize: "12 000",
         singleEntryFee: "50",
         doubleEntryFee: "70",
-        categories: ["U10", "U15", "U17"]
+        categories: [
+          {
+            id: "1",
+            value: "U10"
+          },
+          {
+            id: "2",
+            value: "U15"
+          },
+          {
+            id: "3",
+            value: "U17"
+          },
+          {
+            id: "4",
+            value: "CD1"
+          },
+          {
+            id: "5",
+            value: "BS1"
+          },
+          {
+            id: "6",
+            value: "WD2"
+          },
+          {
+            id: "7",
+            value: "XD8"
+          }
+        ]
       },
       {
         id: "2",
@@ -151,7 +180,38 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         prize: "12 000",
         singleEntryFee: "100",
         doubleEntryFee: "70",
-        categories: ["U10", "U15", "U17", "CD", "BS", "WD", "XD"]
+        categories: [
+          {
+            id: "1",
+            value: "U10"
+          },
+          {
+            id: "2",
+            value: "U15"
+          },
+          {
+            id: "3",
+            value: "U17"
+          },
+          {
+            id: "4",
+            value: "CD1"
+          },
+          {
+            id: "5",
+            value: "BS1"
+          },
+          {
+            id: "6",
+            value: "WD2",
+            double: true
+          },
+          {
+            id: "7",
+            value: "XD8",
+            double: true
+          }
+        ]
       }
     ];
     const tabsConfig = [

@@ -6,7 +6,8 @@ export default StyleSheet.create({
     backgroundColor: "white",
     paddingTop: 25,
     padding: 20,
-    paddingBottom: 0
+    paddingBottom: 0,
+    elevation: 5
   },
   profileHeaderWrapper: {
     flexDirection: "row",
@@ -59,7 +60,7 @@ export default StyleSheet.create({
   },
   tabsContainer: {
     backgroundColor: "white",
-    marginTop: 10,
+    marginTop: 0,
     paddingTop: 0,
     paddingBottom: 20,
     marginBottom: 20,
@@ -68,7 +69,6 @@ export default StyleSheet.create({
       width: 0,
       height: 10
     },
-    justifyContent: "center",
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 5

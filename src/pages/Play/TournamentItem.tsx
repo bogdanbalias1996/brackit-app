@@ -1,5 +1,12 @@
 import * as React from "react";
-import { View, Text, FlatList, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Image,
+  TouchableOpacity
+} from "react-native";
 
 import { TournamentItem } from "./";
 import { Icon } from "../../components/Icon/Icon";
@@ -10,6 +17,7 @@ import {
   colorGradientBlue,
   colorOrangeText
 } from "../../variables";
+import { navigate } from "../../navigationService";
 
 export const renderItem = ({ item }) => {
   const {
@@ -27,7 +35,15 @@ export const renderItem = ({ item }) => {
   } = item as TournamentItem;
 
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      onPress={() =>
+        navigate({
+          routeName: "TournamentDetail",
+          params: { tournamentData: item }
+        })
+      }
+      style={styles.card}
+    >
       <View style={styles.triangleShape} />
       <View style={styles.wrapTopContent}>
         <Text style={styles.status}>{statusTournament.toUpperCase()}</Text>
@@ -108,13 +124,13 @@ export const renderItem = ({ item }) => {
           {categories.map((item, i) => {
             return (
               <View key={i} style={styles.categoryItem}>
-                <Text style={styles.categoryItemText}>{item}</Text>
+                <Text style={styles.categoryItemText}>{item.value}</Text>
               </View>
             );
           })}
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
