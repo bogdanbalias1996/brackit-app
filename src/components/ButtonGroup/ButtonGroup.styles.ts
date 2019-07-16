@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colorTextGray, colorBlack, colorEndHeader, colorTextBlue } from '../../variables'
+import { colorTextGray, colorBlack, colorBlueEnd, colorTextBlue } from '../../variables'
 
 export default StyleSheet.create({
   container: {
@@ -49,7 +49,7 @@ export default StyleSheet.create({
   underlineDot: {
     position: 'absolute',
     right: 0,
-    backgroundColor: colorEndHeader,
+    backgroundColor: colorBlueEnd,
     width: 2,
     height: 2,
     borderRadius: 2,

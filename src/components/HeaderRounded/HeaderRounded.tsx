@@ -5,7 +5,7 @@ import { LinearGradient } from "expo";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./HeaderRounded.styles";
 import { goBack } from "../../navigationService";
-import { colorEndHeader, colorStartHeader } from "../../variables";
+import { colorBlueEnd, colorBlueStart } from "../../variables";
 
 export const HeaderRounded = props => {
   const {
@@ -20,7 +20,7 @@ export const HeaderRounded = props => {
     <LinearGradient
       start={[0, 0.5]}
       end={[1, 0.5]}
-      colors={[colorStartHeader, colorEndHeader]}
+      colors={[colorBlueStart, colorBlueEnd]}
       style={[styles.container, style || {}]}
     >
       <View style={styles.leftContainer}>

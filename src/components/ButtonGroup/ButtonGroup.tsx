@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo";
 import styles from "./ButtonGroup.styles";
 import { ButtonGroupProps, ButtonGroupItem } from "./";
-import { colorStartHeader, colorEndHeader } from "../../variables";
+import { colorBlueStart, colorBlueEnd } from "../../variables";
 
 export class ButtonGroup extends React.PureComponent<ButtonGroupProps> {
   state: {
@@ -86,7 +86,7 @@ export class ButtonGroup extends React.PureComponent<ButtonGroupProps> {
                 <LinearGradient
                   start={[0, 0.5]}
                   end={[1, 0.5]}
-                  colors={[colorStartHeader, colorEndHeader]}
+                  colors={[colorBlueStart, colorBlueEnd]}
                   style={styles.underline}
                 >
                   <View style={styles.underlineWhiteDot} />

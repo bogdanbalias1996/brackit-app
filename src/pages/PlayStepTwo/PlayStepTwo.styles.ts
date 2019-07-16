@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colorBorder, colorBlack, colorTextGray, colorEndHeader } from '../../variables';
+import { colorBorder, colorBlack, colorTextGray, colorBlueEnd } from '../../variables';
 
 export default StyleSheet.create({
   container: {
@@ -47,7 +47,7 @@ export default StyleSheet.create({
   selectAllText: {
     fontFamily: "montserrat-semibold",
     fontSize: 16,
-    color: colorEndHeader,
+    color: colorBlueEnd,
     textAlign: "center"
   },
   clickableItem: {

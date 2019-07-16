@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export const RegisterItem = connect(
+export const RegisterTab = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);

@@ -22,7 +22,7 @@ import { navigate } from "../../navigationService";
 import {
   colorTextGray,
   colorBlack,
-  colorEndHeader,
+  colorBlueEnd,
   colorBorder,
   colorLike
 } from "../../variables";
@@ -65,7 +65,7 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
               <Icon
                 size={24}
                 name="check"
-                color={colorEndHeader}
+                color={colorBlueEnd}
                 style={styles.checkIcon}
               />
             ) : null}
@@ -76,7 +76,7 @@ export class Component extends React.PureComponent<PlayStepThreeScreenProps> {
                 styles.name,
                 {
                   color: this.ifExist(challengePlace, item)
-                    ? colorEndHeader
+                    ? colorBlueEnd
                     : colorBlack
                 }
               ]}

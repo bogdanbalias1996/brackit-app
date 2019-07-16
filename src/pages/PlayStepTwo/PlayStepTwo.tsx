@@ -23,7 +23,7 @@ import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { SearchBar } from "../../components/SearchBar/SearchBar";
 import { setChallengeUsers, setAllChallengeUsers } from "./actions";
 import styles from "./PlayStepTwo.styles";
-import { colorBlack, colorTextGray, colorEndHeader } from "../../variables";
+import { colorBlack, colorTextGray, colorBlueEnd } from "../../variables";
 
 const Header = props => (
   <HeaderRounded
@@ -108,7 +108,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
             <Icon
               size={24}
               name="check"
-              color={colorEndHeader}
+              color={colorBlueEnd}
               style={styles.checkIcon}
             />
           ) : null}
@@ -119,7 +119,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
               styles.name,
               {
                 color: this.ifExist(challengeUsers, item)
-                  ? colorEndHeader
+                  ? colorBlueEnd
                   : colorBlack
               }
             ]}
@@ -221,7 +221,7 @@ export class Component extends React.PureComponent<PlayStepTwoScreenProps> {
               {"Open to All".toUpperCase()}
             </Text>
             <Switch
-              trackColor={{ true: colorEndHeader, false: "grey" }}
+              trackColor={{ true: colorBlueEnd, false: "grey" }}
               thumbColor="white"
               ios_backgroundColor="grey"
               onValueChange={this.toggleSwitch}
