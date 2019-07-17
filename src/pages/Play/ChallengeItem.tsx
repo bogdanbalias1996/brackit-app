@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     paddingRight: 15
   },
   wrapCardTitle: {
-    marginLeft: 15
+    marginLeft: 10
   },
   headerCardTitle: {
     fontFamily: "montserrat-semibold",
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   },
   headerCardRate: {
     position: "relative",
-    marginLeft: 25,
+    marginLeft: 20,
     flexDirection: "row",
     alignItems: "flex-start",
     marginTop: 5

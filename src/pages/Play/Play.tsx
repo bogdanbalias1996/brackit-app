@@ -132,15 +132,66 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         entries: 95,
         title: "Who can beat me in ping pong?",
         subTitle: "single elimination",
-        whenText: "12 June, 6:00 pm",
-        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
+        date: "12 June, 6:00 pm",
+        location: "Sun sea Resort Outer ring road, Bellandur, 560103",
         prize: "12 000",
         singleEntryFee: "50",
         doubleEntryFee: "70",
-        categories: [
+        events: [
           {
             id: "1",
-            value: "U10"
+            value: "U10",
+            entries: [
+              {
+                id: "01",
+                name: "Anton Brownstein",
+                avatar: require("../../../assets/avatar.png"),
+                rating: 1500,
+                info: "Level Up Sports "
+              },
+              {
+                id: "02",
+                name: "Anton Brownstein1",
+                avatar: require("../../../assets/avatar.png"),
+                rating: 500,
+                info: "Level Up Sports "
+              }
+            ],
+            finalMatch: {
+              id: "1",
+              compatitors: [
+                {
+                  players: [
+                    {
+                      name: "Fua Lamba",
+                      avatar: require("../../../assets/avatar.png")
+                    },
+                    {
+                      name: "Fua Lamba1",
+                      avatar: require("../../../assets/avatar.png")
+                    }
+                  ],
+                  rating: 1200,
+                  scores: ["10", "15", "5"],
+                  isWinner: true
+                },
+                {
+                  players: [
+                    {
+                      name: "Fua Lamba1",
+                      avatar: require("../../../assets/avatar.png")
+                    },
+                    {
+                      name: "Fua Lamba2",
+                      avatar: require("../../../assets/avatar.png")
+                    }
+                  ],
+                  rating: 1000,
+                  scores: ["8", "10", "10"],
+                  isWinner: false
+                }
+              ]
+            }
           },
           {
             id: "2",
@@ -148,23 +199,8 @@ export class Component extends React.PureComponent<PlayScreenProps> {
           },
           {
             id: "3",
-            value: "U17"
-          },
-          {
-            id: "4",
-            value: "CD1"
-          },
-          {
-            id: "5",
-            value: "BS1"
-          },
-          {
-            id: "6",
-            value: "WD2"
-          },
-          {
-            id: "7",
-            value: "XD8"
+            value: "WD2",
+            double: true
           }
         ]
       },
@@ -175,12 +211,12 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         entries: 95,
         title: "Who can beat me in ping pong?",
         subTitle: "single elimination",
-        whenText: "12 June, 6:00 pm",
-        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
+        date: "12 June, 6:00 pm",
+        location: "Sun sea Resort Outer ring road, Bellandur, 560103",
         prize: "12 000",
         singleEntryFee: "100",
         doubleEntryFee: "70",
-        categories: [
+        events: [
           {
             id: "1",
             value: "U10"

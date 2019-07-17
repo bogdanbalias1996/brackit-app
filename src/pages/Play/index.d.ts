@@ -23,12 +23,12 @@ export type TournamentItem = {
     statusTournament: string,
     title: string,
     subTitle: string,
-    whenText: string,
-    whereText: string,
+    date: string,
+    location: string,
     prize: string,
     singleEntryFee: string,
     doubleEntryFee: string,
-    categories: any
+    events: any
 }
 export interface PlayScreenStateProps {
     navigation: NavigationScreenProp<any, any>

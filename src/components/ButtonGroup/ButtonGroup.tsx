@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import { LinearGradient } from "expo";
 import styles from "./ButtonGroup.styles";
 import { ButtonGroupProps, ButtonGroupItem } from "./";
@@ -45,7 +45,13 @@ export class ButtonGroup extends React.PureComponent<ButtonGroupProps> {
     const { selectedItem } = this.state;
 
     return (
-      <View style={[styles.container, style]}>
+      <ScrollView
+        showsHorizontalScrollIndicator={false}
+        bounces={false}
+        horizontal={true}
+        style={{ flexGrow: 0, flexShrink: 0 }}
+        contentContainerStyle={[styles.container, style]}
+      >
         {items.map((item: ButtonGroupItem, index: number) => {
           const isFirst = index === 0;
           const isLast = index === items.length - 1;
@@ -96,7 +102,7 @@ export class ButtonGroup extends React.PureComponent<ButtonGroupProps> {
             </TouchableOpacity>
           );
         })}
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -4,7 +4,7 @@ import { IGlobalState } from "../../coreTypes";
 import { SafeAreaView } from "react-navigation";
 import { TournamentDetailScreenProps } from ".";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import { Icon } from "../../components/Icon/Icon";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 
@@ -15,6 +15,7 @@ import { goBack } from "../../navigationService";
 import { RegisterTab } from "./RegisterTab";
 import { EntryTab } from "./EntryTab";
 import { WinnerTab } from "./WinnerTab";
+import TabListItem from "../../components/TabListItem/TabListItem";
 
 const Header = props => (
   <HeaderRounded
@@ -43,94 +44,21 @@ export class Component extends React.PureComponent<
   render() {
     const { params } = this.props.navigation.state;
 
-    const entries = [
-      {
-        title: "U10",
-        id: "1",
-        entriesNumber: "211",
-        entries: [
-          {
-            name: "Anton Brownstein",
-            subTitle: "Level Up Sports",
-            skill: 200,
-            avatar: require("../../../assets/avatar.png")
-          },
-          {
-            name: "Anton Brownstein1",
-            subTitle: "Level Up Sports",
-            skill: 500,
-            avatar: require("../../../assets/avatar.png")
-          }
-        ]
-      },
-      {
-        title: "U15",
-        id: "2",
-        entriesNumber: "110",
-        entries: [
-          {
-            name: "Fua Lamba",
-            subTitle: "Level Up Sports",
-            skill: 1200,
-            avatar: require("../../../assets/avatar.png")
-          },
-          {
-            name: "Fua Lamba1",
-            subTitle: "Level Up Sports",
-            skill: 500,
-            avatar: require("../../../assets/avatar.png")
-          }
-        ]
-      }
-    ];
-    const winners = [
-      {
-        title: "U10",
-        id: "1",
-        winners: [
-          {
-            name: "Anton Brownstein",
-            skill: 200,
-            winner: true,
-            avatar: require("../../../assets/avatar.png"),
-            scores: ["7", "15", "14"]
-          },
-          {
-            name: "Anton Brownstein1",
-            skill: 500,
-            avatar: require("../../../assets/avatar.png"),
-            scores: ["6", "10", "20"]
-          }
-        ]
-      },
-      {
-        title: "U17",
-        id: "2",
-        winners: [
-          {
-            name: "Anton Brownstein",
-            skill: 200,
-            avatar: require("../../../assets/avatar.png"),
-            scores: ["7", "15", "14"]
-          },
-          {
-            name: "Anton Brownstein1",
-            skill: 1500,
-            winner: true,
-            avatar: require("../../../assets/avatar.png"),
-            scores: ["6", "17", "20"]
-          }
-        ]
-      }
-    ];
+    const drawsData = params.tournamentData.events.map(val => {
+      return {
+        title: val.value,
+        component: "TournamentDraws"
+      };
+    });
+
     const tabsConfig = [
       {
         title: "Register",
         component: () => (
           <RegisterTab
             name={params.tournamentData.title}
-            academy={params.tournamentData.whereText}
-            events={params.tournamentData.categories}
+            academy={params.tournamentData.location}
+            events={params.tournamentData.events}
             entryFee={params.tournamentData.singleEntryFee}
             totalEntryFee={params.tournamentData.doubleEntryFee}
           />
@@ -138,15 +66,22 @@ export class Component extends React.PureComponent<
       },
       {
         title: "Entries",
-        component: () => <EntryTab entries={entries} />
+        component: () => <EntryTab events={params.tournamentData.events} />
       },
       {
         title: "Draws",
-        component: () => <Text>Draws</Text>
+        component: () => (
+          <FlatList
+            data={drawsData}
+            renderItem={TabListItem}
+            keyExtractor={item => item.title}
+            style={{ flex: 1 }}
+          />
+        )
       },
       {
         title: "Winners",
-        component: () => <WinnerTab winners={winners} />
+        component: () => <WinnerTab events={params.tournamentData.events} />
       }
     ];
 
@@ -167,7 +102,7 @@ export class Component extends React.PureComponent<
               color={colorTextGray}
             />
             <Text style={styles.text}>
-              {params && params.tournamentData.whenText}
+              {params && params.tournamentData.date}
             </Text>
           </View>
           <View style={styles.textItem}>

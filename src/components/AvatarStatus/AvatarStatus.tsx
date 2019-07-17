@@ -4,7 +4,6 @@ import { LinearGradient } from "expo";
 
 import { AvatarStatusProps } from "./";
 import styles from "./AvatarStatus.styles";
-import { colorPinkStart, colorPinkEnd } from "../../variables";
 import { getColorsByScore, getSkillLevel } from "../../utils/skillLevel";
 
 export const AvatarStatus: React.FunctionComponent<AvatarStatusProps> = ({
@@ -14,11 +13,36 @@ export const AvatarStatus: React.FunctionComponent<AvatarStatusProps> = ({
 }): JSX.Element => {
   return (
     <View style={styles.avatarWrap}>
-      <Image
-        style={{ width: size, height: size, borderRadius: size / 2 }}
-        source={avatar}
-        resizeMode="cover"
-      />
+      {typeof avatar === "number" ? (
+        <Image
+          style={{ width: size, height: size, borderRadius: size / 2 }}
+          source={avatar}
+          resizeMode="cover"
+        />
+      ) : (
+        <View style={{ flexDirection: "row" }}>
+          {avatar &&
+            avatar.map((item, i) => {
+              return (
+                <Image
+                  key={i}
+                  style={[
+                    {
+                      width: size,
+                      height: size,
+                      borderRadius: size / 2,
+                      borderWidth: 2,
+                      borderColor: "white"
+                    },
+                    { marginLeft: i === 1 ? -15 : 0 }
+                  ]}
+                  source={item.avatar}
+                  resizeMode="cover"
+                />
+              );
+            })}
+        </View>
+      )}
       <Text style={styles.avatarStatus}>{getSkillLevel(avatarRate)}</Text>
       <LinearGradient
         start={[0, 0.5]}

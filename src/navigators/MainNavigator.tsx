@@ -25,6 +25,7 @@ import { MatchesChallengesScreen } from "../pages/MatchesChallenges/MatchesChall
 import { MatchesTournamentsScreen } from "../pages/MatchesTournaments/MatchesTournaments";
 import { CreateTournamentScreen } from "../pages/CreateTournament/CreateTournament";
 import { TournamentDetailScreen } from "../pages/TournamentDetail/TournamentDetail";
+import { TournamentDrawsScreen } from "../pages/TournamentDraws/TournamentDraws";
 
 import { PartiesScreen } from "../pages/Parties/Parties";
 import { PartyScreen } from "../pages/Party/Party";
@@ -155,7 +156,8 @@ export const MainNavigator = createStackNavigator(
     MatchesChallenges: MatchesChallengesScreen,
     MatchesTournaments: MatchesTournamentsScreen,
     CreateTournament: CreateTournamentScreen,
-    TournamentDetail: TournamentDetailScreen
+    TournamentDetail: TournamentDetailScreen,
+    TournamentDraws: TournamentDrawsScreen
   }
   // {
   //   initialRouteName: "CreateTournament"

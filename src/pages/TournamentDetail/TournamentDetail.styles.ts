@@ -8,7 +8,6 @@ export default StyleSheet.create({
   tournamentContent: {
     backgroundColor: "white",
     padding: 20,
-    elevation: 5
   },
   status: {
     fontSize: 10,
@@ -50,7 +49,7 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.1,
     shadowRadius: 6,
-    elevation: 5
+    elevation: 5,
   },
   tabsItemText: {
     fontSize: 13

@@ -5,7 +5,8 @@ export default StyleSheet.create({
   avatarWrap: {
     position: "relative",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    minWidth: 65,
   },
   avatar: {
     width: 50,

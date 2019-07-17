@@ -27,9 +27,9 @@ export class Component extends React.PureComponent<
           style={styles.item}
         >
           <View style={{ flexDirection: "row" }}>
-            <Text style={styles.itemTitle}>{item.title}</Text>
+            <Text style={styles.itemTitle}>{item.value}</Text>
             <Text style={styles.itemTitleNumber}>
-              {" - " + item.entriesNumber + " entries"}
+              {" - " + (item.entries ? item.entries.length : "0") + " entries"}
             </Text>
           </View>
           <Icon
@@ -39,12 +39,13 @@ export class Component extends React.PureComponent<
           />
         </TouchableOpacity>
         {showEnrties &&
+          item.entries &&
           item.entries.map((user, i) => (
             <View key={i} style={styles.entryItem}>
-              <AvatarStatus avatar={user.avatar} avatarRate={user.skill} />
+              <AvatarStatus avatar={user.avatar} avatarRate={user.rating} />
               <View style={styles.entryItemContent}>
                 <Text style={styles.entryItemTitle}>{user.name}</Text>
-                <Text style={styles.entryItemSubTitle}>{user.subTitle}</Text>
+                <Text style={styles.entryItemSubTitle}>{user.info}</Text>
               </View>
             </View>
           ))}
@@ -56,7 +57,7 @@ export class Component extends React.PureComponent<
 const styles = StyleSheet.create({
   item: {
     paddingHorizontal: 20,
-    paddingVertical: 25,
+    paddingVertical: 20,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

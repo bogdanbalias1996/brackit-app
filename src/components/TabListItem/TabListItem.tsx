@@ -11,7 +11,9 @@ const TabListItem = ({ item }): JSX.Element => {
   return (
     <TouchableOpacity
       style={styles.tabListItem}
-      onPress={() => navigate({ routeName: component })}
+      onPress={() =>
+        navigate({ routeName: component, params: { title: title } })
+      }
     >
       <Text style={styles.tabListItemText}>{title}</Text>
       <Icon name="next" color={colorTextGray} />
@@ -23,11 +25,11 @@ const styles = StyleSheet.create({
   tabListItem: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 20,
     borderBottomColor: colorBorder,
     borderTopColor: colorBorder,
-    borderTopWidth: 1,
     borderBottomWidth: 1
   },
   tabListItemText: {

@@ -26,12 +26,12 @@ export const renderItem = ({ item }) => {
     statusTournament,
     title,
     subTitle,
-    whenText,
-    whereText,
+    date,
+    location,
     prize,
     singleEntryFee,
     doubleEntryFee,
-    categories
+    events
   } = item as TournamentItem;
 
   return (
@@ -75,7 +75,7 @@ export const renderItem = ({ item }) => {
           name="location"
           color={colorTextGray}
         />
-        <Text style={styles.answerText}>{whereText}</Text>
+        <Text style={styles.answerText}>{location}</Text>
       </View>
       <View style={styles.questionItem}>
         <Icon
@@ -84,7 +84,7 @@ export const renderItem = ({ item }) => {
           name="calendar"
           color={colorTextGray}
         />
-        <Text style={styles.answerText}>{whenText}</Text>
+        <Text style={styles.answerText}>{date}</Text>
       </View>
       <View style={styles.questionItem}>
         <Icon
@@ -121,7 +121,7 @@ export const renderItem = ({ item }) => {
       <View style={styles.eventsItem}>
         <Text style={styles.qestionText}>events</Text>
         <View style={styles.categoriesWrap}>
-          {categories.map((item, i) => {
+          {events.map((item, i) => {
             return (
               <View key={i} style={styles.categoryItem}>
                 <Text style={styles.categoryItemText}>{item.value}</Text>

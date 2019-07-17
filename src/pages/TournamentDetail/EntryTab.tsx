@@ -17,10 +17,10 @@ export class Component extends React.PureComponent<
   };
 
   render() {
-    const { entries } = this.props;
+    const { events } = this.props;
     return (
       <FlatList
-        data={entries}
+        data={events}
         renderItem={this.renderItem}
         keyExtractor={item => item.id}
         style={{ flex: 1 }}

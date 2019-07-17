@@ -1,21 +1,23 @@
 import { StyleSheet } from 'react-native'
-import { colorTextGray, colorBlack, colorBlueEnd, colorTextBlue } from '../../variables'
+import { colorTextGray, colorBlueEnd, colorTextBlue } from '../../variables'
 
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginTop: 14,
     padding: 4,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    flex: 1,
   },
   item: {
     flex: 1,
     backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 32,
+    height: 30,
     borderRadius: 4,
-    position: 'relative'
+    position: 'relative',
+    marginBottom: 10,
   },
   itemText: {
     color: colorTextGray,
