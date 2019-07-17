@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "citizn",
+    "slug": "citizn",
+    "privacy": "public",
+    "sdkVersion": "32.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "version": "0.0.1",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash-screen2x.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.citizn.citizn"
+    },
+    "android": {
+      "package": "com.citizn.citizn"
+    },
+    "packagerOpts": {
+      "sourceExts": [
+        "ts",
+        "tsx",
+        "js"
+      ],
+      "transformer": "node_modules/react-native-typescript-transformer/index.js"
+    }
+  }
+}
