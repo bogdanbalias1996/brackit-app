@@ -1,13 +1,16 @@
 import * as React from "react";
-import { Text, View, TouchableOpacity, SafeAreaView } from "react-native";
+import {
+  Text,
+  View,
+  TouchableOpacity,
+  SafeAreaView,
+  FlatList,
+  Image
+} from "react-native";
 import { connect } from "react-redux";
-import { Formik } from "formik";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { IGlobalState } from "../../coreTypes";
-import { navigate, goBack } from "../../navigationService";
-import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
-import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
+import { goBack } from "../../navigationService";
 import {
   ActivityPurchasesScreenProps,
   ActivityPurchasesScreenDispatchProps
@@ -27,7 +30,7 @@ const Header = props => (
         </TouchableOpacity>
       );
     }}
-    title={"Activity - Purchases".toUpperCase()}
+    title={"My purchases activity".toUpperCase()}
   />
 );
 
@@ -45,17 +48,67 @@ export class Component extends React.PureComponent<
     header: props => <Header {...props} />
   };
 
-  handleSubmit = values => {
-    const { setChallengeName } = this.props;
-
-    setChallengeName(values.challengeName);
-    navigate({ routeName: "ActivityPurchases" });
+  renderItem = ({ item }) => {
+    return (
+      <View style={styles.item}>
+        <View style={styles.itemLeft}>
+          <View style={styles.wrapImageAvatar}>
+            <View style={styles.wrapIcon}>
+              <Image
+                source={require("../../../assets/coin-color.png")}
+                style={{ width: 25, height: 25 }}
+                resizeMode="contain"
+              />
+            </View>
+          </View>
+        </View>
+        <View style={styles.itemRight}>
+          <Text style={styles.text}>
+            You bought{" "}
+            <Text style={styles.boldText}>{item.coins + " coins"}</Text>
+          </Text>
+          <Text style={styles.date}>{item.date}</Text>
+        </View>
+      </View>
+    );
   };
 
   render() {
+    const data = [
+      {
+        id: "1",
+        coins: "50",
+        date: "Today at 6:00 PM"
+      },
+      {
+        id: "2",
+        coins: "150",
+        date: "Today at 6:00 PM"
+      },
+      {
+        id: "3",
+        coins: "200",
+        date: "Today at 6:00 PM"
+      },
+      {
+        id: "4",
+        coins: "300",
+        date: "Today at 6:00 PM"
+      },
+      {
+        id: "5",
+        coins: "500",
+        date: "Today at 6:00 PM"
+      }
+    ];
     return (
       <SafeAreaView style={styles.container}>
-        <Text>ActivityPurchases</Text>
+        <FlatList
+          data={data}
+          renderItem={this.renderItem}
+          keyExtractor={item => item.id}
+          style={{ flex: 1 }}
+        />
       </SafeAreaView>
     );
   }

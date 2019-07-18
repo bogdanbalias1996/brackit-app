@@ -1,4 +1,4 @@
-export interface ActivityTournamentsScreenStateProps {}
+export interface ActivityTournamentsScreenStateProps { }
 
 export type ActivityTournamentsScreenDispatchProps = {
   setChallengeName: (name: string) => void;
