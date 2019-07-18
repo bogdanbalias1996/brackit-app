@@ -7,7 +7,6 @@ export default StyleSheet.create({
     paddingTop: 25,
     padding: 20,
     paddingBottom: 0,
-    elevation: 5
   },
   profileHeaderWrapper: {
     flexDirection: "row",
@@ -71,7 +70,8 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.1,
     shadowRadius: 6,
-    elevation: 5
+    elevation: 5,
+    flex: 1
   },
   tabsItemText: {
     fontSize: 13

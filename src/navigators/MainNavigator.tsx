@@ -27,19 +27,6 @@ import { CreateTournamentScreen } from "../pages/CreateTournament/CreateTourname
 import { TournamentDetailScreen } from "../pages/TournamentDetail/TournamentDetail";
 import { TournamentDrawsScreen } from "../pages/TournamentDraws/TournamentDraws";
 
-import { PartiesScreen } from "../pages/Parties/Parties";
-import { PartyScreen } from "../pages/Party/Party";
-import { PoliticiansScreen } from "../pages/Politicians/Politicians";
-import { PoliticianScreen } from "../pages/Politician/Politician";
-import { IssuesScreen } from "../pages/Issues/Issues";
-import { IssueScreen } from "../pages/Issue/Issue";
-import { LeaveAnOpinionScreen } from "../pages/LeaveAnOpinion/LeaveAnOpinion";
-import { CreateAnIssueScreen } from "../pages/CreateAnIssue/CreateAnIssue";
-import { ChooseImageScreen } from "../pages/CreateAnIssue/ChooseImage";
-import { SettingsScreen } from "../pages/Settings/Settings";
-import { CountrySelectionScreen } from "../pages/CountrySelection/CountrySelection";
-import { WebViewScreen } from "../pages/WebView/WebView";
-
 // Icons for BottomTabNavigator
 import Play from "../../assets/play.svg";
 import PlayActive from "../../assets/playActive.svg";
@@ -134,15 +121,6 @@ export const MainNavigator = createStackNavigator(
         header: null
       }
     },
-    Party: PartyScreen,
-    Politician: PoliticianScreen,
-    Issue: IssueScreen,
-    LeaveAnOpinion: LeaveAnOpinionScreen,
-    CreateAnIssue: CreateAnIssueScreen,
-    ChooseImage: ChooseImageScreen,
-    Settings: SettingsScreen,
-    CountrySelection: CountrySelectionScreen,
-    WebView: WebViewScreen,
     PlayStepOne: PlayStepOneScreen,
     PlayStepTwo: PlayStepTwoScreen,
     PlayStepThree: PlayStepThreeScreen,

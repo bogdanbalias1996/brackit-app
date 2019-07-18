@@ -11,16 +11,6 @@ export enum ApiMethod {
 
 export enum ApiOperation {
   Login,
-  GetParties,
-  GetPoliticians,
-  GetPoliticiansByParty,
-  GetPoliticianUpdates,
-  GetIssues,
-  GetDiscussions,
-  GetIssueDetails,
-  GetUserActivities,
-  GetUserAchievements,
-  GetUserFeed
 }
 
 export interface INetwork<C> {
@@ -84,17 +74,8 @@ export class CitiznApi implements IApi<ApiOperation> {
     switch (this.operation) {
       case ApiOperation.Login:
         return ApiMethod.POST
-      case ApiOperation.GetParties:
-      case ApiOperation.GetPoliticians:
-      case ApiOperation.GetPoliticiansByParty:
-      case ApiOperation.GetPoliticianUpdates:
-      case ApiOperation.GetIssues:
-      case ApiOperation.GetDiscussions:
-      case ApiOperation.GetIssueDetails:
-      case ApiOperation.GetUserActivities:
-      case ApiOperation.GetUserAchievements:
-      case ApiOperation.GetUserFeed:
-        return ApiMethod.GET
+      // case ApiOperation.GetParties:
+      //   return ApiMethod.GET
       default:
         return ApiMethod.UNKNOWN
     }
@@ -102,40 +83,16 @@ export class CitiznApi implements IApi<ApiOperation> {
 
   getUrl(): string {
     const host = 'http://private-09f82-brackit.apiary-mock.com'
-    const {
-      partyId,
-      politicianId,
-      issueId,
-      userId
-    } = (this.getParams() || {}) as any
+    // const {
+    //   partyId,
+    // } = (this.getParams() || {}) as any
 
     switch (this.operation) {
       case ApiOperation.Login:
         return `${host}/auth`
 
-      case ApiOperation.GetParties:
-        return `${host}/parties`
-      case ApiOperation.GetPoliticiansByParty:
-        return `${host}/parties/${partyId}/politicians`
-
-      case ApiOperation.GetPoliticians:
-        return `${host}/politicians`
-      case ApiOperation.GetPoliticianUpdates:
-        return `${host}/politicians/${politicianId}/updates`
-
-      case ApiOperation.GetIssues:
-        return `${host}/issues`
-      case ApiOperation.GetDiscussions:
-        return `${host}/issues/${issueId}/discussions`
-      case ApiOperation.GetIssueDetails:
-        return `${host}/issues/${issueId}`
-
-      case ApiOperation.GetUserActivities:
-        return `${host}/users/${userId}/activities`
-      case ApiOperation.GetUserAchievements:
-        return `${host}/users/${userId}/achievements`
-      case ApiOperation.GetUserFeed:
-        return `${host}/users/${userId}/feed`
+      // case ApiOperation.GetParties:
+      //   return `${host}/parties`
 
       default:
         return ''
@@ -158,15 +115,7 @@ export class CitiznApi implements IApi<ApiOperation> {
     switch (this.operation) {
       case ApiOperation.Login:
         return false
-      case ApiOperation.GetParties:
-      case ApiOperation.GetPoliticiansByParty:
-      case ApiOperation.GetPoliticians:
-      case ApiOperation.GetPoliticianUpdates:
-      case ApiOperation.GetIssues:
-      case ApiOperation.GetIssueDetails:
-      case ApiOperation.GetUserActivities:
-      case ApiOperation.GetUserAchievements:
-      case ApiOperation.GetUserFeed:
+        // case ApiOperation.GetParties:
         return true
       default:
         return false

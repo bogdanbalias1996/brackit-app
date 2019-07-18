@@ -7,7 +7,6 @@ export default StyleSheet.create({
     marginTop: 14,
     padding: 4,
     backgroundColor: 'white',
-    flex: 1,
   },
   item: {
     flex: 1,

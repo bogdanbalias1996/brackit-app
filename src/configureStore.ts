@@ -4,19 +4,11 @@ import thunk from 'redux-thunk'
 
 import { LoginReducer } from './pages/Login/reducer'
 import { FontReducer } from './common/font.reducer'
-import { PartiesReducer } from './pages/Parties/reducer'
-import { PoliticiansReducer } from './pages/Politicians/reducer'
-import { PartyReducer } from './pages/Party/reducer'
-import { IssuesReducer } from './pages/Issues/reducer'
 import { ChallengeReducer } from './pages/Play/reducer'
 
 const getReducerObject = () => ({
   LoginState: LoginReducer,
   FontState: FontReducer,
-  PartiesState: PartiesReducer,
-  PoliticiansState: PoliticiansReducer,
-  PartyState: PartyReducer,
-  IssuesState: IssuesReducer,
   ChallengeState: ChallengeReducer
 })
 

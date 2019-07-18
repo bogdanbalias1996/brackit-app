@@ -156,7 +156,9 @@ export class Component extends React.PureComponent<CheckChallengeScreenProps> {
         </View>
         <ButtonStyled
           style={styles.btnNext}
-          onPress={() => {}}
+          onPress={() => {
+            navigate({ routeName: "Play" });
+          }}
           text={"Post challenge".toUpperCase()}
         />
       </SafeAreaView>
