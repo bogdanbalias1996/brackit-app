@@ -26,6 +26,7 @@ import { MatchesTournamentsScreen } from "../pages/MatchesTournaments/MatchesTou
 import { CreateTournamentScreen } from "../pages/CreateTournament/CreateTournament";
 import { TournamentDetailScreen } from "../pages/TournamentDetail/TournamentDetail";
 import { TournamentDrawsScreen } from "../pages/TournamentDraws/TournamentDraws";
+import { DairyRecordScreen } from "../pages/DairyRecord/DairyRecord";
 
 // Icons for BottomTabNavigator
 import Play from "../../assets/play.svg";
@@ -85,6 +86,7 @@ export const TabsNavigator = createBottomTabNavigator(
         paddingBottom: 7
       }
     },
+    initialRouteName: "Profile",
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
@@ -135,7 +137,8 @@ export const MainNavigator = createStackNavigator(
     MatchesTournaments: MatchesTournamentsScreen,
     CreateTournament: CreateTournamentScreen,
     TournamentDetail: TournamentDetailScreen,
-    TournamentDraws: TournamentDrawsScreen
+    TournamentDraws: TournamentDrawsScreen,
+    DairyRecord: DairyRecordScreen
   }
   // {
   //   initialRouteName: "CreateTournament"

@@ -12,6 +12,7 @@ import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
 
 import { colorTextGray } from "../../variables";
 
+import { DairyTab } from "./DairyTab";
 import styles from "./Profile.styles";
 import ProfileStatsItem from "./ProfileStatsItem";
 import { navigate } from "../../navigationService";
@@ -119,7 +120,7 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
       },
       {
         title: "Diary",
-        component: () => <Text>Diary</Text>
+        component: () => <DairyTab />
       }
     ];
 

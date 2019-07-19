@@ -1,8 +1,6 @@
-export interface MatchesTournamentsScreenStateProps {}
+export interface MatchesTournamentsScreenStateProps { }
 
-export type MatchesTournamentsScreenDispatchProps = {
-  setChallengeName: (name: string) => void;
-};
+export type MatchesTournamentsScreenDispatchProps = {};
 
 export type MatchesTournamentsScreenProps = MatchesTournamentsScreenStateProps &
   MatchesTournamentsScreenDispatchProps;

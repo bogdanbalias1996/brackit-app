@@ -16,7 +16,6 @@ export default StyleSheet.create({
   containerWithLabel: {
     flexDirection: 'column',
     alignItems: 'flex-start',
-    // width: undefined
   },
   error: {
     borderBottomWidth: 1,

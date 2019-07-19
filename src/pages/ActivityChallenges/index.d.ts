@@ -1,8 +1,6 @@
-export interface ActivityChallengesScreenStateProps {}
+export interface ActivityChallengesScreenStateProps { }
 
-export type ActivityChallengesScreenDispatchProps = {
-  setChallengeName: (name: string) => void;
-};
+export type ActivityChallengesScreenDispatchProps = {};
 
 export type ActivityChallengesScreenProps = ActivityChallengesScreenStateProps &
   ActivityChallengesScreenDispatchProps;
