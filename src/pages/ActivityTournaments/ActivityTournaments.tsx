@@ -15,7 +15,6 @@ import {
   ActivityTournamentsScreenProps,
   ActivityTournamentsScreenDispatchProps
 } from ".";
-import { setChallengeName } from "./actions";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./ActivityTournaments.styles";
@@ -38,9 +37,7 @@ const Header = props => (
 const mapStateToProps = (state: IGlobalState) => ({});
 const mapDispatchToProps = (
   dispatch
-): ActivityTournamentsScreenDispatchProps => ({
-  setChallengeName: (name: string) => dispatch(setChallengeName(name))
-});
+): ActivityTournamentsScreenDispatchProps => ({});
 
 export class Component extends React.PureComponent<
   ActivityTournamentsScreenProps

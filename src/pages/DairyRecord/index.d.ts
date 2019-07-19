@@ -1,8 +1,6 @@
 export interface DairyRecordScreenStateProps { }
 
-export type DairyRecordScreenDispatchProps = {
-  setChallengeName: (name: string) => void;
-};
+export type DairyRecordScreenDispatchProps = {};
 
 export type DairyRecordScreenProps = DairyRecordScreenStateProps &
   DairyRecordScreenDispatchProps;

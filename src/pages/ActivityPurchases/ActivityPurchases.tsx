@@ -15,7 +15,6 @@ import {
   ActivityPurchasesScreenProps,
   ActivityPurchasesScreenDispatchProps
 } from ".";
-import { setChallengeName } from "./actions";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./ActivityPurchases.styles";
@@ -37,9 +36,7 @@ const Header = props => (
 const mapStateToProps = (state: IGlobalState) => ({});
 const mapDispatchToProps = (
   dispatch
-): ActivityPurchasesScreenDispatchProps => ({
-  setChallengeName: (name: string) => dispatch(setChallengeName(name))
-});
+): ActivityPurchasesScreenDispatchProps => ({});
 
 export class Component extends React.PureComponent<
   ActivityPurchasesScreenProps

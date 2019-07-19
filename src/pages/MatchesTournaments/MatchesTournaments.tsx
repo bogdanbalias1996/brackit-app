@@ -1,18 +1,13 @@
 import * as React from "react";
-import { Text, View, TouchableOpacity, SafeAreaView } from "react-native";
+import { Text, TouchableOpacity, SafeAreaView } from "react-native";
 import { connect } from "react-redux";
-import { Formik } from "formik";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { IGlobalState } from "../../coreTypes";
-import { navigate, goBack } from "../../navigationService";
-import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
-import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
+import { goBack } from "../../navigationService";
 import {
   MatchesTournamentsScreenProps,
   MatchesTournamentsScreenDispatchProps
 } from ".";
-import { setChallengeName } from "./actions";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./MatchesTournaments.styles";
@@ -34,22 +29,13 @@ const Header = props => (
 const mapStateToProps = (state: IGlobalState) => ({});
 const mapDispatchToProps = (
   dispatch
-): MatchesTournamentsScreenDispatchProps => ({
-  setChallengeName: (name: string) => dispatch(setChallengeName(name))
-});
+): MatchesTournamentsScreenDispatchProps => ({});
 
 export class Component extends React.PureComponent<
   MatchesTournamentsScreenProps
 > {
   static navigationOptions = {
     header: props => <Header {...props} />
-  };
-
-  handleSubmit = values => {
-    const { setChallengeName } = this.props;
-
-    setChallengeName(values.challengeName);
-    navigate({ routeName: "MatchesTournaments" });
   };
 
   render() {

@@ -1,14 +1,14 @@
 import * as React from "react";
-import { Text, TextInput, TouchableOpacity, SafeAreaView } from "react-native";
+import { TextInput, TouchableOpacity, SafeAreaView } from "react-native";
 import { connect } from "react-redux";
 
 import { IGlobalState } from "../../coreTypes";
 import { goBack } from "../../navigationService";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { DairyRecordScreenProps, DairyRecordScreenDispatchProps } from ".";
-import { setChallengeName } from "./actions";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
+import { ReactionAdd } from "../../components/ReactionAdd/ReactionAdd";
 import styles from "./DairyRecord.styles";
 import { colorTextGray } from "../../variables";
 
@@ -27,9 +27,7 @@ const Header = props => (
 );
 
 const mapStateToProps = (state: IGlobalState) => ({});
-const mapDispatchToProps = (dispatch): DairyRecordScreenDispatchProps => ({
-  setChallengeName: (name: string) => dispatch(setChallengeName(name))
-});
+const mapDispatchToProps = (dispatch): DairyRecordScreenDispatchProps => ({});
 
 export class Component extends React.PureComponent<DairyRecordScreenProps> {
   static navigationOptions = {
@@ -37,19 +35,20 @@ export class Component extends React.PureComponent<DairyRecordScreenProps> {
   };
 
   state = {
-    text: ""
+    text: "",
+    emoji: "blush"
   };
 
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <TouchableOpacity
-          onPress={() => alert("ok")}
-          style={styles.wrapSmileBtn}
-        >
-          <Text style={styles.smileBtnText}>I am feeling</Text>
-          <Icon name="emoji" color={colorTextGray} size={30} />
-        </TouchableOpacity>
+        <ReactionAdd
+          onSelect={selectedReaction => {
+            this.setState({ emoji: selectedReaction });
+          }}
+          text="I am feeling"
+          emoji={this.state.emoji}
+        />
         <TextInput
           style={styles.textInput}
           multiline={true}

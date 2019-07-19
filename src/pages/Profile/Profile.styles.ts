@@ -40,7 +40,7 @@ export default StyleSheet.create({
     shadowOffset: { width: 0, height: 0 }
   },
   profileMainTrains: {
-    paddingVertical: 15,
+    paddingVertical: 10,
     fontFamily: "montserrat-medium"
   },
   profileMainHighlighted: {
@@ -48,20 +48,21 @@ export default StyleSheet.create({
     fontSize: 14
   },
   profileMainInfo: {
-    lineHeight: 21,
+    fontSize: 13,
+    lineHeight: 20,
     fontFamily: "montserrat-medium"
   },
   profileStatsWrapper: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 20
+    paddingVertical: 15
   },
   tabsContainer: {
     backgroundColor: "white",
     marginTop: 0,
     paddingTop: 0,
-    paddingBottom: 20,
+    paddingBottom: 5,
     marginBottom: 20,
     shadowColor: "black",
     shadowOffset: {
