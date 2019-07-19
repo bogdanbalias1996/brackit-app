@@ -1,45 +1,52 @@
-import * as React from 'react'
-import { View, TextInput, StyleSheet } from 'react-native'
-import { Icon } from '../../components/Icon/Icon'
-import { colorLightGreyBlue } from '../../variables'
+import * as React from "react";
+import { View, TextInput, StyleSheet } from "react-native";
+import { Icon } from "../../components/Icon/Icon";
+import { colorVeryLightBlue, colorTextGray } from "../../variables";
 
 type SearchBarProps = {
-  onChangeText: (searchText) => void
-}
+  onChangeText: (searchText) => void;
+  placeholder: string;
+};
 
 export const SearchBar = (props: SearchBarProps) => {
   return (
     <View style={styles.container}>
-      <Icon name="search" color={colorLightGreyBlue} style={styles.icon} />
-      <TextInput style={styles.input}
-        placeholder={'Search'}
+      <TextInput
+        style={styles.input}
+        placeholder={props.placeholder}
         autoCorrect={false}
-        placeholderTextColor={colorLightGreyBlue}
+        numberOfLines={1}
+        placeholderTextColor={colorTextGray}
         onChangeText={props.onChangeText}
       />
+      <Icon name="search" color={colorTextGray} style={styles.icon} />
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(174,182,209, 0.13)',
-    borderRadius: 6,
-    flexDirection: 'row',
-    alignItems: 'center',
-    height: 28,
-    marginBottom: 8,
-    marginTop: 12
+    backgroundColor: colorVeryLightBlue,
+    borderRadius: 20,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    height: 40,
+    marginBottom: 15,
+    marginHorizontal: 20,
+    position: "relative"
   },
   icon: {
-    marginLeft: 8
+    position: "absolute",
+    right: 15,
+    top: 8
   },
   input: {
-    fontSize: 12,
-    lineHeight: 18,
     padding: 5,
-    paddingLeft: 0,
-    fontFamily: 'poppins-medium'
+    paddingLeft: 15,
+    paddingRight: 35,
+    fontFamily: "montserrat-medium",
+    fontSize: 12,
+    color: colorTextGray
   }
-})
-
+});

@@ -1,13 +1,13 @@
-import * as React from 'react'
-import { View, StyleSheet } from 'react-native'
-import { TabsProps, Tab } from './'
-import { ButtonGroup } from '../../components/ButtonGroup/ButtonGroup'
-import { ButtonGroupItem } from '../../components/ButtonGroup'
+import * as React from "react";
+import { View, StyleSheet } from "react-native";
+import { TabsProps, Tab } from "./";
+import { ButtonGroup } from "../../components/ButtonGroup/ButtonGroup";
+import { ButtonGroupItem } from "../../components/ButtonGroup";
 
 export class Tabs extends React.PureComponent<TabsProps> {
   state = {
-    activeTabIndex: 0
-  }
+    activeTabIndex: this.props.activeTabIndex ? this.props.activeTabIndex : 0
+  };
 
   render() {
     const {
@@ -18,23 +18,27 @@ export class Tabs extends React.PureComponent<TabsProps> {
       stylesItemText = {},
       stylesSelectedItem = {},
       stylesSelectedItemText = {}
-    } = this.props
-    const { activeTabIndex } = this.state
-    const TabComponent = config[activeTabIndex].component
+    } = this.props;
+    const { activeTabIndex } = this.state;
+    const TabComponent = config[activeTabIndex].component;
 
-    const convertTabsToButtonGroupConfi = (config: Array<Tab>): Array<ButtonGroupItem> => {
+    const convertTabsToButtonGroupConfi = (
+      config: Array<Tab>
+    ): Array<ButtonGroupItem> => {
       return config.map((item: Tab, index: number) => {
-        return ({
+        return {
           value: index,
-          title: item.title || '',
-          component: item.titleComponent ? (isActive: boolean) => item.titleComponent(isActive) : null,
+          title: item.title || "",
+          component: item.titleComponent
+            ? (isActive: boolean) => item.titleComponent(isActive)
+            : null,
           onPress: () => {
-            if (item.onPress) item.onPress()
-            this.setState({ activeTabIndex: index })
+            if (item.onPress) item.onPress();
+            this.setState({ activeTabIndex: index });
           }
-        })
-      })
-    }
+        };
+      });
+    };
 
     return (
       <View style={style}>
@@ -50,7 +54,7 @@ export class Tabs extends React.PureComponent<TabsProps> {
 
         <TabComponent />
       </View>
-    )
+    );
   }
 }
 
@@ -58,9 +62,9 @@ export const defaultTabsStyles = StyleSheet.create({
   roundedTabs: {
     flex: 0,
     borderRadius: 24,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     padding: 16,
     paddingTop: 7,
     paddingBottom: 7
   }
-})
+});

@@ -1,11 +1,14 @@
 import { StyleSheet } from 'react-native'
+import { colorShadow } from '../../variables';
 
 export default StyleSheet.create({
   btn: {
     alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: 20,
-    shadowColor: "#4d69ff",
+  },
+  btnShadow: {
+    shadowColor: colorShadow,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -13,6 +16,30 @@ export default StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 5,
     elevation: 6,
+  },
+  btnLeft: {
+    borderRadius: 0,
+    borderBottomRightRadius: 20,
+    borderTopRightRadius: 20,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+  },
+  btnRight: {
+    borderRadius: 0,
+    borderBottomLeftRadius: 20,
+    borderTopLeftRadius: 20,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
   },
   btnGradient: {
     borderRadius: 20,

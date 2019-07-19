@@ -8,8 +8,6 @@ import {
   clearLocalStorage,
   ACCESS_TOKEN_NAME
 } from '../../common/utils/session'
-import { Country } from '../CountrySelection'
-import { SELECT_COUNTRY } from '../CountrySelection/actions'
 
 export class LoginState {
   accessToken: string
@@ -20,8 +18,6 @@ export class LoginState {
   roles: Array<string>
   permissions: Array<string>
   isFetching: boolean
-  countries: Array<Country>
-  selectedCountryCode: string
 
   constructor() {
     this.accessToken = ''
@@ -32,14 +28,6 @@ export class LoginState {
     this.roles = []
     this.permissions = []
     this.isFetching = false
-    this.countries = [
-      { code: 'CA', name: 'Canada' },
-      { code: 'US', name: 'United States' },
-      { code: 'FR', name: 'France' },
-      { code: 'DE', name: 'Germany' },
-      { code: 'IN', name: 'India' },
-    ]
-    this.selectedCountryCode = ''
   }
 }
 
@@ -71,12 +59,6 @@ export const LoginReducer = (state: LoginState = initialState, action: IAction<a
     case REMOVE_SESSION:
       clearLocalStorage()
       return new LoginState()
-
-    case SELECT_COUNTRY:
-      return {
-        ...state,
-        selectedCountryCode: action.data
-      }
 
     default:
       return state

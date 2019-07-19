@@ -12,6 +12,7 @@ export type Tab = {
 export type TabsComponentProps = {
   config: Array<Tab>
   stylesTabsContainer?: any
+  activeTabIndex?: number
 }
 
 export type TabsProps = TabsComponentProps & ButtonGroupStylesProps

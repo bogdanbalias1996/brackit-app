@@ -16,7 +16,7 @@ import { colorTextBlue, colorPink } from "../../variables";
 
 export const Component = ({ navigation }): JSX.Element => {
   const handleSubmit = (values, { setErrors }: any) => {
-    navigate({ routeName: "Interests" });
+    navigate({ routeName: "Play" });
   };
 
   const SignupSchema = Yup.object().shape({
