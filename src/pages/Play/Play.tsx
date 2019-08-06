@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { TouchableOpacity, Text, View, Image } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
-import { IGlobalState } from "../../coreTypes";
 import { PlayScreenProps } from ".";
 import { navigate } from "../../navigationService";
 import { ChallengeItems } from "./ChallengeItem";
 import { TournamentItems } from "./TournamentItem";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
+import { ModalCoins } from "../../components/ModalCoins/ModalCoins";
 import { ButtonHeaderStyled } from "../../components/ButtonHeaderStyled/ButtonHeaderStyled";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 import { setActiveTab } from "./actions";
@@ -38,11 +38,15 @@ const Header = props => (
             style={styles.wrapHeaderRightIcon}
             onPress={() => alert("ok")}
           >
-            <Icon size={24} name="sort" color="white" />
+            <Icon size={30} name="search" color="white" />
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.wrapHeaderRightIcon}
-            onPress={() => alert("ok")}
+            onPress={() =>
+              props.navigation.setParams({
+                showCoins: !props.navigation.state.params.showCoins
+              })
+            }
           >
             <Image
               style={{ width: 20 }}
@@ -70,8 +74,18 @@ const ConnectedHeader = connect(
 
 export class Component extends React.PureComponent<PlayScreenProps> {
   static navigationOptions = ({ navigation }) => ({
-    header: props => <ConnectedHeader {...props} />
+    header: props => <ConnectedHeader {...props} navigation={navigation} />
   });
+
+  componentDidMount() {
+    this.props.navigation.setParams({ showCoins: false });
+  }
+
+  toggleModal = () => {
+    this.props.navigation.setParams({
+      showCoins: !this.props.navigation.state.params.showCoins
+    });
+  };
 
   render() {
     const dataChallange = [
@@ -277,6 +291,14 @@ export class Component extends React.PureComponent<PlayScreenProps> {
             backgroundColor: "transparent",
             marginBottom: 10
           }}
+        />
+        <ModalCoins
+          visible={
+            this.props.navigation.state.params
+              ? this.props.navigation.state.params.showCoins
+              : false
+          }
+          onClose={this.toggleModal}
         />
       </SafeAreaView>
     );

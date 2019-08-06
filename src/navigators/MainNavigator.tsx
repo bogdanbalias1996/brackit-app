@@ -86,7 +86,7 @@ export const TabsNavigator = createBottomTabNavigator(
         paddingBottom: 7
       }
     },
-    initialRouteName: "Profile",
+    initialRouteName: "Play",
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
