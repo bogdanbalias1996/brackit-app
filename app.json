@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "citizn",
-    "slug": "citizn",
+    "name": "BrackIt",
+    "slug": "brackit",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -24,10 +24,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.citizn.citizn"
+      "bundleIdentifier": "in.bitsport.brackit"
     },
     "android": {
-      "package": "com.citizn.citizn"
+      "package": "in.bitsport.brackit"
     },
     "packagerOpts": {
       "sourceExts": [
