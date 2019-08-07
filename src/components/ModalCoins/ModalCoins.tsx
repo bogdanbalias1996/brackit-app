@@ -11,30 +11,35 @@ import { colorYellowEnd, colorYellowStart } from "../../variables";
 
 const coinList = [
   {
+    id: "0",
     image: require("../../../assets/coin2.png"),
     coin: 10,
     prize: 500,
     size: 40
   },
   {
+    id: "1",
     image: require("../../../assets/coin3.png"),
     coin: 20,
     prize: 1000,
     size: 50
   },
   {
+    id: "2",
     image: require("../../../assets/coin4.png"),
     coin: 50,
     prize: 2500,
-    size: 55
+    size: 50
   },
   {
+    id: "3",
     image: require("../../../assets/coin5.png"),
     coin: 80,
     prize: 4000,
     size: 60
   },
   {
+    id: "4",
     image: require("../../../assets/coin6.png"),
     coin: 100,
     prize: 5000,
@@ -44,11 +49,14 @@ const coinList = [
 
 export const ModalCoins: React.SFC<ModalCoinsProps> = ({
   onClose,
-  visible = false
+  visible = false,
+  navigation
 }): JSX.Element => {
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.item}>
+      <View
+        style={[styles.item, { borderBottomWidth: item.id === "4" ? 0 : 2 }]}
+      >
         <View style={styles.itemLeft}>
           <Image
             style={{ width: item.size, height: item.size }}
@@ -59,7 +67,9 @@ export const ModalCoins: React.SFC<ModalCoinsProps> = ({
         </View>
         <View style={styles.itemRight}>
           <ButtonStyled
-            onPress={() => alert("ok")}
+            onPress={() =>
+              navigation.setParams({ purchaseSuccess: true, showCoins: false })
+            }
             text={item.prize + " INR"}
           />
         </View>
@@ -90,17 +100,21 @@ export const ModalCoins: React.SFC<ModalCoinsProps> = ({
             <Text style={styles.headerCoinsText}>100 coins</Text>
           </View>
         </View>
-        <LinearGradient
-          style={styles.wrapList}
-          colors={[colorYellowStart, colorYellowEnd]}
-        >
-          <FlatList
-            data={coinList}
-            renderItem={renderItem}
-            keyExtractor={(item, i) => i.toString()}
-            style={{ flex: 1 }}
-          />
-        </LinearGradient>
+        <View style={styles.wrapListShadow}>
+          <LinearGradient
+            style={styles.wrapList}
+            colors={[colorYellowStart, colorYellowEnd]}
+          >
+            <FlatList
+              data={coinList}
+              showsVerticalScrollIndicator={false}
+              bounces={false}
+              renderItem={renderItem}
+              keyExtractor={(item, i) => i.toString()}
+              style={{ flex: 1 }}
+            />
+          </LinearGradient>
+        </View>
       </View>
     </Modal>
   );

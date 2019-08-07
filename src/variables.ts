@@ -58,6 +58,7 @@ export const colorGreen = "#6dd400";
 export const colorYellowStart = '#faf5d5';
 export const colorYellowEnd = '#f3e8aa';
 export const colorYellowShadow = '#ffd949';
+export const colorBrown = '#88660e';
 
 export const colorCoral = "#f25959";
 export const colorTomato = "#e83d3c";

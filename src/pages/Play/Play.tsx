@@ -1,15 +1,17 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { TouchableOpacity, Text, View, Image } from "react-native";
+import { TouchableOpacity, View, Image } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
 import { PlayScreenProps } from ".";
 import { navigate } from "../../navigationService";
 import { ChallengeItems } from "./ChallengeItem";
 import { TournamentItems } from "./TournamentItem";
+import { LeaderBoardItems } from "./LeaderBoardItem";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import { ModalCoins } from "../../components/ModalCoins/ModalCoins";
+import { ModalCoinsPurchase } from "../../components/ModalCoinsPurchase/ModalCoinsPurchase";
 import { ButtonHeaderStyled } from "../../components/ButtonHeaderStyled/ButtonHeaderStyled";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 import { setActiveTab } from "./actions";
@@ -264,12 +266,59 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         ]
       }
     ];
-    const tabsConfig = [
+    const dataLeaderBoard = [
       {
-        title: "My matches",
-        component: () => <Text>My matches</Text>,
-        onPress: () => this.props.setActiveTab(0)
+        id: "1",
+        name: "Katayama Fumiki",
+        number: "1",
+        avatar: require("../../../assets/avatar.png"),
+        avatarRate: 1500,
+        numberPlays: "70",
+        numberWonPlays: "19",
+        performance: "600"
       },
+      {
+        id: "2",
+        name: "Rita Leite",
+        number: "2",
+        avatar: require("../../../assets/avatar.png"),
+        avatarRate: 300,
+        numberPlays: "70",
+        numberWonPlays: "20",
+        performance: "600"
+      },
+      {
+        id: "3",
+        name: "Erika Mateo",
+        number: "3",
+        avatar: require("../../../assets/avatar.png"),
+        avatarRate: 1000,
+        numberPlays: "70",
+        numberWonPlays: "15",
+        performance: "600"
+      },
+      {
+        id: "4",
+        name: "Katayama Fumiki1jkjn",
+        number: "4",
+        avatar: require("../../../assets/avatar.png"),
+        avatarRate: 1500,
+        numberPlays: "70",
+        numberWonPlays: "19",
+        performance: "600"
+      },
+      {
+        id: "5",
+        name: "Katayama Fumiki2",
+        number: "5",
+        avatar: require("../../../assets/avatar.png"),
+        avatarRate: 1500,
+        numberPlays: "70",
+        numberWonPlays: "22",
+        performance: "600"
+      }
+    ];
+    const tabsConfig = [
       {
         title: "Challenges",
         component: () => <ChallengeItems data={dataChallange} />,
@@ -279,13 +328,18 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         title: "Tournaments",
         component: () => <TournamentItems data={dataTournament} />,
         onPress: () => this.props.setActiveTab(2)
+      },
+      {
+        title: "Leaderboard",
+        component: () => <LeaderBoardItems data={dataLeaderBoard} />,
+        onPress: () => this.props.setActiveTab(0)
       }
     ];
     return (
       <SafeAreaView style={styles.container}>
         <Tabs
           config={tabsConfig}
-          activeTabIndex={1}
+          style={{ flex: 1 }}
           stylesItem={defaultTabsStyles.roundedTabs}
           stylesTabsContainer={{
             backgroundColor: "transparent",
@@ -299,6 +353,17 @@ export class Component extends React.PureComponent<PlayScreenProps> {
               : false
           }
           onClose={this.toggleModal}
+          navigation={this.props.navigation}
+        />
+        <ModalCoinsPurchase
+          visible={
+            this.props.navigation.state.params
+              ? this.props.navigation.state.params.purchaseSuccess
+              : false
+          }
+          onClose={() =>
+            this.props.navigation.setParams({ purchaseSuccess: false })
+          }
         />
       </SafeAreaView>
     );
