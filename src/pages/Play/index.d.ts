@@ -11,7 +11,7 @@ export type ChallengeItem = {
     whenText: string,
     whereText: string,
     btnText: string,
-    shares: number,
+    shares: any,
     views: number,
     comments: number
 }

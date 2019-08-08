@@ -103,7 +103,35 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         title: "Who can beat me in ping pong?",
         whenText: "12 June, 6:00 pm",
         whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        shares: 4,
+        shares: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "2",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "3",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          }
+        ],
         views: 4,
         comments: 2
       },
@@ -119,7 +147,17 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         title: "Who can beat me in ping pong?",
         whenText: "12 June, 6:00 pm",
         whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        shares: 4,
+        shares: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          }
+        ],
         views: 4,
         comments: 2
       },
@@ -135,7 +173,17 @@ export class Component extends React.PureComponent<PlayScreenProps> {
         title: "Who can beat me in ping pong?",
         whenText: "12 June, 6:00 pm",
         whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        shares: 4,
+        shares: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          }
+        ],
         views: 4,
         comments: 2
       }
