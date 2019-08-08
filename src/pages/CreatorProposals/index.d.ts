@@ -3,6 +3,8 @@ export interface CreatorProposalsScreenStateProps {
     navigation: NavigationScreenProp<any, any>
 }
 
-export type CreatorProposalsScreenDispatchProps = {}
+export type CreatorProposalsScreenDispatchProps = {
+    setAcceptedProposalUser: (user: any) => void
+}
 
 export type CreatorProposalsScreenProps = CreatorProposalsScreenStateProps & CreatorProposalsScreenDispatchProps

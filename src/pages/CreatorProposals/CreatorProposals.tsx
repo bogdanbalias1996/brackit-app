@@ -3,13 +3,14 @@ import { connect } from "react-redux";
 import { Text, TouchableOpacity, View, ScrollView } from "react-native";
 
 import { CreatorProposalsScreenProps } from ".";
-import { IGlobalState } from "../../coreTypes";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { navigate } from "../../navigationService";
 import { Icon } from "../../components/Icon/Icon";
 import { ProposalItem } from "../../components/ProposalItem/ProposalItem";
 import { colorTextGray } from "../../variables";
 import styles from "./CreatorProposals.styles";
+import { setAcceptedProposalUser } from "../../pages/CreatorProposals/actions";
+import { ModalProposal } from "../../components/ModalProposal/ModalProposal";
 
 const Header = props => (
   <HeaderRounded
@@ -31,8 +32,13 @@ const Header = props => (
   />
 );
 
-const mapStateToProps = (state: IGlobalState) => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapStateToProps = state => ({
+  acceptedProposalUser: state.ChallengeState.acceptedProposalUser
+});
+const mapDispatchToProps = dispatch => ({
+  setAcceptedProposalUser: (user: any) =>
+    dispatch(setAcceptedProposalUser(user))
+});
 
 export class Component extends React.PureComponent<
   CreatorProposalsScreenProps
@@ -41,8 +47,19 @@ export class Component extends React.PureComponent<
     header: props => <Header {...props} />
   };
 
+  state = {
+    showAcceptedModal: false,
+    selectedUser: {}
+  };
+
+  toggleModal = () => {
+    this.setState({ showAcceptedModal: !this.state.showAcceptedModal });
+  };
+
   render() {
     const { params } = this.props.navigation.state;
+    const { setAcceptedProposalUser, acceptedProposalUser } = this.props;
+    const { showAcceptedModal } = this.state;
     return (
       <ScrollView style={styles.container}>
         <View style={styles.card}>
@@ -83,8 +100,31 @@ export class Component extends React.PureComponent<
         </Text>
         {params &&
           params.data.shares.map((item, i) => {
-            return <ProposalItem item={item} key={i} />;
+            return (
+              <ProposalItem
+                item={item}
+                key={i}
+                showButton={
+                  Object.keys(acceptedProposalUser).length &&
+                  item.id === acceptedProposalUser.id
+                    ? false
+                    : true
+                }
+                onClick={user => {
+                  this.setState({
+                    selectedUser: user,
+                    showAcceptedModal: true
+                  });
+                }}
+              />
+            );
           })}
+        <ModalProposal
+          selectedUser={this.state.selectedUser}
+          visible={showAcceptedModal}
+          onClose={this.toggleModal}
+          onSubmit={user => setAcceptedProposalUser(user)}
+        />
       </ScrollView>
     );
   }
