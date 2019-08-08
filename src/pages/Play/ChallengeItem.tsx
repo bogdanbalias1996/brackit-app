@@ -19,6 +19,7 @@ import {
   colorOrangeText,
   colorVeryLightBlue
 } from "../../variables";
+import { navigate } from "../../navigationService";
 
 export const renderItem = ({ item }) => {
   const {
@@ -87,16 +88,28 @@ export const renderItem = ({ item }) => {
       </View>
       <View style={styles.footerCard}>
         <ButtonStyled
-          onPress={() => alert("ok")}
+          onPress={() =>
+            navigate({
+              routeName: "SendProposal"
+            })
+          }
           text={"Accept".toUpperCase()}
           type="left"
         />
         <View style={styles.wrapIcons}>
-          <TouchableOpacity onPress={() => alert("ok")} style={styles.wrapIcon}>
+          <TouchableOpacity
+            onPress={() =>
+              navigate({
+                routeName: "CreatorProposals",
+                params: { data: item }
+              })
+            }
+            style={styles.wrapIcon}
+          >
             <View style={styles.icon}>
               <Icon size={16} name="send" color={colorTextGray} />
             </View>
-            <Text style={styles.iconText}>{shares}</Text>
+            <Text style={styles.iconText}>{shares.length}</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => alert("ok")} style={styles.wrapIcon}>
             <View style={styles.icon}>

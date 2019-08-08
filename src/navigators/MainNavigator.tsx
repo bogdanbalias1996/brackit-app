@@ -27,6 +27,9 @@ import { CreateTournamentScreen } from "../pages/CreateTournament/CreateTourname
 import { TournamentDetailScreen } from "../pages/TournamentDetail/TournamentDetail";
 import { TournamentDrawsScreen } from "../pages/TournamentDraws/TournamentDraws";
 import { DairyRecordScreen } from "../pages/DairyRecord/DairyRecord";
+import { CreatorProposalsScreen } from "../pages/CreatorProposals/CreatorProposals";
+import { ProposalsScreen } from "../pages/Proposals/Proposals";
+import { SendProposalScreen } from "../pages/SendProposal/SendProposal";
 
 // Icons for BottomTabNavigator
 import Play from "../../assets/play.svg";
@@ -86,7 +89,7 @@ export const TabsNavigator = createBottomTabNavigator(
         paddingBottom: 7
       }
     },
-    initialRouteName: "Profile",
+    initialRouteName: "Play",
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
@@ -138,7 +141,10 @@ export const MainNavigator = createStackNavigator(
     CreateTournament: CreateTournamentScreen,
     TournamentDetail: TournamentDetailScreen,
     TournamentDraws: TournamentDrawsScreen,
-    DairyRecord: DairyRecordScreen
+    DairyRecord: DairyRecordScreen,
+    CreatorProposals: CreatorProposalsScreen,
+    Proposals: ProposalsScreen,
+    SendProposal: SendProposalScreen
   }
   // {
   //   initialRouteName: "CreateTournament"
