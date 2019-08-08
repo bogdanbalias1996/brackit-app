@@ -23,20 +23,16 @@ export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
     switch (type) {
       case "left":
         return styles.btnLeft;
-        break;
       case "right":
         return styles.btnRight;
-        break;
     }
   };
   const getColorButton = type => {
     switch (type) {
       case "blue":
         return [colorGradientBlue, colorGradientGreen];
-        break;
       case "gold":
         return [colorGoldStart, colorGoldEnd];
-        break;
     }
   };
   return (

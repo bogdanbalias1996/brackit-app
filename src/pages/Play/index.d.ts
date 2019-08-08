@@ -4,7 +4,6 @@ export type ChallengeItem = {
     name: string,
     avatar: number,
     avatarRate: number,
-    avatarStatus: string,
     postTime: string,
     postCity: string,
     coins: number,
@@ -29,6 +28,16 @@ export type TournamentItem = {
     singleEntryFee: string,
     doubleEntryFee: string,
     events: any
+}
+export type LeaderBoardItem = {
+    id: string,
+    name: string,
+    number: string,
+    avatar: number,
+    avatarRate: number,
+    numberPlays: number,
+    numberWonPlays: number,
+    performance: number,
 }
 export interface PlayScreenStateProps {
     navigation: NavigationScreenProp<any, any>
