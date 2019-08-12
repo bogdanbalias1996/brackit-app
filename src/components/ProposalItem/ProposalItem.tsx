@@ -12,7 +12,12 @@ const mapDispatchToProps = dispatch => ({});
 
 export class Component extends React.PureComponent<ProposalItemProps> {
   render() {
-    const { item, onClick, showButton = false } = this.props;
+    const {
+      item,
+      onClick,
+      showAcceptButton = false,
+      hideButton = false
+    } = this.props;
     return (
       <View style={styles.wrapProposal}>
         <AvatarStatus avatar={item.avatar} avatarRate={item.avatarRate} />
@@ -21,16 +26,18 @@ export class Component extends React.PureComponent<ProposalItemProps> {
           <Text style={styles.proposalComment}>{item.comment}</Text>
           <View style={styles.wrapBottomProposal}>
             <Text style={styles.proposalDate}>{item.date}</Text>
-            {showButton ? (
+            {showAcceptButton ? (
               <ButtonStyled
                 onPress={() => onClick(item)}
                 text={"Accept".toUpperCase()}
                 type="right"
               />
-            ) : (
+            ) : hideButton ? null : (
               <ButtonStyled
                 onPress={() => onClick(item)}
                 text={"Accepted".toUpperCase()}
+                shadow={false}
+                color="disable"
                 type="right"
               />
             )}

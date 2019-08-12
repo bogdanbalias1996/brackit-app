@@ -30,6 +30,7 @@ import { DairyRecordScreen } from "../pages/DairyRecord/DairyRecord";
 import { CreatorProposalsScreen } from "../pages/CreatorProposals/CreatorProposals";
 import { ProposalsScreen } from "../pages/Proposals/Proposals";
 import { SendProposalScreen } from "../pages/SendProposal/SendProposal";
+import { CommentsScreen } from "../pages/Comments/Comments";
 
 // Icons for BottomTabNavigator
 import Play from "../../assets/play.svg";
@@ -144,7 +145,8 @@ export const MainNavigator = createStackNavigator(
     DairyRecord: DairyRecordScreen,
     CreatorProposals: CreatorProposalsScreen,
     Proposals: ProposalsScreen,
-    SendProposal: SendProposalScreen
+    SendProposal: SendProposalScreen,
+    Comments: CommentsScreen
   }
   // {
   //   initialRouteName: "CreateTournament"

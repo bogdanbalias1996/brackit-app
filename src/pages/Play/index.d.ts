@@ -13,7 +13,7 @@ export type ChallengeItem = {
     btnText: string,
     shares: any,
     views: number,
-    comments: number
+    comments: any
 }
 export type TournamentItem = {
     id: string,
