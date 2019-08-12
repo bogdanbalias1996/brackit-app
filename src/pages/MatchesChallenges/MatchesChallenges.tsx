@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Text, TouchableOpacity, SafeAreaView } from "react-native";
+import { Calendar } from "react-native-calendars";
 import { connect } from "react-redux";
 
 import { IGlobalState } from "../../coreTypes";
@@ -11,6 +12,7 @@ import {
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./MatchesChallenges.styles";
+import { colorBlueStart } from "../../variables";
 
 const Header = props => (
   <HeaderRounded
@@ -38,10 +40,27 @@ export class Component extends React.PureComponent<
     header: props => <Header {...props} />
   };
 
+  state = {
+    selectedDate: "",
+    markedDates: { "2019-08-17": { marked: true } }
+  };
+
   render() {
+    console.log(this.state.selectedDate);
     return (
       <SafeAreaView style={styles.container}>
-        <Text>MatchesChallenges</Text>
+        <Calendar
+          markedDates={{
+            ...this.state.markedDates,
+            [this.state.selectedDate]: {
+              selected: true,
+              dotColor: "#ffffff"
+            }
+          }}
+          onDayPress={(day, localDay) => {
+            this.setState({ selectedDate: day.dateString });
+          }}
+        />
       </SafeAreaView>
     );
   }
