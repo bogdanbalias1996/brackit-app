@@ -1,16 +1,22 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Text, TouchableOpacity, View, ScrollView } from "react-native";
+import {
+  Text,
+  TouchableOpacity,
+  View,
+  FlatList,
+  TextInput,
+  Platform
+} from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { CreatorProposalsScreenProps } from ".";
+import { CommentsScreenProps } from ".";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { navigate } from "../../navigationService";
 import { Icon } from "../../components/Icon/Icon";
 import { ProposalItem } from "../../components/ProposalItem/ProposalItem";
 import { colorTextGray } from "../../variables";
-import styles from "./CreatorProposals.styles";
-import { setAcceptedProposalUser } from "../../pages/CreatorProposals/actions";
-import { ModalProposal } from "../../components/ModalProposal/ModalProposal";
+import styles from "./Comments.styles";
 
 const Header = props => (
   <HeaderRounded
@@ -27,41 +33,36 @@ const Header = props => (
         </TouchableOpacity>
       );
     }}
-    title={"Proposals".toUpperCase()}
+    title={"Comments".toUpperCase()}
     getRightComponent={() => {}}
   />
 );
 
-const mapStateToProps = state => ({
-  acceptedProposalUser: state.ChallengeState.acceptedProposalUser
-});
-const mapDispatchToProps = dispatch => ({
-  setAcceptedProposalUser: (user: any) =>
-    dispatch(setAcceptedProposalUser(user))
-});
+const mapStateToProps = state => ({});
+const mapDispatchToProps = dispatch => ({});
 
-export class Component extends React.PureComponent<
-  CreatorProposalsScreenProps
-> {
+export class Component extends React.PureComponent<CommentsScreenProps> {
   static navigationOptions = {
     header: props => <Header {...props} />
   };
 
   state = {
-    showAcceptedModal: false,
-    selectedUser: {}
+    comment: ""
   };
 
-  toggleModal = () => {
-    this.setState({ showAcceptedModal: !this.state.showAcceptedModal });
+  renderItem = ({ item }) => {
+    return <ProposalItem item={item} hideButton={true} />;
   };
 
   render() {
     const { params } = this.props.navigation.state;
-    const { setAcceptedProposalUser, acceptedProposalUser } = this.props;
-    const { showAcceptedModal } = this.state;
     return (
-      <ScrollView style={styles.container}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={styles.container}
+        enableOnAndroid={true}
+        keyboardShouldPersistTaps="handled"
+        extraScrollHeight={Platform.OS === "ios" ? 25 : 0}
+      >
         <View style={styles.card}>
           <View style={styles.questionItem}>
             <Icon
@@ -96,41 +97,28 @@ export class Component extends React.PureComponent<
           </View>
         </View>
         <Text style={styles.proposalsText}>
-          {params && params.data.shares.length + " proposals"}
+          {params && params.data.comments.length + " comments"}
         </Text>
-        {params &&
-          params.data.shares.map((item, i) => {
-            return (
-              <ProposalItem
-                item={item}
-                key={i}
-                showAcceptButton={
-                  Object.keys(acceptedProposalUser).length &&
-                  item.id === acceptedProposalUser.id
-                    ? false
-                    : true
-                }
-                onClick={user => {
-                  this.setState({
-                    selectedUser: user,
-                    showAcceptedModal: true
-                  });
-                }}
-              />
-            );
-          })}
-        <ModalProposal
-          selectedUser={this.state.selectedUser}
-          visible={showAcceptedModal}
-          onClose={this.toggleModal}
-          onSubmit={user => setAcceptedProposalUser(user)}
+        {params && (
+          <FlatList
+            data={params.data.comments}
+            renderItem={this.renderItem}
+            keyExtractor={item => item.id}
+          />
+        )}
+        <TextInput
+          style={styles.input}
+          placeholder="say something nice …"
+          autoCorrect={false}
+          onChangeText={text => this.setState({ comment: text })}
+          value={this.state.comment}
         />
-      </ScrollView>
+      </KeyboardAwareScrollView>
     );
   }
 }
 
-export const CreatorProposalsScreen = connect(
+export const CommentsScreen = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);

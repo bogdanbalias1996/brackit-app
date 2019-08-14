@@ -12,6 +12,7 @@ import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import { ModalCoins } from "../../components/ModalCoins/ModalCoins";
 import { ModalCoinsPurchase } from "../../components/ModalCoinsPurchase/ModalCoinsPurchase";
+import { ModalSuccess } from "../../components/ModalSuccess/ModalSuccess";
 import { ButtonHeaderStyled } from "../../components/ButtonHeaderStyled/ButtonHeaderStyled";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 import { setActiveTab } from "./actions";
@@ -79,6 +80,10 @@ export class Component extends React.PureComponent<PlayScreenProps> {
     header: props => <ConnectedHeader {...props} navigation={navigation} />
   });
 
+  state = {
+    showSuccessModal: false
+  };
+
   componentDidMount() {
     this.props.navigation.setParams({ showCoins: false });
   }
@@ -87,6 +92,14 @@ export class Component extends React.PureComponent<PlayScreenProps> {
     this.props.navigation.setParams({
       showCoins: !this.props.navigation.state.params.showCoins
     });
+  };
+
+  showSuccessModal = () => {
+    this.setState({ showSuccessModal: true }, () =>
+      setTimeout(() => {
+        this.setState({ showSuccessModal: false });
+      }, 1000)
+    );
   };
 
   render() {
@@ -133,7 +146,35 @@ export class Component extends React.PureComponent<PlayScreenProps> {
           }
         ],
         views: 4,
-        comments: 2
+        comments: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "2",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "3",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          }
+        ]
       },
       {
         id: "2",
@@ -159,7 +200,17 @@ export class Component extends React.PureComponent<PlayScreenProps> {
           }
         ],
         views: 4,
-        comments: 2
+        comments: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          }
+        ]
       },
       {
         id: "3",
@@ -185,7 +236,17 @@ export class Component extends React.PureComponent<PlayScreenProps> {
           }
         ],
         views: 4,
-        comments: 2
+        comments: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          }
+        ]
       }
     ];
     const dataTournament = [
@@ -412,6 +473,10 @@ export class Component extends React.PureComponent<PlayScreenProps> {
           onClose={() =>
             this.props.navigation.setParams({ purchaseSuccess: false })
           }
+        />
+        <ModalSuccess
+          title="Challenge posted"
+          visible={this.state.showSuccessModal}
         />
       </SafeAreaView>
     );

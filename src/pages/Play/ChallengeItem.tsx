@@ -26,7 +26,6 @@ export const renderItem = ({ item }) => {
     name,
     avatar,
     avatarRate,
-    avatarStatus,
     postTime,
     postCity,
     coins,
@@ -117,11 +116,19 @@ export const renderItem = ({ item }) => {
             </View>
             <Text style={styles.iconText}>{views}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => alert("ok")} style={styles.wrapIcon}>
+          <TouchableOpacity
+            onPress={() =>
+              navigate({
+                routeName: "Comments",
+                params: { data: item }
+              })
+            }
+            style={styles.wrapIcon}
+          >
             <View style={styles.icon}>
               <Icon size={18} name="comment" color={colorTextGray} />
             </View>
-            <Text style={styles.iconText}>{comments}</Text>
+            <Text style={styles.iconText}>{comments.length}</Text>
           </TouchableOpacity>
         </View>
       </View>
