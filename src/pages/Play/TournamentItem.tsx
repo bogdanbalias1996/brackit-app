@@ -29,8 +29,6 @@ export const renderItem = ({ item }) => {
     date,
     location,
     prize,
-    singleEntryFee,
-    doubleEntryFee,
     events
   } = item as TournamentItem;
 
@@ -51,7 +49,7 @@ export const renderItem = ({ item }) => {
           <View style={styles.entry}>
             <Image
               style={{ width: 20 }}
-              source={require("../../../assets/coin-color.png")}
+              source={require("../../../assets/court.png")}
               resizeMode="contain"
             />
             <Text style={styles.entryText}>{avaliableEntries}</Text>
@@ -59,7 +57,7 @@ export const renderItem = ({ item }) => {
           <View style={styles.entry}>
             <Image
               style={{ width: 20 }}
-              source={require("../../../assets/coin-color.png")}
+              source={require("../../../assets/player.png")}
               resizeMode="contain"
             />
             <Text style={styles.entryText}>{entries}</Text>
@@ -95,28 +93,6 @@ export const renderItem = ({ item }) => {
         />
         <Text style={styles.qestionText}>prize money</Text>
         <Text style={styles.entryFeeText}>{prize + " INR"}</Text>
-      </View>
-      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-        <View style={styles.questionItem}>
-          <Icon
-            size={16}
-            style={styles.questionIcon}
-            name="coin-black"
-            color={colorTextGray}
-          />
-          <Text style={styles.qestionText}>singles entry fee</Text>
-          <Text style={styles.prizeText}>{singleEntryFee + " coins"}</Text>
-        </View>
-        <View style={styles.questionItem}>
-          <Icon
-            size={16}
-            style={styles.questionIcon}
-            name="coin-black"
-            color={colorTextGray}
-          />
-          <Text style={styles.qestionText}>doubles entry fee</Text>
-          <Text style={styles.prizeText}>{doubleEntryFee + " coins"}</Text>
-        </View>
       </View>
       <View style={styles.eventsItem}>
         <Text style={styles.qestionText}>events</Text>
@@ -180,7 +156,8 @@ const styles = StyleSheet.create({
   },
   wrapTopContent: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: "flex-end"
   },
   wrapEntries: {
     flexDirection: "row"
@@ -205,8 +182,7 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 14,
     fontFamily: "montserrat-semibold",
-    color: colorBlack,
-    marginTop: 5
+    color: colorBlack
   },
   cardSubTitle: {
     fontSize: 10,

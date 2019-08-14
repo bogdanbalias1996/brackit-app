@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import {
   Text,
   TouchableOpacity,
-  View,
   FlatList,
   TextInput,
   Platform
@@ -15,7 +14,6 @@ import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { navigate } from "../../navigationService";
 import { Icon } from "../../components/Icon/Icon";
 import { ProposalItem } from "../../components/ProposalItem/ProposalItem";
-import { colorTextGray } from "../../variables";
 import styles from "./Comments.styles";
 
 const Header = props => (
@@ -63,39 +61,6 @@ export class Component extends React.PureComponent<CommentsScreenProps> {
         keyboardShouldPersistTaps="handled"
         extraScrollHeight={Platform.OS === "ios" ? 25 : 0}
       >
-        <View style={styles.card}>
-          <View style={styles.questionItem}>
-            <Icon
-              size={16}
-              style={styles.questionIcon}
-              name="play"
-              color={colorTextGray}
-            />
-            <Text style={styles.cardTitle}>{params && params.data.title}</Text>
-          </View>
-          <View style={styles.questionItem}>
-            <Icon
-              size={16}
-              style={styles.questionIcon}
-              name="location"
-              color={colorTextGray}
-            />
-            <Text style={styles.answerText}>
-              {params && params.data.whereText}
-            </Text>
-          </View>
-          <View style={styles.questionItem}>
-            <Icon
-              size={16}
-              style={styles.questionIcon}
-              name="calendar"
-              color={colorTextGray}
-            />
-            <Text style={styles.answerText}>
-              {params && params.data.whenText}
-            </Text>
-          </View>
-        </View>
         <Text style={styles.proposalsText}>
           {params && params.data.comments.length + " comments"}
         </Text>

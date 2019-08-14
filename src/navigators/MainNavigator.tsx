@@ -31,6 +31,7 @@ import { CreatorProposalsScreen } from "../pages/CreatorProposals/CreatorProposa
 import { ProposalsScreen } from "../pages/Proposals/Proposals";
 import { SendProposalScreen } from "../pages/SendProposal/SendProposal";
 import { CommentsScreen } from "../pages/Comments/Comments";
+import { AddBuddiesScreen } from "../pages/AddBuddies/AddBuddies";
 
 // Icons for BottomTabNavigator
 import Play from "../../assets/play.svg";
@@ -55,10 +56,10 @@ const formatScreenProps = (ScreenName, ScreenComponent) => {
 export const TabsNavigator = createBottomTabNavigator(
   {
     Play: formatScreenProps("Play", PlayScreen),
-    Discover: formatScreenProps("Discover", DiscoverScreen),
+    // Discover: formatScreenProps("Discover", DiscoverScreen),
     Profile: formatScreenProps("Profile", ProfileScreen),
-    Notifications: formatScreenProps("Notifications", NotificationsScreen),
-    Store: formatScreenProps("Store", StoreScreen)
+    Notifications: formatScreenProps("Notifications", NotificationsScreen)
+    // Store: formatScreenProps("Store", StoreScreen)
   },
   {
     tabBarOptions: {
@@ -127,13 +128,13 @@ export const MainNavigator = createStackNavigator(
         header: null
       }
     },
+    ProfileEdit: ProfileEditScreen,
     PlayStepOne: PlayStepOneScreen,
     PlayStepTwo: PlayStepTwoScreen,
     PlayStepThree: PlayStepThreeScreen,
     PlayStepFour: PlayStepFourScreen,
     PlayStepFive: PlayStepFiveScreen,
     CheckChallenge: CheckChallengeScreen,
-    ProfileEdit: ProfileEditScreen,
     ActivityChallenges: ActivityChallengesScreen,
     ActivityTournaments: ActivityTournamentsScreen,
     ActivityPurchases: ActivityPurchasesScreen,
@@ -146,9 +147,10 @@ export const MainNavigator = createStackNavigator(
     CreatorProposals: CreatorProposalsScreen,
     Proposals: ProposalsScreen,
     SendProposal: SendProposalScreen,
-    Comments: CommentsScreen
+    Comments: CommentsScreen,
+    AddBuddies: AddBuddiesScreen
   }
   // {
-  //   initialRouteName: "CreateTournament"
+  //   initialRouteName: "AddBuddies"
   // }
 );

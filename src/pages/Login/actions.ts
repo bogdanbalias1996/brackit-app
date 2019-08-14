@@ -4,6 +4,7 @@ import { request } from '../../api/network'
 import { LoginScreenFromData, AuthResponse } from './'
 import { IAction } from '../../coreTypes'
 import { navigate } from '../../navigationService'
+import { _retrieveData } from '../../common/utils/helpers';
 
 export const RECEIVE_LOGIN_USER = 'RECEIVE_LOGIN_USER'
 export const receiveLoginUser = (data: AuthResponse): IAction<AuthResponse> => {
@@ -53,9 +54,14 @@ export const loginUser = (payload: LoginScreenFromData, setErrors: any, navigati
       },
       headers
     })
-      .then((res) => {
+      .then(async (res) => {
         dispatch(receiveLoginUser(res))
-        navigation.navigate('Pages')
+        if (await _retrieveData("isFirst") === null) {
+          navigation.navigate('ProfileEdit')
+        } else {
+          navigation.navigate('Profile')
+        }
+
       })
       .catch((err) => {
         const { error = 'The email/password combination are incorrect' } = err.response.body

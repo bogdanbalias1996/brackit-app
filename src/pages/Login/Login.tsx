@@ -14,8 +14,6 @@ import { loginUser } from "./actions";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { TextInputPassword } from "../../components/TextInputStyled/TextInputPassword";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
-import { Icon } from "../../components/Icon/Icon";
-import { colorTextBlue, colorPink } from "../../variables";
 
 const mapStateToProps = (state: IGlobalState) => ({});
 
@@ -117,17 +115,10 @@ export const Component: React.SFC<LoginScreenProps> = ({
         >
           <Text style={styles.createAccountText}>
             Don’t have an account?{" "}
-            <Text style={styles.createAccountLink}>Sign Up</Text>
+            <Text style={styles.createAccountLink}>
+              {"Sign Up".toUpperCase()}
+            </Text>
           </Text>
-        </TouchableOpacity>
-      </View>
-      <Text style={styles.socialText}>Connect with social media</Text>
-      <View style={styles.socialContainer}>
-        <TouchableOpacity onPress={() => alert("ok")} style={styles.socialItem}>
-          <Icon size={24} name="facebook" color={colorTextBlue} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert("ok")} style={styles.socialItem}>
-          <Icon size={24} name="google" color={colorPink} />
         </TouchableOpacity>
       </View>
     </KeyboardAwareScrollView>

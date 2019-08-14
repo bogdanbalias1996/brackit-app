@@ -8,44 +8,32 @@ import {
   TouchableOpacity
 } from "react-native";
 
-import { ChallengeItem } from "./";
-import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
+import { MatchItem } from "../../components/MatchItem/MatchItem";
 import { Icon } from "../../components/Icon/Icon";
-import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
 import {
   colorShadow,
   colorTextGray,
   colorBlack,
   colorOrangeText,
-  colorVeryLightBlue
+  colorVeryLightBlue,
+  colorGreen,
+  colorBlueEnd
 } from "../../variables";
 import { navigate } from "../../navigationService";
 
 export const renderItem = ({ item }) => {
-  const {
-    name,
-    avatar,
-    avatarRate,
-    postTime,
-    postCity,
-    coins,
-    title,
-    whenText,
-    whereText,
-    shares,
-    views,
-    comments
-  } = item as ChallengeItem;
-
   return (
     <View style={styles.card}>
       <View style={styles.headerCard}>
-        <View style={{ flexDirection: "row" }}>
-          <AvatarStatus avatar={avatar} avatarRate={avatarRate} />
-          <View style={styles.wrapCardTitle}>
-            <Text style={styles.headerCardTitle}>{name}</Text>
-            <Text style={styles.headerCardDate}>
-              {postTime + " / " + postCity}
+        <View>
+          <Text style={styles.statusCard}>{item.status.toUpperCase()}</Text>
+          <Text style={styles.titleCard}>{item.title}</Text>
+          <View style={{ flexDirection: "row" }}>
+            <View style={styles.wrapCategory}>
+              <Text style={styles.categoryText}>{item.category}</Text>
+            </View>
+            <Text style={styles.infoText}>
+              {item.round.toUpperCase() + ", " + item.date}
             </Text>
           </View>
         </View>
@@ -55,82 +43,34 @@ export const renderItem = ({ item }) => {
             source={require("../../../assets/coin-color.png")}
             resizeMode="contain"
           />
-          <Text style={styles.headerCardRateText}>{coins}</Text>
+          <Text style={styles.headerCardRateText}>{item.coins}</Text>
         </View>
       </View>
-      <View style={styles.questionItem}>
-        <Icon
-          size={16}
-          style={styles.questionIcon}
-          name="play"
-          color={colorTextGray}
-        />
-        <Text style={styles.cardTitle}>{title}</Text>
-      </View>
-      <View style={styles.questionItem}>
-        <Icon
-          size={16}
-          style={styles.questionIcon}
-          name="location"
-          color={colorTextGray}
-        />
-        <Text style={styles.answerText}>{whereText}</Text>
-      </View>
-      <View style={styles.questionItem}>
-        <Icon
-          size={16}
-          style={styles.questionIcon}
-          name="calendar"
-          color={colorTextGray}
-        />
-        <Text style={styles.answerText}>{whenText}</Text>
-      </View>
+      <MatchItem
+        compatitors={item.compatitors}
+        inside={true}
+        style={{
+          marginRight: 0,
+          elevation: 0,
+          shadowOpacity: 0,
+          paddingLeft: 25
+        }}
+      />
       <View style={styles.footerCard}>
-        <ButtonStyled
+        <TouchableOpacity
           onPress={() =>
             navigate({
-              routeName: "SendProposal"
+              routeName: "Comments",
+              params: { data: item }
             })
           }
-          text={"Accept".toUpperCase()}
-          type="left"
-        />
-        <View style={styles.wrapIcons}>
-          <TouchableOpacity
-            onPress={() =>
-              navigate({
-                routeName: "CreatorProposals",
-                params: { data: item }
-              })
-            }
-            style={styles.wrapIcon}
-          >
-            <View style={styles.icon}>
-              <Icon size={16} name="send" color={colorTextGray} />
-            </View>
-            <Text style={styles.iconText}>{shares.length}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => alert("ok")} style={styles.wrapIcon}>
-            <View style={styles.icon}>
-              <Icon size={24} name="show" color={colorTextGray} />
-            </View>
-            <Text style={styles.iconText}>{views}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              navigate({
-                routeName: "Comments",
-                params: { data: item }
-              })
-            }
-            style={styles.wrapIcon}
-          >
-            <View style={styles.icon}>
-              <Icon size={18} name="comment" color={colorTextGray} />
-            </View>
-            <Text style={styles.iconText}>{comments.length}</Text>
-          </TouchableOpacity>
-        </View>
+          style={styles.wrapIcon}
+        >
+          <View style={styles.icon}>
+            <Icon size={18} name="comment" color={colorTextGray} />
+          </View>
+          <Text style={styles.iconText}>{item.comments.length}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -167,23 +107,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingLeft: 20,
-    paddingRight: 15
-  },
-  wrapCardTitle: {
-    marginLeft: 10
-  },
-  headerCardTitle: {
-    fontFamily: "montserrat-semibold",
-    fontSize: 14,
-    color: colorBlack
-  },
-  headerCardDate: {
-    fontFamily: "montserrat-medium",
-    fontSize: 14,
-    color: colorTextGray
-  },
-  rateIcon: {
-    marginRight: 5
+    paddingRight: 15,
+    marginBottom: 20
   },
   headerCardRate: {
     position: "relative",
@@ -198,35 +123,11 @@ const styles = StyleSheet.create({
     color: colorOrangeText,
     marginLeft: 5
   },
-  cardTitle: {
-    fontSize: 14,
-    fontFamily: "montserrat-semibold",
-    color: colorBlack
-  },
-  questionItem: {
-    marginVertical: 5,
-    paddingLeft: 45,
-    position: "relative",
-    paddingRight: 15
-  },
-  questionIcon: {
-    position: "absolute",
-    top: 0,
-    left: 20
-  },
-  answerText: {
-    fontSize: 13,
-    fontFamily: "montserrat-medium",
-    color: colorBlack
-  },
   footerCard: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     marginTop: 10,
     paddingRight: 15
-  },
-  wrapIcons: {
-    flexDirection: "row"
   },
   wrapIcon: {
     flexDirection: "row",
@@ -243,6 +144,35 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
   iconText: {
+    fontSize: 12,
+    fontFamily: "montserrat-medium",
+    color: colorTextGray
+  },
+  statusCard: {
+    fontSize: 10,
+    fontFamily: "montserrat-bold",
+    color: colorGreen
+  },
+  titleCard: {
+    fontSize: 15,
+    fontFamily: "montserrat-semibold",
+    color: colorBlack
+  },
+  wrapCategory: {
+    borderRadius: 20,
+    paddingVertical: 2,
+    paddingHorizontal: 7,
+    backgroundColor: colorBlueEnd,
+    marginRight: 10,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  categoryText: {
+    fontSize: 12,
+    fontFamily: "montserrat-bold",
+    color: "white"
+  },
+  infoText: {
     fontSize: 12,
     fontFamily: "montserrat-medium",
     color: colorTextGray

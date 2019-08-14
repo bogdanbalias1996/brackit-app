@@ -2,7 +2,6 @@ import * as React from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 
-import { SelectCustom } from "../../components/SelectCustom/SelectCustom";
 import { LeaderBoardItem } from "./";
 import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
 import { colorShadow, colorBlack, colorBorderBlue } from "../../variables";
@@ -46,44 +45,9 @@ export class Component extends React.PureComponent<LeaderBoardItem> {
 
     return (
       <View style={{ flex: 1 }}>
-        {data.map((item, i) => {
-          return (
-            item.number === "3" && (
-              <View key={i} style={styles.cardFixed}>
-                <View style={[styles.cardLeft, { width: "55%" }]}>
-                  <Text style={styles.cardNumber}>{item.number}</Text>
-                  <AvatarStatus
-                    avatar={item.avatar}
-                    avatarRate={item.avatarRate}
-                    size={36}
-                  />
-                  <Text style={styles.cardName}>{item.name}</Text>
-                </View>
-                <View
-                  style={[
-                    styles.cardRight,
-                    { alignItems: "flex-start", width: "45%" }
-                  ]}
-                >
-                  <View style={styles.wrapScores}>
-                    <Text style={styles.scoreTitle}>played/won</Text>
-                    <Text style={styles.cardNumber}>
-                      {item.numberPlays + "/" + item.numberWonPlays}
-                    </Text>
-                  </View>
-                  <View style={styles.wrapScores}>
-                    <Text style={styles.scoreTitle}>played/won</Text>
-                    <View style={styles.wrapPerformance}>
-                      <Text style={styles.cardNumber}>{item.performance}</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-            )
-          );
-        })}
-        <View style={styles.containerSelect}>
-          <SelectCustom />
+        <View style={styles.wrapScores}>
+          <Text style={styles.scoreTitle}>played/won</Text>
+          <Text style={styles.scoreTitle}>performance</Text>
         </View>
         <FlatList
           style={{ flex: 1 }}
@@ -177,15 +141,12 @@ const styles = StyleSheet.create({
     fontSize: 10,
     fontFamily: "montserrat-semibold",
     color: colorBlack,
-    marginBottom: 10
+    marginLeft: 25
   },
   wrapScores: {
-    justifyContent: "space-between",
-    alignItems: "center"
-  },
-  containerSelect: {
-    alignItems: "flex-end",
-    position: "relative",
-    paddingRight: 25
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    alignItems: "center",
+    paddingRight: 30
   }
 });

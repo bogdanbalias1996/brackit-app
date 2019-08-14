@@ -52,18 +52,18 @@ export class Component extends React.PureComponent<
     });
 
     const tabsConfig = [
-      {
-        title: "Register",
-        component: () => (
-          <RegisterTab
-            name={params.tournamentData.title}
-            academy={params.tournamentData.location}
-            events={params.tournamentData.events}
-            entryFee={params.tournamentData.singleEntryFee}
-            totalEntryFee={params.tournamentData.doubleEntryFee}
-          />
-        )
-      },
+      // {
+      //   title: "Register",
+      //   component: () => (
+      //     <RegisterTab
+      //       name={params.tournamentData.title}
+      //       academy={params.tournamentData.location}
+      //       events={params.tournamentData.events}
+      //       entryFee={params.tournamentData.singleEntryFee}
+      //       totalEntryFee={params.tournamentData.doubleEntryFee}
+      //     />
+      //   )
+      // },
       {
         title: "Entries",
         component: () => <EntryTab events={params.tournamentData.events} />

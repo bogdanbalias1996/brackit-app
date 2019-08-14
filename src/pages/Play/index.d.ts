@@ -1,20 +1,4 @@
 import { NavigationScreenProp, NavigationScreenOptions } from 'react-navigation'
-export type ChallengeItem = {
-    id: string,
-    name: string,
-    avatar: number,
-    avatarRate: number,
-    postTime: string,
-    postCity: string,
-    coins: number,
-    title: string,
-    whenText: string,
-    whereText: string,
-    btnText: string,
-    shares: any,
-    views: number,
-    comments: any
-}
 export type TournamentItem = {
     id: string,
     avaliableEntries: number,

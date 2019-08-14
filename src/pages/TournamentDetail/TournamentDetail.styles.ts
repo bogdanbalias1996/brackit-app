@@ -50,6 +50,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 6,
     elevation: 5,
+    flex: 1
   },
   tabsItemText: {
     fontSize: 13

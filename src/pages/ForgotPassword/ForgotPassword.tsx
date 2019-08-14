@@ -43,7 +43,7 @@ export class Component extends React.PureComponent {
           <View style={{ width: "100%" }}>
             <Text style={styles.title}>{"Reset password".toUpperCase()}</Text>
             <Text style={styles.description}>
-              We have sent a reset password email to{" "}
+            We have sent an email to{" "}
               <Text style={styles.createAccountLink}>brackit@gmail.com</Text>.
               Please click the reset password link to set your new password
             </Text>
@@ -63,7 +63,7 @@ export class Component extends React.PureComponent {
               >
                 <Text style={styles.resetText}>
                   Didn’t receive the email yet? Please check your spam folder.{" "}
-                  <Text style={styles.createAccountLink}>Resend</Text>
+                  <Text style={styles.createAccountLink}>{'Resend'.toUpperCase()}</Text>
                 </Text>
               </TouchableOpacity>
             </View>
@@ -72,8 +72,8 @@ export class Component extends React.PureComponent {
           <View style={{ width: "100%" }}>
             <Text style={styles.title}>{"Forgot password?".toUpperCase()}</Text>
             <Text style={styles.description}>
-              Don’t worry. Resetting your password is easy, just tell us the
-              emailaddress you registered with Citizen.
+              Enter the email address you used to register with BrackIt & we
+              will email you instructions to reset your password.
             </Text>
 
             <Formik
@@ -131,7 +131,10 @@ export class Component extends React.PureComponent {
                 }}
               >
                 <Text style={styles.createAccountText}>
-                  Go back to <Text style={styles.createAccountLink}>Login</Text>
+                  Go back to{" "}
+                  <Text style={styles.createAccountLink}>
+                    {"Login".toUpperCase()}
+                  </Text>
                 </Text>
               </TouchableOpacity>
             </View>

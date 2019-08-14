@@ -157,7 +157,7 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
 
             <ButtonStyled
               text={"Buddy".toUpperCase()}
-              onPress={() => alert("ok")}
+              onPress={() => navigate({ routeName: "AddBuddies" })}
               style={styles.profileHeaderButton}
             />
           </View>

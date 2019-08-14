@@ -53,6 +53,7 @@ export default StyleSheet.create({
         width: '100%',
         textAlign: 'center',
         marginBottom: 20,
+        marginTop: 20,
     },
     input: {
         marginHorizontal: 25,

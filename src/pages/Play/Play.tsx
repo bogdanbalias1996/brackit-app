@@ -1,10 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { TouchableOpacity, View, Image } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-navigation";
 
 import { PlayScreenProps } from ".";
-import { navigate } from "../../navigationService";
 import { ChallengeItems } from "./ChallengeItem";
 import { TournamentItems } from "./TournamentItem";
 import { LeaderBoardItems } from "./LeaderBoardItem";
@@ -13,7 +12,6 @@ import { Icon } from "../../components/Icon/Icon";
 import { ModalCoins } from "../../components/ModalCoins/ModalCoins";
 import { ModalCoinsPurchase } from "../../components/ModalCoinsPurchase/ModalCoinsPurchase";
 import { ModalSuccess } from "../../components/ModalSuccess/ModalSuccess";
-import { ButtonHeaderStyled } from "../../components/ButtonHeaderStyled/ButtonHeaderStyled";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 import { setActiveTab } from "./actions";
 import styles from "./Play.styles";
@@ -21,19 +19,12 @@ import styles from "./Play.styles";
 const Header = props => (
   <HeaderRounded
     {...props}
-    getLeftComponent={() => {
-      return props.activeTab && props.activeTab === 2 ? (
-        <ButtonHeaderStyled
-          onPress={() => navigate({ routeName: "CreateTournament" })}
-          text="Post tournament"
-        />
-      ) : (
-        <ButtonHeaderStyled
-          onPress={() => navigate({ routeName: "PlayStepOne" })}
-          text="Post a challenge"
-        />
-      );
-    }}
+    getLeftComponent={() => {}}
+    title={
+      props.activeTab && props.activeTab === 2
+        ? "Tournaments".toUpperCase()
+        : "Challenges".toUpperCase()
+    }
     getRightComponent={() => {
       return (
         <View style={styles.wrapHeaderRight}>
@@ -42,20 +33,6 @@ const Header = props => (
             onPress={() => alert("ok")}
           >
             <Icon size={30} name="search" color="white" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.wrapHeaderRightIcon}
-            onPress={() =>
-              props.navigation.setParams({
-                showCoins: !props.navigation.state.params.showCoins
-              })
-            }
-          >
-            <Image
-              style={{ width: 20 }}
-              source={require("../../../assets/coin-color.png")}
-              resizeMode="contain"
-            />
           </TouchableOpacity>
         </View>
       );
@@ -106,46 +83,44 @@ export class Component extends React.PureComponent<PlayScreenProps> {
     const dataChallange = [
       {
         id: "1",
-        name: "Katayama Fumiki",
-        avatar: require("../../../assets/avatar.png"),
-        avatarRate: 1500,
-        avatarStatus: "Advanced",
-        postTime: "5 min ago",
-        postCity: "New York",
+        status: "Status 1000",
+        title: "Badminton tournament",
+        date: "14 June, 2019",
+        category: "MD",
+        round: "Round 1",
         coins: 400,
-        title: "Who can beat me in ping pong?",
-        whenText: "12 June, 6:00 pm",
-        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        shares: [
+        compatitors: [
           {
-            id: "1",
-            name: "Katayama Fumiki",
-            avatar: require("../../../assets/avatar.png"),
-            avatarRate: 1500,
-            comment:
-              "Globally evolve vertical users with interdependent growth.",
-            date: "3wk"
+            players: [
+              {
+                name: "AAA Lamba",
+                avatar: require("../../../assets/avatar.png")
+              },
+              {
+                name: "Fua Lamba1",
+                avatar: require("../../../assets/avatar.png")
+              }
+            ],
+            rating: 1200,
+            scores: ["10", "15", "5"],
+            isWinner: true
           },
           {
-            id: "2",
-            name: "Katayama Fumiki1",
-            avatar: require("../../../assets/avatar.png"),
-            avatarRate: 500,
-            comment:
-              "Globally evolve vertical users with interdependent growth.",
-            date: "3wk"
-          },
-          {
-            id: "3",
-            name: "Katayama Fumiki2",
-            avatar: require("../../../assets/avatar.png"),
-            avatarRate: 1500,
-            comment:
-              "Globally evolve vertical users with interdependent growth.",
-            date: "3wk"
+            players: [
+              {
+                name: "Fua Lamba1",
+                avatar: require("../../../assets/avatar.png")
+              },
+              {
+                name: "Fua Lamba2",
+                avatar: require("../../../assets/avatar.png")
+              }
+            ],
+            rating: 1000,
+            scores: ["8", "10", "10"],
+            isWinner: false
           }
         ],
-        views: 4,
         comments: [
           {
             id: "1",
@@ -178,17 +153,37 @@ export class Component extends React.PureComponent<PlayScreenProps> {
       },
       {
         id: "2",
-        name: "Anna Fali",
-        avatar: require("../../../assets/avatar.png"),
-        avatarRate: 1500,
-        avatarStatus: "Beginner",
-        postTime: "5 min ago",
-        postCity: "New York",
-        coins: 500,
-        title: "Who can beat me in ping pong?",
-        whenText: "12 June, 6:00 pm",
-        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        shares: [
+        status: "Status 1000",
+        title: "Badminton tournament",
+        date: "14 June, 2019",
+        category: "MD",
+        round: "Round 1",
+        coins: 400,
+        compatitors: [
+          {
+            players: [
+              {
+                name: "AAA Lamba",
+                avatar: require("../../../assets/avatar.png")
+              }
+            ],
+            rating: 1200,
+            scores: ["10", "15", "5"],
+            isWinner: true
+          },
+          {
+            players: [
+              {
+                name: "Fua Lamba1",
+                avatar: require("../../../assets/avatar.png")
+              }
+            ],
+            rating: 1000,
+            scores: ["8", "10", "10"],
+            isWinner: false
+          }
+        ],
+        comments: [
           {
             id: "1",
             name: "Katayama Fumiki",
@@ -197,13 +192,19 @@ export class Component extends React.PureComponent<PlayScreenProps> {
             comment:
               "Globally evolve vertical users with interdependent growth.",
             date: "3wk"
-          }
-        ],
-        views: 4,
-        comments: [
+          },
           {
-            id: "1",
-            name: "Katayama Fumiki",
+            id: "2",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "3",
+            name: "Katayama Fumiki2",
             avatar: require("../../../assets/avatar.png"),
             avatarRate: 1500,
             comment:
@@ -214,17 +215,43 @@ export class Component extends React.PureComponent<PlayScreenProps> {
       },
       {
         id: "3",
-        name: "Anna Fali",
-        avatar: require("../../../assets/avatar.png"),
-        avatarRate: 1500,
-        avatarStatus: "Beginner",
-        postTime: "5 min ago",
-        postCity: "New York",
-        coins: 500,
-        title: "Who can beat me in ping pong?",
-        whenText: "12 June, 6:00 pm",
-        whereText: "Sun sea Resort Outer ring road, Bellandur, 560103",
-        shares: [
+        status: "Status 1000",
+        title: "Badminton tournament",
+        date: "14 June, 2019",
+        category: "MD",
+        round: "Round 1",
+        coins: 400,
+        compatitors: [
+          {
+            players: [
+              {
+                name: "AAA Lamba",
+                avatar: require("../../../assets/avatar.png")
+              },
+              {
+                name: "Fua Lamba1",
+                avatar: require("../../../assets/avatar.png")
+              }
+            ],
+            rating: 1200,
+            scores: null
+          },
+          {
+            players: [
+              {
+                name: "Fua Lamba1",
+                avatar: require("../../../assets/avatar.png")
+              },
+              {
+                name: "Fua Lamba2",
+                avatar: require("../../../assets/avatar.png")
+              }
+            ],
+            rating: 1000,
+            scores: null
+          }
+        ],
+        comments: [
           {
             id: "1",
             name: "Katayama Fumiki",
@@ -233,13 +260,19 @@ export class Component extends React.PureComponent<PlayScreenProps> {
             comment:
               "Globally evolve vertical users with interdependent growth.",
             date: "3wk"
-          }
-        ],
-        views: 4,
-        comments: [
+          },
           {
-            id: "1",
-            name: "Katayama Fumiki",
+            id: "2",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "3",
+            name: "Katayama Fumiki2",
             avatar: require("../../../assets/avatar.png"),
             avatarRate: 1500,
             comment:
