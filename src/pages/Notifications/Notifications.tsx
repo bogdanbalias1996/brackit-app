@@ -5,12 +5,12 @@ import { SafeAreaView } from "react-navigation";
 import { NotificationsScreenProps } from ".";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Text, StyleSheet } from "react-native";
-import { colorLightBlue } from "../../variables";
+import { colorLightBlue, colorTextGray } from "../../variables";
 
 const Header = props => (
   <HeaderRounded
     {...props}
-    title="Create challenge"
+    title="Notifications"
     style={{
       backgroundColor: props.feed ? "white" : colorLightBlue
     }}
@@ -29,7 +29,7 @@ export class Component extends React.PureComponent<NotificationsScreenProps> {
   render() {
     return (
       <SafeAreaView style={styles.container}>
-        <Text>Notifications</Text>
+        <Text style={styles.noDataText}>No Data</Text>
       </SafeAreaView>
     );
   }
@@ -44,5 +44,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colorLightBlue
+  },
+  noDataText: {
+    fontFamily: "montserrat-medium",
+    fontSize: 14,
+    width: "100%",
+    textAlign: "center",
+    color: colorTextGray,
+    marginVertical: 20
   }
 });

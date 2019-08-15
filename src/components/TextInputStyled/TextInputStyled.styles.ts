@@ -28,7 +28,7 @@ export default StyleSheet.create({
   inputStyle: {
     borderWidth: 0,
     marginTop: 0,
-    fontFamily: 'poppins-medium',
+    fontFamily: 'montserrat-medium',
     color: colorBlack,
     fontSize: 16,
     height: 32,

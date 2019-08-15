@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, AsyncStorage } from "react-native";
 import { connect } from "react-redux";
 import { Formik } from "formik";
 import DateTimePicker from "react-native-modal-datetime-picker";
@@ -8,6 +8,7 @@ import ModalSelector from "react-native-modal-selector";
 import { format } from "date-fns";
 
 import { IGlobalState } from "../../coreTypes";
+import { _retrieveData } from "../../common/utils/helpers";
 import { navigate, goBack } from "../../navigationService";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
@@ -46,11 +47,24 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
     birthdayDatePickerVisible: false
   };
 
-  handleSubmit = values => {
+  _storeData = async () => {
+    try {
+      await AsyncStorage.setItem("isFirst", "true");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  handleSubmit = async values => {
     const { setChallengeName } = this.props;
 
     setChallengeName(values.challengeName);
-    navigate({ routeName: "Profile" });
+    if ((await _retrieveData("isFirst")) === null) {
+      navigate({ routeName: "AddBuddies" });
+      this._storeData();
+    } else {
+      navigate({ routeName: "Profile" });
+    }
   };
 
   render() {

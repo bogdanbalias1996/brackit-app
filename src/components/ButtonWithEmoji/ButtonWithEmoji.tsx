@@ -1,31 +1,38 @@
-import * as React from 'react'
-import { Text, StyleSheet, TouchableOpacity } from 'react-native'
-import Emoji from 'react-native-emoji'
-import { colorCoolGrey, colorBlueberry } from '../../variables'
+import * as React from "react";
+import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import Emoji from "react-native-emoji";
+import { colorCoolGrey, colorBlueberry } from "../../variables";
 
 export const ButtonWithEmoji = ({
   emoji,
   text,
   selected = false,
-  onPress = () => { },
+  onPress = () => {},
   style = {},
   hideText = false
 }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={[styles.btn, style, selected ? styles.btnSelected : {}]}>
+    <TouchableOpacity
+      onPress={onPress}
+      style={[styles.btn, style, selected ? styles.btnSelected : {}]}
+    >
       <Emoji name={emoji} style={styles.emoji} />
-      {!hideText && <Text style={[styles.btnText, selected ? styles.btnSelectedText : {}]}>{text}</Text>}
+      {!hideText && (
+        <Text style={[styles.btnText, selected ? styles.btnSelectedText : {}]}>
+          {text}
+        </Text>
+      )}
     </TouchableOpacity>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: '#f5f5f5',
+    backgroundColor: "#f5f5f5",
     borderRadius: 4,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
     marginRight: 8,
     paddingRight: 9,
     paddingLeft: 9,
@@ -39,7 +46,7 @@ const styles = StyleSheet.create({
   btnText: {
     color: colorCoolGrey,
     marginLeft: 8,
-    fontFamily: 'poppins-semi-bold',
+    fontFamily: "montserrat-semibold",
     fontSize: 12
   },
   btnSelectedText: {
@@ -48,4 +55,4 @@ const styles = StyleSheet.create({
   emoji: {
     fontSize: 18
   }
-})
+});

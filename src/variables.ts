@@ -54,7 +54,12 @@ export const colorLike = "#ff5252";
 export const colorBorderBlue = "#0091ff";
 export const colorGreenStart = "#58ea51";
 export const colorGreenEnd = "#6ce8d7";
-export const colorGreen = "#6dd400"
+export const colorGreen = "#6dd400";
+export const colorYellowStart = '#faf5d5';
+export const colorYellowEnd = '#f3e8aa';
+export const colorYellowShadow = '#ffd949';
+export const colorBrown = '#88660e';
+export const colorDisable = '#b9ccdb';
 
 export const colorCoral = "#f25959";
 export const colorTomato = "#e83d3c";
