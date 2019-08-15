@@ -1,21 +1,4 @@
 import { NavigationScreenProp, NavigationScreenOptions } from 'react-navigation'
-export type ChallengeItem = {
-    id: string,
-    name: string,
-    avatar: number,
-    avatarRate: number,
-    avatarStatus: string,
-    postTime: string,
-    postCity: string,
-    coins: number,
-    title: string,
-    whenText: string,
-    whereText: string,
-    btnText: string,
-    shares: number,
-    views: number,
-    comments: number
-}
 export type TournamentItem = {
     id: string,
     avaliableEntries: number,
@@ -30,9 +13,18 @@ export type TournamentItem = {
     doubleEntryFee: string,
     events: any
 }
+export type LeaderBoardItem = {
+    id: string,
+    name: string,
+    number: string,
+    avatar: number,
+    avatarRate: number,
+    numberPlays: number,
+    numberWonPlays: number,
+    performance: number,
+}
 export interface PlayScreenStateProps {
     navigation: NavigationScreenProp<any, any>
-    ChallengeItems: Array<ChallengeItem>
     TournamentItems: Array<TournamentItem>
     activeTab: any
 }

@@ -5,7 +5,6 @@ export default StyleSheet.create({
 	container: {
 		flex: 1,
 		backgroundColor: "white",
-		marginBottom: 64
 	},
 	wrapHeaderRight: {
 		flexDirection: "row"

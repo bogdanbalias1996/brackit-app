@@ -1,12 +1,11 @@
 {
-  "name": "citizn_icons",
+  "name": "brackit_icons",
   "css_prefix_text": "icon-",
   "css_use_suffix": false,
   "hinting": true,
   "units_per_em": 1000,
   "ascent": 850,
-  "glyphs": [
-    {
+  "glyphs": [{
       "uid": "9808bdb450128d083d69f7c8de16fbd0",
       "css": "add",
       "code": 59392,

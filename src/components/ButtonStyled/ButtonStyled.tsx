@@ -8,7 +8,8 @@ import {
   colorGradientBlue,
   colorGradientGreen,
   colorGoldStart,
-  colorGoldEnd
+  colorGoldEnd,
+  colorDisable
 } from "../../variables";
 
 export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
@@ -23,20 +24,18 @@ export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
     switch (type) {
       case "left":
         return styles.btnLeft;
-        break;
       case "right":
         return styles.btnRight;
-        break;
     }
   };
   const getColorButton = type => {
     switch (type) {
       case "blue":
         return [colorGradientBlue, colorGradientGreen];
-        break;
       case "gold":
         return [colorGoldStart, colorGoldEnd];
-        break;
+      case "disable":
+        return [colorDisable, colorDisable];
     }
   };
   return (

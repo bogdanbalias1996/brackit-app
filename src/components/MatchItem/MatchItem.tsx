@@ -7,7 +7,8 @@ import styles from "./MatchItem.styles";
 
 export const MatchItem: React.SFC<MatchItemProps> = ({
   compatitors,
-  style = ""
+  style = "",
+  inside = false
 }): JSX.Element => {
   return (
     <View style={[styles.matchWrap].concat(style)}>
@@ -16,7 +17,11 @@ export const MatchItem: React.SFC<MatchItemProps> = ({
           key={i}
           style={[
             styles.winnerItem,
-            i === 0
+            i === 0 && inside
+              ? { borderTopRightRadius: 0, borderTopWidth: 0 }
+              : i === 1 && inside
+              ? { borderBottomRightRadius: 0, borderBottomWidth: 0 }
+              : i === 0
               ? { borderTopRightRadius: 15, borderTopWidth: 1 }
               : { borderBottomRightRadius: 15 }
           ]}

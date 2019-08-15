@@ -9,10 +9,8 @@ import { navigate } from "../../navigationService";
 import { TextInputPassword } from "../../components/TextInputStyled/TextInputPassword";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
-import { Icon } from "../../components/Icon/Icon";
 
 import styles from "./SignUp.styles";
-import { colorTextBlue, colorPink } from "../../variables";
 
 export const Component = ({ navigation }): JSX.Element => {
   const handleSubmit = (values, { setErrors }: any) => {
@@ -103,18 +101,9 @@ export const Component = ({ navigation }): JSX.Element => {
       >
         <Text style={styles.createAccountText}>
           Already have an account?{" "}
-          <Text style={styles.createAccountLink}>Log In</Text>
+          <Text style={styles.createAccountLink}>{"Login".toUpperCase()}</Text>
         </Text>
       </TouchableOpacity>
-      <Text style={styles.socialText}>Connect with social media</Text>
-      <View style={styles.socialContainer}>
-        <TouchableOpacity onPress={() => alert("ok")} style={styles.socialItem}>
-          <Icon size={24} name="facebook" color={colorTextBlue} />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => alert("ok")} style={styles.socialItem}>
-          <Icon size={24} name="google" color={colorPink} />
-        </TouchableOpacity>
-      </View>
     </KeyboardAwareScrollView>
   );
 };

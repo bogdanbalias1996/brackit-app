@@ -1,11 +1,9 @@
 import { StyleSheet } from 'react-native';
 import {
-  colorTomato,
   colorCoral,
   colorBlack,
   colorTextGray,
   colorTextBlue,
-  colorVeryLightBlue
 } from '../../variables'
 
 export default StyleSheet.create({
@@ -55,7 +53,7 @@ export default StyleSheet.create({
   },
   socialText: {
     color: colorBlack,
-    fontFamily: 'montserrat-medium',
+    fontFamily: 'montserrat-semibold',
     fontSize: 14,
     textAlign: 'center',
     marginTop: 25,
@@ -64,12 +62,12 @@ export default StyleSheet.create({
     marginTop: 25,
     flexDirection: 'row',
     justifyContent: 'center',
+    paddingLeft: 25,
   },
   socialItem: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: colorVeryLightBlue,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: 15,

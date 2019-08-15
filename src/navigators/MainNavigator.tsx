@@ -3,42 +3,31 @@ import {
   createStackNavigator,
   createBottomTabNavigator
 } from "react-navigation";
+import { Image } from "react-native";
 import { colorBlack, colorTextGray, colorShadow } from "../variables";
-import { IconSvg } from "../components/IconSvg/IconSvg";
 
 import { PlayScreen } from "../pages/Play/Play";
-import { DiscoverScreen } from "../pages/Discover/Discover";
 import { ProfileScreen } from "../pages/Profile/Profile";
 import { NotificationsScreen } from "../pages/Notifications/Notifications";
-import { StoreScreen } from "../pages/Store/Store";
-import { PlayStepOneScreen } from "../pages/PlayStepOne/PlayStepOne";
-import { PlayStepTwoScreen } from "../pages/PlayStepTwo/PlayStepTwo";
-import { PlayStepThreeScreen } from "../pages/PlayStepThree/PlayStepThree";
-import { PlayStepFourScreen } from "../pages/PlayStepFour/PlayStepFour";
-import { PlayStepFiveScreen } from "../pages/PlayStepFive/PlayStepFive";
-import { CheckChallengeScreen } from "../pages/CheckChallenge/CheckChallenge";
 import { ProfileEditScreen } from "../pages/ProfileEdit/ProfileEdit";
-import { ActivityChallengesScreen } from "../pages/ActivityChallenges/ActivityChallenges";
-import { ActivityTournamentsScreen } from "../pages/ActivityTournaments/ActivityTournaments";
-import { ActivityPurchasesScreen } from "../pages/ActivityPurchases/ActivityPurchases";
 import { MatchesChallengesScreen } from "../pages/MatchesChallenges/MatchesChallenges";
 import { MatchesTournamentsScreen } from "../pages/MatchesTournaments/MatchesTournaments";
-import { CreateTournamentScreen } from "../pages/CreateTournament/CreateTournament";
 import { TournamentDetailScreen } from "../pages/TournamentDetail/TournamentDetail";
 import { TournamentDrawsScreen } from "../pages/TournamentDraws/TournamentDraws";
-import { DairyRecordScreen } from "../pages/DairyRecord/DairyRecord";
+import { CommentsScreen } from "../pages/Comments/Comments";
+import { AddBuddiesScreen } from "../pages/AddBuddies/AddBuddies";
 
 // Icons for BottomTabNavigator
-import Play from "../../assets/play.svg";
-import PlayActive from "../../assets/playActive.svg";
-import MenuSearch from "../../assets/menu-search.svg";
-import MenuSearchActive from "../../assets/menu-searchActive.svg";
-import Profile from "../../assets/profile.svg";
-import ProfileActive from "../../assets/profileActive.svg";
-import Notifications from "../../assets/notification.svg";
-import NotificationsActive from "../../assets/notificationActive.svg";
-import Store from "../../assets/mall.svg";
-import StoreActive from "../../assets/mallActive.svg";
+const Play = require("../../assets/play.png");
+const PlayActive = require("../../assets/playActive.png");
+const MenuSearch = require("../../assets/menu-search.png");
+const MenuSearchActive = require("../../assets/menu-searchActive.png");
+const Notifications = require("../../assets/notification.png");
+const NotificationsActive = require("../../assets/notificationActive.png");
+const Store = require("../../assets/mall.png");
+const StoreActive = require("../../assets/mallActive.png");
+const Profile = require("../../assets/profile.png");
+const ProfileActive = require("../../assets/profileActive.png");
 
 const formatScreenProps = (ScreenName, ScreenComponent) => {
   return {
@@ -51,10 +40,8 @@ const formatScreenProps = (ScreenName, ScreenComponent) => {
 export const TabsNavigator = createBottomTabNavigator(
   {
     Play: formatScreenProps("Play", PlayScreen),
-    Discover: formatScreenProps("Discover", DiscoverScreen),
     Profile: formatScreenProps("Profile", ProfileScreen),
-    Notifications: formatScreenProps("Notifications", NotificationsScreen),
-    Store: formatScreenProps("Store", StoreScreen)
+    Notifications: formatScreenProps("Notifications", NotificationsScreen)
   },
   {
     tabBarOptions: {
@@ -75,9 +62,8 @@ export const TabsNavigator = createBottomTabNavigator(
       labelStyle: {
         marginTop: 3,
         fontSize: 13,
-        fontWeight: "bold",
         letterSpacing: 0.5,
-        fontFamily: "poppins-medium"
+        fontFamily: "montserrat-bold"
       },
       tabStyle: {
         justifyContent: "center",
@@ -86,7 +72,7 @@ export const TabsNavigator = createBottomTabNavigator(
         paddingBottom: 7
       }
     },
-    initialRouteName: "Profile",
+    initialRouteName: "Play",
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
@@ -109,7 +95,13 @@ export const TabsNavigator = createBottomTabNavigator(
             iconName = focused ? StoreActive : Store;
             break;
         }
-        return <IconSvg name={iconName} />;
+        return (
+          <Image
+            source={iconName}
+            style={{ width: 24, height: 24 }}
+            resizeMode="contain"
+          />
+        );
       }
     })
   }
@@ -123,24 +115,15 @@ export const MainNavigator = createStackNavigator(
         header: null
       }
     },
-    PlayStepOne: PlayStepOneScreen,
-    PlayStepTwo: PlayStepTwoScreen,
-    PlayStepThree: PlayStepThreeScreen,
-    PlayStepFour: PlayStepFourScreen,
-    PlayStepFive: PlayStepFiveScreen,
-    CheckChallenge: CheckChallengeScreen,
     ProfileEdit: ProfileEditScreen,
-    ActivityChallenges: ActivityChallengesScreen,
-    ActivityTournaments: ActivityTournamentsScreen,
-    ActivityPurchases: ActivityPurchasesScreen,
     MatchesChallenges: MatchesChallengesScreen,
     MatchesTournaments: MatchesTournamentsScreen,
-    CreateTournament: CreateTournamentScreen,
     TournamentDetail: TournamentDetailScreen,
     TournamentDraws: TournamentDrawsScreen,
-    DairyRecord: DairyRecordScreen
+    Comments: CommentsScreen,
+    AddBuddies: AddBuddiesScreen
   }
   // {
-  //   initialRouteName: "CreateTournament"
+  //   initialRouteName: "AddBuddies"
   // }
 );

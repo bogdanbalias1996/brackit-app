@@ -20,7 +20,7 @@ export default StyleSheet.create({
   description: {
     fontSize: 14,
     color: colorBlack,
-    textAlign: 'left',
+    textAlign: 'center',
     marginTop: 25,
     marginHorizontal: 20,
     fontFamily: 'montserrat-medium',
@@ -42,7 +42,7 @@ export default StyleSheet.create({
   },
   resetText: {
     fontSize: 14,
-    textAlign: 'left',
+    textAlign: 'center',
     fontFamily: "montserrat-medium",
     color: colorTextGray,
     marginHorizontal: 20,
