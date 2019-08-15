@@ -46,13 +46,7 @@ const AppWithFontLoaded = connect((state: IGlobalState) => ({
 export default class App extends React.Component {
   async componentDidMount() {
     await Font.loadAsync({
-      "citizn-font": require("./assets/fonts/icon-font/citizn_icons.ttf"),
-      poppins: require("./assets/fonts/poppins/Poppins-Regular.ttf"),
-      "poppins-italic": require("./assets/fonts/poppins/Poppins-Italic.ttf"),
-      "poppins-bold": require("./assets/fonts/poppins/Poppins-Bold.ttf"),
-      "poppins-medium": require("./assets/fonts/poppins/Poppins-Medium.ttf"),
-      "poppins-semi-bold": require("./assets/fonts/poppins/Poppins-SemiBold.ttf"),
-      // Fonts for Brackit
+      "brackit-font": require("./assets/fonts/icon-font/brackit_icons.ttf"),
       "montserrat-medium": require("./assets/fonts/montserrat/Montserrat-Medium.ttf"),
       "montserrat-bold": require("./assets/fonts/montserrat/Montserrat-Bold.ttf"),
       "montserrat-semibold": require("./assets/fonts/montserrat/Montserrat-SemiBold.ttf"),

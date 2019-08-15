@@ -57,6 +57,8 @@ export const Component: React.SFC<LoginScreenProps> = ({
         }}
         validationSchema={SignupSchema}
         onSubmit={handleSubmit}
+        validateOnChange={false}
+        validateOnBlur={false}
       >
         {(props: any) => {
           const { handleSubmit, errors, touched } = props;

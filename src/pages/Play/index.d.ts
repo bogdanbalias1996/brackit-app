@@ -25,7 +25,6 @@ export type LeaderBoardItem = {
 }
 export interface PlayScreenStateProps {
     navigation: NavigationScreenProp<any, any>
-    ChallengeItems: Array<ChallengeItem>
     TournamentItems: Array<TournamentItem>
     activeTab: any
 }
