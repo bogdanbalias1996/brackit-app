@@ -43,7 +43,7 @@ export default StyleSheet.create({
   winnerItemTitle: {
     fontSize: 14,
     fontFamily: "montserrat-semibold",
-    color: colorBlack
+    color: colorBlack,
   },
   scoresWrap: {
     flexDirection: "row",

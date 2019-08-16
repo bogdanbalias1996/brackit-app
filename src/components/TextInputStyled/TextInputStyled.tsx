@@ -14,6 +14,7 @@ export const TextInputStyled: React.SFC<TextInputStyledProps> = (
     iconName,
     name,
     label,
+    type,
     formProps,
     secure,
     borderTop,
@@ -36,7 +37,10 @@ export const TextInputStyled: React.SFC<TextInputStyledProps> = (
     >
       <FloatingLabel
         labelStyle={styles.labelStyle}
-        inputStyle={styles.inputStyle}
+        inputStyle={[
+          styles.inputStyle,
+          { height: type === "textarea" ? 70 : 32 }
+        ]}
         style={styles.input}
         autoCapitalize="none"
         value={value}

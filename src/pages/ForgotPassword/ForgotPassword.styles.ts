@@ -19,6 +19,7 @@ export default StyleSheet.create({
   },
   description: {
     fontSize: 14,
+    lineHeight: 20,
     color: colorBlack,
     textAlign: 'center',
     marginTop: 25,
@@ -42,6 +43,7 @@ export default StyleSheet.create({
   },
   resetText: {
     fontSize: 14,
+    lineHeight: 20,
     textAlign: 'center',
     fontFamily: "montserrat-medium",
     color: colorTextGray,

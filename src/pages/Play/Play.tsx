@@ -15,6 +15,7 @@ import { ModalSuccess } from "../../components/ModalSuccess/ModalSuccess";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 import { setActiveTab } from "./actions";
 import styles from "./Play.styles";
+import { navigate } from "../../navigationService";
 
 const Header = props => (
   <HeaderRounded
@@ -23,6 +24,8 @@ const Header = props => (
     title={
       props.activeTab && props.activeTab === 2
         ? "Tournaments".toUpperCase()
+        : props.activeTab && props.activeTab === 3
+        ? "Leaderboard".toUpperCase()
         : "Challenges".toUpperCase()
     }
     getRightComponent={() => {
@@ -30,7 +33,7 @@ const Header = props => (
         <View style={styles.wrapHeaderRight}>
           <TouchableOpacity
             style={styles.wrapHeaderRightIcon}
-            onPress={() => alert("ok")}
+            onPress={() => navigate({ routeName: "AddBuddies" })}
           >
             <Icon size={30} name="search" color="white" />
           </TouchableOpacity>
@@ -474,7 +477,7 @@ export class Component extends React.PureComponent<PlayScreenProps> {
       {
         title: "Leaderboard",
         component: () => <LeaderBoardItems data={dataLeaderBoard} />,
-        onPress: () => this.props.setActiveTab(0)
+        onPress: () => this.props.setActiveTab(3)
       }
     ];
     return (

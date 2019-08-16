@@ -5,16 +5,23 @@ import * as Yup from "yup";
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { navigate } from "../../navigationService";
 import { TextInputPassword } from "../../components/TextInputStyled/TextInputPassword";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
+import { _retrieveData } from "../../common/utils/helpers";
 
 import styles from "./SignUp.styles";
 
 export const Component = ({ navigation }): JSX.Element => {
-  const handleSubmit = (values, { setErrors }: any) => {
-    navigate({ routeName: "Play" });
+  const handleSubmit = async (values, { setErrors }: any) => {
+    if ((await _retrieveData("isFirst")) === null) {
+      navigation.navigate({
+        routeName: "ProfileEdit",
+        params: { isFirst: true }
+      });
+    } else {
+      navigation.navigate("Profile");
+    }
   };
 
   const SignupSchema = Yup.object().shape({

@@ -10,6 +10,7 @@ import {
   MatchesTournamentsScreenDispatchProps
 } from ".";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
+import { MatchItem } from "../../components/MatchItem/MatchItem";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./MatchesTournaments.styles";
 
@@ -18,36 +19,94 @@ const dataTournament = [
     date: "2019-08-17",
     data: [
       {
-        tournamentId: "01",
-        tournamentStatus: "super 1000",
-        tournamentName: "vs. Kamayana1",
-        tournamentLocation:
-          "Indonesia Masters Celecom Axiata Badminton tournament",
-        tournamentDate: "21 June, 4:00 pm",
-        events: [
-          {
-            id: "1",
-            value: "U10"
-          },
-          {
-            id: "2",
-            value: "U15"
-          },
-          {
-            id: "3",
-            value: "WD2"
-          }
-        ],
+        id: "1",
+        status: "Status 1000",
+        title: "Badminton tournament",
+        date: "14 June, 2019",
+        category: "MD",
+        round: "Round 1",
+        coins: 400,
         compatitors: [
           {
             players: [
               {
-                name: "Fua Lamba",
+                name: "AAA Lamba",
+                avatar: require("../../../assets/avatar.png")
+              },
+              {
+                name: "Fua Lamba1",
                 avatar: require("../../../assets/avatar.png")
               }
             ],
             rating: 1200,
-            scores: ["10", "15", "5"]
+            scores: ["10", "15", "5"],
+            isWinner: true
+          },
+          {
+            players: [
+              {
+                name: "Fua Lamba1",
+                avatar: require("../../../assets/avatar.png")
+              },
+              {
+                name: "Fua Lamba2",
+                avatar: require("../../../assets/avatar.png")
+              }
+            ],
+            rating: 1000,
+            scores: ["8", "10", "10"],
+            isWinner: false
+          }
+        ],
+        comments: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "2",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "3",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          }
+        ]
+      },
+      {
+        id: "2",
+        status: "Status 1000",
+        title: "Badminton tournament",
+        date: "14 June, 2019",
+        category: "MD",
+        round: "Round 1",
+        coins: 400,
+        compatitors: [
+          {
+            players: [
+              {
+                name: "AAA Lamba",
+                avatar: require("../../../assets/avatar.png")
+              }
+            ],
+            rating: 1200,
+            scores: ["10", "15", "5"],
+            isWinner: true
           },
           {
             players: [
@@ -57,35 +116,53 @@ const dataTournament = [
               }
             ],
             rating: 1000,
-            scores: ["8", "10", "10"]
+            scores: ["8", "10", "10"],
+            isWinner: false
+          }
+        ],
+        comments: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "2",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "3",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
           }
         ]
       },
       {
-        tournamentId: "02",
-        tournamentStatus: "super 1000",
-        tournamentName: "vs. Kamayana",
-        tournamentLocation: "YMCA, Sarjapur",
-        tournamentDate: "21 June, 4:00 pm",
-        events: [
-          {
-            id: "1",
-            value: "U10"
-          },
-          {
-            id: "2",
-            value: "U15"
-          },
-          {
-            id: "3",
-            value: "WD2"
-          }
-        ],
+        id: "3",
+        status: "Status 1000",
+        title: "Badminton tournament",
+        date: "14 June, 2019",
+        category: "MD",
+        round: "Round 1",
+        coins: 400,
         compatitors: [
           {
             players: [
               {
-                name: "Fua Lamba",
+                name: "AAA Lamba",
                 avatar: require("../../../assets/avatar.png")
               },
               {
@@ -110,6 +187,35 @@ const dataTournament = [
             rating: 1000,
             scores: null
           }
+        ],
+        comments: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "2",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "3",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          }
         ]
       }
     ]
@@ -118,45 +224,70 @@ const dataTournament = [
     date: "2019-08-18",
     data: [
       {
-        tournamentId: "01",
-        tournamentStatus: "super 1000",
-        tournamentName: "Bt. Kamayana",
-        tournamentLocation: "YMCA, Sarjapur",
-        tournamentDate: "21 June, 4:00 pm",
-        events: [
-          {
-            id: "1",
-            value: "U10"
-          },
-          {
-            id: "2",
-            value: "U15"
-          },
-          {
-            id: "3",
-            value: "WD2"
-          }
-        ],
+        id: "3",
+        status: "Status 1000",
+        title: "Badminton tournament",
+        date: "14 June, 2019",
+        category: "MD",
+        round: "Round 1",
+        coins: 400,
         compatitors: [
           {
             players: [
               {
-                name: "Fua Lamba",
+                name: "AAA Lamba",
+                avatar: require("../../../assets/avatar.png")
+              },
+              {
+                name: "Fua Lamba1",
                 avatar: require("../../../assets/avatar.png")
               }
             ],
             rating: 1200,
-            scores: ["10", "15", "5"]
+            scores: null
           },
           {
             players: [
               {
                 name: "Fua Lamba1",
                 avatar: require("../../../assets/avatar.png")
+              },
+              {
+                name: "Fua Lamba2",
+                avatar: require("../../../assets/avatar.png")
               }
             ],
             rating: 1000,
-            scores: ["8", "10", "10"]
+            scores: null
+          }
+        ],
+        comments: [
+          {
+            id: "1",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "2",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "3",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
           }
         ]
       }
@@ -233,67 +364,41 @@ export class Component extends React.PureComponent<
         {this.getData() ? (
           this.getData().data.map((item, i) => {
             return (
-              <View key={i} style={styles.wrapItem}>
-                <View style={styles.triangleShape} />
-                <View style={styles.itemLeft}>
-                  <Text style={styles.nameText}>{item.tournamentName}</Text>
-                  <Text style={styles.statusText}>
-                    {item.tournamentStatus.toUpperCase()}
-                  </Text>
-                  <Text style={styles.locationText}>
-                    {item.tournamentLocation}
-                  </Text>
-                  <Text style={styles.smallText}>{item.tournamentDate}</Text>
-                </View>
-                <View style={styles.itemRight}>
-                  <View style={styles.wrapAvatars}>
+              <View key={i} style={styles.card}>
+                <View style={styles.headerCard}>
+                  <View>
+                    <Text style={styles.statusCard}>
+                      {item.status.toUpperCase()}
+                    </Text>
+                    <Text style={styles.titleCard}>{item.title}</Text>
                     <View style={{ flexDirection: "row" }}>
-                      {item.compatitors[0].players.map((item, i) => {
-                        return (
-                          <Image
-                            key={i}
-                            source={item.avatar}
-                            resizeMode="cover"
-                            style={[
-                              {
-                                width: 40,
-                                height: 40,
-                                borderRadius: 40 / 2,
-                                borderWidth: 2,
-                                borderColor: "white"
-                              },
-                              { marginLeft: i === 1 ? -15 : 0 }
-                            ]}
-                          />
-                        );
-                      })}
-                    </View>
-                    <View style={{ flexDirection: "row" }}>
-                      {item.compatitors[1].players.map((item, i) => {
-                        return (
-                          <Image
-                            key={i}
-                            source={item.avatar}
-                            resizeMode="cover"
-                            style={[
-                              {
-                                width: 40,
-                                height: 40,
-                                borderRadius: 40 / 2,
-                                borderWidth: 2,
-                                borderColor: "white"
-                              },
-                              { marginLeft: i === 1 ? -15 : 0 }
-                            ]}
-                          />
-                        );
-                      })}
-                    </View>
-                    <View style={styles.wrapVS}>
-                      <Text style={styles.textVS}>vs</Text>
+                      <View style={styles.wrapCategory}>
+                        <Text style={styles.categoryText}>{item.category}</Text>
+                      </View>
+                      <Text style={styles.infoText}>
+                        {item.round.toUpperCase() + ", " + item.date}
+                      </Text>
                     </View>
                   </View>
+                  <View style={styles.headerCardRate}>
+                    <Image
+                      style={{ width: 20, height: 20 }}
+                      source={require("../../../assets/coin-color.png")}
+                      resizeMode="contain"
+                    />
+                    <Text style={styles.headerCardRateText}>{item.coins}</Text>
+                  </View>
                 </View>
+                <MatchItem
+                  compatitors={item.compatitors}
+                  inside={true}
+                  style={{
+                    marginRight: 0,
+                    elevation: 0,
+                    shadowOpacity: 0,
+                    paddingLeft: 25
+                  }}
+                />
               </View>
             );
           })

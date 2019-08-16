@@ -7,12 +7,10 @@ import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Text, View, TouchableOpacity } from "react-native";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { Icon } from "../../components/Icon/Icon";
-import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
 
-import { colorTextGray } from "../../variables";
+import { colorTextGray, colorLightGreyBlue } from "../../variables";
 
-import { DairyTab } from "./DairyTab";
 import styles from "./Profile.styles";
 import ProfileStatsItem from "./ProfileStatsItem";
 import { navigate } from "../../navigationService";
@@ -29,7 +27,7 @@ const Header = props => (
             alert("ok");
           }}
         >
-          <Icon name="gamepad" style={{ transform: [{ rotate: "45deg" }] }} />
+          <Icon name="nut-icon" />
         </TouchableOpacity>
       );
     }}
@@ -61,27 +59,12 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
         icon: "flash",
         points: 3040,
         name: "activity"
-      },
-      {
-        icon: "coin-black",
-        points: 1000,
-        name: "wallet"
       }
-    ];
-
-    const activities = [
-      {
-        title: "Challenges",
-        component: "ActivityChallenges"
-      },
-      {
-        title: "Tournaments",
-        component: "ActivityTournaments"
-      },
-      {
-        title: "Purchases",
-        component: "ActivityPurchases"
-      }
+      // {
+      //   icon: "coin-black",
+      //   points: 1000,
+      //   name: "wallet"
+      // }
     ];
 
     const matches = [
@@ -92,35 +75,6 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
       {
         title: "Tournaments",
         component: "MatchesTournaments"
-      }
-    ];
-
-    const tabsConfig = [
-      {
-        title: "Matches",
-        component: () => (
-          <FlatList
-            data={matches}
-            renderItem={TabListItem}
-            keyExtractor={item => item.title}
-            style={{ flex: 1 }}
-          />
-        )
-      },
-      {
-        title: "Activity",
-        component: () => (
-          <FlatList
-            data={activities}
-            renderItem={TabListItem}
-            keyExtractor={item => item.title}
-            style={{ flex: 1 }}
-          />
-        )
-      },
-      {
-        title: "Diary",
-        component: () => <DairyTab />
       }
     ];
 
@@ -141,7 +95,7 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
               <View style={styles.profileHeaderInfoWrapper}>
                 <View style={styles.profileHeaderInfo}>
                   <Text style={styles.profileHeaderInfoName}>Erika Mateo</Text>
-                  <Icon name="edit" color={colorTextGray} />
+                  <Icon name="edit" color={colorLightGreyBlue} size={26} />
                 </View>
                 <Text
                   style={[
@@ -156,7 +110,7 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
             </TouchableOpacity>
 
             <ButtonStyled
-              text={"Buddy".toUpperCase()}
+              text={"+ Buddy".toUpperCase()}
               onPress={() => navigate({ routeName: "AddBuddies" })}
               style={styles.profileHeaderButton}
             />
@@ -181,13 +135,11 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
         </View>
 
         <View style={{ flex: 1 }}>
-          <Tabs
-            config={tabsConfig}
-            activeTabIndex={1}
+          <FlatList
+            data={matches}
+            renderItem={TabListItem}
+            keyExtractor={item => item.title}
             style={{ flex: 1 }}
-            stylesItem={defaultTabsStyles.roundedTabs}
-            stylesItemText={styles.tabsItemText}
-            stylesTabsContainer={styles.tabsContainer}
           />
         </View>
       </SafeAreaView>

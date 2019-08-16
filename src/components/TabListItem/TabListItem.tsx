@@ -6,11 +6,11 @@ import { navigate } from "../../navigationService";
 
 import { TabListItemProps } from "./";
 
-const TabListItem = ({ item }): JSX.Element => {
+const TabListItem = ({ item, index }): JSX.Element => {
   const { title, component } = item as TabListItemProps;
   return (
     <TouchableOpacity
-      style={styles.tabListItem}
+      style={[styles.tabListItem, { borderTopWidth: index === 0 ? 1 : 0 }]}
       onPress={() =>
         navigate({ routeName: component, params: { title: title } })
       }
@@ -28,8 +28,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 20,
     paddingVertical: 20,
-    borderBottomColor: colorBorder,
-    borderTopColor: colorBorder,
+    borderColor: colorBorder,
     borderBottomWidth: 1
   },
   tabListItemText: {

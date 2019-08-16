@@ -16,6 +16,7 @@ export default StyleSheet.create({
         color: colorBlack,
         marginBottom: 15,
         marginHorizontal: 25,
+        marginTop: 25,
     },
     itemWrap: {
         flex: 1,

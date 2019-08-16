@@ -15,7 +15,8 @@ import {
   colorTextGray,
   colorBlack,
   colorGradientBlue,
-  colorOrangeText
+  colorOrangeText,
+  colorLightGreyBlue
 } from "../../variables";
 import { navigate } from "../../navigationService";
 
@@ -65,13 +66,12 @@ export const renderItem = ({ item }) => {
         </View>
       </View>
       <Text style={styles.cardTitle}>{title}</Text>
-      <Text style={styles.cardSubTitle}>{subTitle}</Text>
       <View style={styles.questionItem}>
         <Icon
           size={16}
           style={styles.questionIcon}
           name="location"
-          color={colorTextGray}
+          color={colorLightGreyBlue}
         />
         <Text style={styles.answerText}>{location}</Text>
       </View>
@@ -80,7 +80,7 @@ export const renderItem = ({ item }) => {
           size={16}
           style={styles.questionIcon}
           name="calendar"
-          color={colorTextGray}
+          color={colorLightGreyBlue}
         />
         <Text style={styles.answerText}>{date}</Text>
       </View>
@@ -89,7 +89,7 @@ export const renderItem = ({ item }) => {
           size={16}
           style={styles.questionIcon}
           name="cup"
-          color={colorTextGray}
+          color={colorLightGreyBlue}
         />
         <Text style={styles.qestionText}>prize money</Text>
         <Text style={styles.entryFeeText}>{prize + " INR"}</Text>
@@ -123,6 +123,7 @@ export const TournamentItems = ({ data }) => {
 const styles = StyleSheet.create({
   card: {
     padding: 15,
+    paddingTop: 0,
     paddingLeft: 25,
     marginVertical: 10,
     marginRight: 30,
@@ -142,9 +143,9 @@ const styles = StyleSheet.create({
   triangleShape: {
     width: 0,
     height: 0,
-    borderLeftWidth: 25,
+    borderLeftWidth: 38,
     borderRightWidth: 0,
-    borderBottomWidth: 25,
+    borderBottomWidth: 38,
     borderStyle: "solid",
     backgroundColor: "transparent",
     borderLeftColor: "#00BCD4",
@@ -176,13 +177,13 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 10,
     fontFamily: "montserrat-bold",
-    color: colorBlack,
-    marginBottom: 5
+    color: "#00BCD4"
   },
   cardTitle: {
     fontSize: 14,
     fontFamily: "montserrat-semibold",
-    color: colorBlack
+    color: colorBlack,
+    marginBottom: 5
   },
   cardSubTitle: {
     fontSize: 10,

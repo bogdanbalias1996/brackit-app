@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   FlatList,
   TextInput,
-  Platform
+  Platform,
+  View
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
@@ -71,13 +72,23 @@ export class Component extends React.PureComponent<CommentsScreenProps> {
             keyExtractor={item => item.id}
           />
         )}
-        <TextInput
-          style={styles.input}
-          placeholder="say something nice …"
-          autoCorrect={false}
-          onChangeText={text => this.setState({ comment: text })}
-          value={this.state.comment}
-        />
+        <View style={styles.inputWrap}>
+          <View style={styles.input}>
+            <TextInput
+              style={styles.inputText}
+              placeholder="say something nice …"
+              autoCorrect={false}
+              onChangeText={text => this.setState({ comment: text })}
+              value={this.state.comment}
+            />
+            <TouchableOpacity
+              style={styles.wrapPostBtn}
+              onPress={() => alert("ok")}
+            >
+              <Text style={styles.postBtnText}>Post</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </KeyboardAwareScrollView>
     );
   }

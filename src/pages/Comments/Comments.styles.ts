@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { colorShadow, colorBlack, colorTextGray, colorVeryLightBlue } from '../../variables';
+import { colorShadow, colorBlack, colorTextGray, colorVeryLightBlue, colorBorder, colorTextBlue } from '../../variables';
 
 export default StyleSheet.create({
     iconCancel: {
@@ -56,14 +56,38 @@ export default StyleSheet.create({
         marginTop: 20,
     },
     input: {
-        marginHorizontal: 25,
-        marginVertical: 10,
+        marginVertical: 20,
         backgroundColor: colorVeryLightBlue,
         borderRadius: 20,
+        height: 40,
+        width: '100%',
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: 15,
+        paddingRight: 60,
+        position: 'relative',
+    },
+    inputText: {
         fontFamily: "montserrat-medium",
         color: colorTextGray,
         fontSize: 12,
-        paddingHorizontal: 15,
-        paddingVertical: 10,
+        width: '100%'
+    },
+    inputWrap: {
+        borderTopWidth: 1,
+        borderColor: colorBorder,
+        paddingHorizontal: 25,
+    },
+    wrapPostBtn: {
+        marginRight: 10,
+        position: 'absolute',
+        top: 12,
+        right: 15
+    },
+    postBtnText: {
+        fontFamily: "montserrat-semibold",
+        color: colorTextBlue,
+        fontSize: 12,
     }
 })

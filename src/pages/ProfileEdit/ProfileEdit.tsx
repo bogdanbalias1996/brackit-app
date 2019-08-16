@@ -23,7 +23,8 @@ const Header = props => (
   <HeaderRounded
     {...props}
     getLeftComponent={() => {
-      return (
+      return props.navigation.state.params &&
+        props.navigation.state.params.isFirst ? null : (
         <TouchableOpacity style={styles.iconCancel} onPress={() => goBack()}>
           <Icon name="left" />
         </TouchableOpacity>
@@ -39,9 +40,9 @@ const mapDispatchToProps = (dispatch): ProfileEditScreenDispatchProps => ({
 });
 
 export class Component extends React.PureComponent<ProfileEditScreenProps> {
-  static navigationOptions = {
-    header: props => <Header {...props} />
-  };
+  static navigationOptions = ({ navigation }) => ({
+    header: props => <Header {...props} navigation={navigation} />
+  });
 
   state = {
     birthdayDatePickerVisible: false
@@ -56,11 +57,15 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
   };
 
   handleSubmit = async values => {
-    const { setChallengeName } = this.props;
+    const { setChallengeName, navigation } = this.props;
 
+    navigation.state.params &&
+      navigation.state.params.isFirst &&
+      navigation.setParams({ isFirst: false });
     setChallengeName(values.challengeName);
+
     if ((await _retrieveData("isFirst")) === null) {
-      navigate({ routeName: "AddBuddies" });
+      navigate({ routeName: "AddBuddies", params: { previous: true } });
       this._storeData();
     } else {
       navigate({ routeName: "Profile" });
@@ -69,51 +74,49 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
 
   render() {
     const data = [
-      { key: 1, label: "1" },
-      { key: 2, label: "2" },
-      { key: 3, label: "3" },
-      { key: 4, label: "4" },
-      { key: 5, label: "5" },
-      { key: 6, label: "6" },
-      { key: 7, label: "7" },
-      { key: 8, label: "8" },
-      { key: 9, label: "9" },
-      { key: 10, label: "10" },
-      { key: 11, label: "11" },
-      { key: 12, label: "12" },
-      { key: 13, label: "13" },
-      { key: 14, label: "14" },
-      { key: 15, label: "15" },
-      { key: 16, label: "16" },
-      { key: 17, label: "17" },
-      { key: 18, label: "18" }
+      { key: 1, label: "Cookie Dough - First time playing the sport" },
+      {
+        key: 2,
+        label: "Healthy Beginner - I know the rules and can play a few strokes"
+      },
+      { key: 3, label: "Social - I play for fun and not to win" },
+      { key: 4, label: "Intermediate Athlete - Played for at least 3 years" },
+      {
+        key: 5,
+        label: "Advanced Athlete - Compete in District, State Circuit"
+      },
+      {
+        key: 6,
+        label: "Elite Athlete - Compete in National and International Circuit"
+      },
+      { key: 7, label: "Super Hero - Top of my game. Invincible" }
     ];
     return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={styles.container}
-        enableOnAndroid={true}
-        keyboardShouldPersistTaps="handled"
+      <Formik
+        initialValues={{
+          fullName: "",
+          birthdayDate: "",
+          train_at: "",
+          city: "",
+          country: "",
+          levelOfPlay: "",
+          bio: "",
+          email: "",
+          phone: "",
+          password: ""
+        }}
+        onSubmit={this.handleSubmit}
       >
-        <Formik
-          initialValues={{
-            fullName: "",
-            birthdayDate: "",
-            academy: "",
-            city: "",
-            country: "",
-            levelOfPlay: "",
-            bio: "",
-            email: "",
-            phone: "",
-            password: ""
-          }}
-          onSubmit={this.handleSubmit}
-        >
-          {(props: any) => {
-            const { handleSubmit, values, setFieldValue } = props;
+        {(props: any) => {
+          const { handleSubmit, values, setFieldValue } = props;
 
-            return (
-              <View>
+          return (
+            <View style={{ flex: 1 }}>
+              <KeyboardAwareScrollView
+                contentContainerStyle={styles.container}
+                enableOnAndroid={true}
+                keyboardShouldPersistTaps="handled"
+              >
                 <TextInputStyled
                   borderTop={true}
                   name="fullName"
@@ -145,8 +148,8 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
                   }
                 />
                 <TextInputStyled
-                  name="academy"
-                  label="academy"
+                  name="train_at"
+                  label="train at"
                   formProps={props}
                 />
                 <View
@@ -204,6 +207,7 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
                 <TextInputStyled
                   name="bio"
                   label="bio"
+                  type="textarea"
                   formProps={props}
                   multiline={true}
                   numberOfLines={4}
@@ -232,23 +236,23 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
                   secure={true}
                   formProps={props}
                 />
-                <View style={{ opacity: values.fullName.length ? 1 : 0.2 }}>
-                  <ButtonStyled
-                    style={[
-                      styles.btnNext,
-                      { elevation: values.fullName.length ? 6 : 0 }
-                    ]}
-                    onPress={() => {
-                      values.fullName.length && handleSubmit();
-                    }}
-                    text={"Save".toUpperCase()}
-                  />
-                </View>
+              </KeyboardAwareScrollView>
+              <View style={{ opacity: values.fullName.length ? 1 : 0.2 }}>
+                <ButtonStyled
+                  style={[
+                    styles.btnNext,
+                    { elevation: values.fullName.length ? 6 : 0 }
+                  ]}
+                  onPress={() => {
+                    values.fullName.length && handleSubmit();
+                  }}
+                  text={"Next".toUpperCase()}
+                />
               </View>
-            );
-          }}
-        </Formik>
-      </KeyboardAwareScrollView>
+            </View>
+          );
+        }}
+      </Formik>
     );
   }
 }

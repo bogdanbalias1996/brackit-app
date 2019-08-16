@@ -9,4 +9,5 @@ export interface TextInputStyledProps extends TextInputProps {
   secure?: boolean
   borderTop?: boolean
   handleIconClick?: Function
+  type?: string
 }

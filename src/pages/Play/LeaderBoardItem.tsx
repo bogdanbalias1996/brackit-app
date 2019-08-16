@@ -29,9 +29,6 @@ export class Component extends React.PureComponent<LeaderBoardItem> {
           <Text style={styles.cardName}>{name}</Text>
         </View>
         <View style={styles.cardRight}>
-          <Text style={styles.cardNumber}>
-            {numberPlays + "/" + numberWonPlays}
-          </Text>
           <View style={styles.wrapPerformance}>
             <Text style={styles.cardNumber}>{performance}</Text>
           </View>
@@ -46,7 +43,6 @@ export class Component extends React.PureComponent<LeaderBoardItem> {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.wrapScores}>
-          <Text style={styles.scoreTitle}>played/won</Text>
           <Text style={styles.scoreTitle}>performance</Text>
         </View>
         <FlatList
@@ -112,7 +108,7 @@ const styles = StyleSheet.create({
   cardRight: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     width: "40%"
   },
   cardNumber: {

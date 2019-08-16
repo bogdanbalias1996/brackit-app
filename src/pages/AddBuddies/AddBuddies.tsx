@@ -32,7 +32,13 @@ export class Component extends React.PureComponent<AddBuddiesScreenProps> {
   };
 
   onSubmit = () => {
-    navigate({ routeName: "Profile" });
+    const { navigation } = this.props;
+    if (navigation.state.params && navigation.state.params.previous) {
+      navigate({ routeName: "Profile" });
+      navigation.setParams({ previous: false });
+    } else {
+      navigation.goBack();
+    }
   };
 
   renderItem = ({ item }) => {
