@@ -22,11 +22,7 @@ const Header = props => (
     title={"Profile".toUpperCase()}
     getRightComponent={() => {
       return (
-        <TouchableOpacity
-          onPress={() => {
-            alert("ok");
-          }}
-        >
+        <TouchableOpacity onPress={() => navigate({ routeName: "Settings" })}>
           <Icon name="nut-icon" />
         </TouchableOpacity>
       );

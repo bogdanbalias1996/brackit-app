@@ -32,11 +32,13 @@ export default StyleSheet.create({
     marginTop: 30,
   },
   btnForgetPasswordText: {
-    color: colorTextGray,
+    color: colorTextBlue,
     fontFamily: 'montserrat-medium',
     fontSize: 14,
-    marginLeft: 20,
+    paddingRight: 25,
     marginTop: 15,
+    width: '100%',
+    textAlign: 'right'
   },
   createAccountContainer: {
     marginTop: 25

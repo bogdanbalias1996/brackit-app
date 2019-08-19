@@ -151,6 +151,60 @@ export class Component extends React.PureComponent<PlayScreenProps> {
             comment:
               "Globally evolve vertical users with interdependent growth.",
             date: "3wk"
+          },
+          {
+            id: "4",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "5",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "6",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "7",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "8",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "9",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
           }
         ]
       },

@@ -11,7 +11,7 @@ import {
 import { MatchItem } from "../../components/MatchItem/MatchItem";
 import { Icon } from "../../components/Icon/Icon";
 import {
-  colorShadow,
+  colorShadowGray,
   colorTextGray,
   colorBlack,
   colorOrangeText,
@@ -94,14 +94,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
-    shadowColor: colorShadow,
+    shadowColor: colorShadowGray,
     shadowOffset: {
       width: 0,
-      height: 4
+      height: 6
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 8
+    shadowOpacity: 0.6,
+    shadowRadius: 7,
+    elevation: 6
   },
   headerCard: {
     flexDirection: "row",

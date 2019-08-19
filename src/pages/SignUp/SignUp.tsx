@@ -81,7 +81,7 @@ export const Component = ({ navigation }): JSX.Element => {
               />
               <TextInputStyled
                 name="nickname"
-                label="nickname"
+                label="full name"
                 formProps={props}
               />
 
