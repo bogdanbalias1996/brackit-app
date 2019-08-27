@@ -64,6 +64,7 @@ export const defaultTabsStyles = StyleSheet.create({
     borderRadius: 24,
     backgroundColor: "transparent",
     padding: 16,
+    paddingHorizontal: 8,
     paddingTop: 7,
     paddingBottom: 7
   }

@@ -20,7 +20,8 @@ export default StyleSheet.create({
     fontSize: 14,
     fontFamily: "montserrat-semibold",
     color: colorBlack,
-    marginVertical: 15,
+    marginTop: 15,
+    marginBottom: 10,
   },
   proposalComment: {
     fontSize: 14,
@@ -33,6 +34,7 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   proposalDate: {
+    marginVertical: 10,
     fontSize: 12,
     fontFamily: "montserrat-medium",
     color: colorTextGray,

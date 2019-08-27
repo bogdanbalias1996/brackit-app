@@ -39,7 +39,7 @@ export default StyleSheet.create({
     marginTop: 0,
     fontFamily: 'montserrat-semibold',
     color: colorTextGray,
-    fontSize: 14,
+    fontSize: 16,
     alignItems: 'center',
     paddingLeft: 0,
   },

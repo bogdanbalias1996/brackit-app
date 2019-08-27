@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { LeaderBoardItem } from "./";
 import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
-import { colorShadow, colorBlack, colorBorderBlue } from "../../variables";
+import { colorShadowGray, colorBlack, colorBorderBlue } from "../../variables";
 
 const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({});
@@ -16,8 +16,6 @@ export class Component extends React.PureComponent<LeaderBoardItem> {
       number,
       avatar,
       avatarRate,
-      numberPlays,
-      numberWonPlays,
       performance
     } = item as LeaderBoardItem;
 
@@ -29,9 +27,6 @@ export class Component extends React.PureComponent<LeaderBoardItem> {
           <Text style={styles.cardName}>{name}</Text>
         </View>
         <View style={styles.cardRight}>
-          <Text style={styles.cardNumber}>
-            {numberPlays + "/" + numberWonPlays}
-          </Text>
           <View style={styles.wrapPerformance}>
             <Text style={styles.cardNumber}>{performance}</Text>
           </View>
@@ -46,7 +41,6 @@ export class Component extends React.PureComponent<LeaderBoardItem> {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.wrapScores}>
-          <Text style={styles.scoreTitle}>played/won</Text>
           <Text style={styles.scoreTitle}>performance</Text>
         </View>
         <FlatList
@@ -76,14 +70,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
-    shadowColor: colorShadow,
+    shadowColor: colorShadowGray,
     shadowOffset: {
       width: 0,
-      height: 4
+      height: 6
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 8
+    shadowOpacity: 0.6,
+    shadowRadius: 7,
+    elevation: 6
   },
   cardFixed: {
     flexDirection: "row",
@@ -93,7 +87,7 @@ const styles = StyleSheet.create({
     paddingRight: 37,
     marginVertical: 5,
     backgroundColor: "white",
-    shadowColor: colorShadow,
+    shadowColor: colorShadowGray,
     shadowOffset: {
       width: 0,
       height: 4
@@ -112,7 +106,7 @@ const styles = StyleSheet.create({
   cardRight: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "flex-end",
     width: "40%"
   },
   cardNumber: {

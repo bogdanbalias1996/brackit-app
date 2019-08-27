@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   itemText: {
     color: colorTextGray,
-    fontSize: 12,
+    fontSize: 14,
     fontFamily: 'montserrat-bold'
   },
   itemFirst: {},

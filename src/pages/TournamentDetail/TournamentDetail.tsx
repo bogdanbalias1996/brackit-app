@@ -8,7 +8,7 @@ import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import { Icon } from "../../components/Icon/Icon";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 
-import { colorTextGray } from "../../variables";
+import { colorTextGray, colorLightGreyBlue } from "../../variables";
 
 import styles from "./TournamentDetail.styles";
 import { goBack } from "../../navigationService";
@@ -99,7 +99,7 @@ export class Component extends React.PureComponent<
               size={16}
               style={styles.textIcon}
               name="calendar"
-              color={colorTextGray}
+              color={colorLightGreyBlue}
             />
             <Text style={styles.text}>
               {params && params.tournamentData.date}
@@ -110,7 +110,7 @@ export class Component extends React.PureComponent<
               size={16}
               style={styles.textIcon}
               name="cup"
-              color={colorTextGray}
+              color={colorLightGreyBlue}
             />
             <Text style={styles.text}>
               {params && params.tournamentData.prize + " INR"}

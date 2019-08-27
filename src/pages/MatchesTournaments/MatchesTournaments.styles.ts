@@ -1,5 +1,13 @@
 import { StyleSheet } from 'react-native'
-import { colorShadow, colorOrangeText, colorBlack, colorTextGray, colorBlueStart } from '../../variables';
+import {
+	colorShadow,
+	colorOrangeText,
+	colorBlack,
+	colorTextGray,
+	colorGreen,
+	colorVeryLightBlue,
+	colorBlueEnd
+} from '../../variables';
 
 export default StyleSheet.create({
 	container: {
@@ -20,11 +28,9 @@ export default StyleSheet.create({
 		elevation: 4,
 		marginBottom: 20,
 	},
-	wrapItem: {
-		flexDirection: "row",
-		flex: 1,
-		padding: 15,
-		marginBottom: 10,
+	card: {
+		paddingVertical: 15,
+		marginVertical: 10,
 		marginRight: 30,
 		backgroundColor: "white",
 		borderTopRightRadius: 15,
@@ -36,75 +42,81 @@ export default StyleSheet.create({
 		},
 		shadowOpacity: 0.2,
 		shadowRadius: 5,
-		elevation: 4,
-		position: 'relative',
+		elevation: 8
 	},
-	triangleShape: {
-		width: 0,
-		height: 0,
-		borderLeftWidth: 25,
-		borderRightWidth: 0,
-		borderBottomWidth: 25,
-		borderStyle: "solid",
-		backgroundColor: "transparent",
-		borderLeftColor: "#00BCD4",
-		borderRightColor: "#00BCD4",
-		borderBottomColor: "transparent",
-		position: "absolute",
-		top: 0,
-		left: 0
+	headerCard: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		paddingLeft: 20,
+		paddingRight: 15,
+		marginBottom: 20
 	},
-	itemLeft: {
-		flex: 2
+	headerCardRate: {
+		position: "relative",
+		marginLeft: 20,
+		flexDirection: "row",
+		alignItems: "flex-start",
+		marginTop: 5
 	},
-	statusText: {
-		color: colorOrangeText,
-		fontSize: 10,
-		fontFamily: "montserrat-bold",
-		marginVertical: 5,
-	},
-	nameText: {
-		color: colorBlack,
+	headerCardRateText: {
+		fontFamily: "montserrat-semibold",
 		fontSize: 14,
-		fontFamily: "montserrat-semibold",
-		marginBottom: 5,
+		color: colorOrangeText,
+		marginLeft: 5
 	},
-	locationText: {
-		color: colorTextGray,
-		fontSize: 12,
-		fontFamily: "montserrat-semibold",
+	footerCard: {
+		flexDirection: "row",
+		justifyContent: "flex-end",
+		marginTop: 10,
+		paddingRight: 15
 	},
-	smallText: {
-		color: colorTextGray,
+	wrapIcon: {
+		flexDirection: "row",
+		alignItems: "center",
+		marginLeft: 10
+	},
+	icon: {
+		width: 40,
+		height: 40,
+		borderRadius: 20,
+		backgroundColor: colorVeryLightBlue,
+		justifyContent: "center",
+		alignItems: "center",
+		marginRight: 5
+	},
+	iconText: {
 		fontSize: 12,
 		fontFamily: "montserrat-medium",
+		color: colorTextGray
 	},
-	itemRight: {
-		flex: 1,
-		justifyContent: "flex-end"
-	},
-	wrapVS: {
-		width: 24,
-		height: 24,
-		borderRadius: 12,
-		backgroundColor: colorBlueStart,
-		borderWidth: 1,
-		borderColor: 'white',
-		alignItems: 'center',
-		justifyContent: 'center',
-		position: 'absolute',
-		top: 30
-	},
-	textVS: {
+	statusCard: {
 		fontSize: 10,
-		fontFamily: "montserrat-semibold",
-		color: 'white',
+		fontFamily: "montserrat-bold",
+		color: colorGreen
 	},
-	wrapAvatars: {
-		justifyContent: "space-between",
-		position: 'relative',
-		alignItems: 'flex-end',
-		height: 80
+	titleCard: {
+		fontSize: 15,
+		fontFamily: "montserrat-semibold",
+		color: colorBlack
+	},
+	wrapCategory: {
+		borderRadius: 20,
+		paddingVertical: 2,
+		paddingHorizontal: 7,
+		backgroundColor: colorBlueEnd,
+		marginRight: 10,
+		justifyContent: "center",
+		alignItems: "center"
+	},
+	categoryText: {
+		fontSize: 12,
+		fontFamily: "montserrat-bold",
+		color: "white"
+	},
+	infoText: {
+		fontSize: 12,
+		fontFamily: "montserrat-medium",
+		color: colorTextGray
 	},
 	noDataText: {
 		fontSize: 14,

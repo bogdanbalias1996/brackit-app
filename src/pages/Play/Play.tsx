@@ -15,6 +15,7 @@ import { ModalSuccess } from "../../components/ModalSuccess/ModalSuccess";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
 import { setActiveTab } from "./actions";
 import styles from "./Play.styles";
+import { navigate } from "../../navigationService";
 
 const Header = props => (
   <HeaderRounded
@@ -23,6 +24,8 @@ const Header = props => (
     title={
       props.activeTab && props.activeTab === 2
         ? "Tournaments".toUpperCase()
+        : props.activeTab && props.activeTab === 3
+        ? "Leaderboard".toUpperCase()
         : "Challenges".toUpperCase()
     }
     getRightComponent={() => {
@@ -30,7 +33,7 @@ const Header = props => (
         <View style={styles.wrapHeaderRight}>
           <TouchableOpacity
             style={styles.wrapHeaderRightIcon}
-            onPress={() => alert("ok")}
+            onPress={() => navigate({ routeName: "AddBuddies" })}
           >
             <Icon size={30} name="search" color="white" />
           </TouchableOpacity>
@@ -142,6 +145,60 @@ export class Component extends React.PureComponent<PlayScreenProps> {
           },
           {
             id: "3",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "4",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "5",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "6",
+            name: "Katayama Fumiki2",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "7",
+            name: "Katayama Fumiki",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 1500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "8",
+            name: "Katayama Fumiki1",
+            avatar: require("../../../assets/avatar.png"),
+            avatarRate: 500,
+            comment:
+              "Globally evolve vertical users with interdependent growth.",
+            date: "3wk"
+          },
+          {
+            id: "9",
             name: "Katayama Fumiki2",
             avatar: require("../../../assets/avatar.png"),
             avatarRate: 1500,
@@ -474,7 +531,7 @@ export class Component extends React.PureComponent<PlayScreenProps> {
       {
         title: "Leaderboard",
         component: () => <LeaderBoardItems data={dataLeaderBoard} />,
-        onPress: () => this.props.setActiveTab(0)
+        onPress: () => this.props.setActiveTab(3)
       }
     ];
     return (

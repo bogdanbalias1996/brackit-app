@@ -11,11 +11,12 @@ import {
 import { TournamentItem } from "./";
 import { Icon } from "../../components/Icon/Icon";
 import {
-  colorShadow,
+  colorShadowGray,
   colorTextGray,
   colorBlack,
   colorGradientBlue,
-  colorOrangeText
+  colorOrangeText,
+  colorLightGreyBlue
 } from "../../variables";
 import { navigate } from "../../navigationService";
 
@@ -25,7 +26,6 @@ export const renderItem = ({ item }) => {
     entries,
     statusTournament,
     title,
-    subTitle,
     date,
     location,
     prize,
@@ -33,80 +33,81 @@ export const renderItem = ({ item }) => {
   } = item as TournamentItem;
 
   return (
-    <TouchableOpacity
-      onPress={() =>
-        navigate({
-          routeName: "TournamentDetail",
-          params: { tournamentData: item }
-        })
-      }
-      style={styles.card}
-    >
-      <View style={styles.triangleShape} />
-      <View style={styles.wrapTopContent}>
-        <Text style={styles.status}>{statusTournament.toUpperCase()}</Text>
-        <View style={styles.wrapEntries}>
-          <View style={styles.entry}>
-            <Image
-              style={{ width: 20 }}
-              source={require("../../../assets/court.png")}
-              resizeMode="contain"
-            />
-            <Text style={styles.entryText}>{avaliableEntries}</Text>
-          </View>
-          <View style={styles.entry}>
-            <Image
-              style={{ width: 20 }}
-              source={require("../../../assets/player.png")}
-              resizeMode="contain"
-            />
-            <Text style={styles.entryText}>{entries}</Text>
+    <View style={styles.cardShadow}>
+      <TouchableOpacity
+        onPress={() =>
+          navigate({
+            routeName: "TournamentDetail",
+            params: { tournamentData: item }
+          })
+        }
+        style={styles.card}
+      >
+        <View style={styles.triangleShape} />
+        <View style={styles.wrapTopContent}>
+          <Text style={styles.status}>{statusTournament.toUpperCase()}</Text>
+          <View style={styles.wrapEntries}>
+            <View style={styles.entry}>
+              <Image
+                style={{ width: 20 }}
+                source={require("../../../assets/court.png")}
+                resizeMode="contain"
+              />
+              <Text style={styles.entryText}>{avaliableEntries}</Text>
+            </View>
+            <View style={styles.entry}>
+              <Image
+                style={{ width: 20 }}
+                source={require("../../../assets/player.png")}
+                resizeMode="contain"
+              />
+              <Text style={styles.entryText}>{entries}</Text>
+            </View>
           </View>
         </View>
-      </View>
-      <Text style={styles.cardTitle}>{title}</Text>
-      <Text style={styles.cardSubTitle}>{subTitle}</Text>
-      <View style={styles.questionItem}>
-        <Icon
-          size={16}
-          style={styles.questionIcon}
-          name="location"
-          color={colorTextGray}
-        />
-        <Text style={styles.answerText}>{location}</Text>
-      </View>
-      <View style={styles.questionItem}>
-        <Icon
-          size={16}
-          style={styles.questionIcon}
-          name="calendar"
-          color={colorTextGray}
-        />
-        <Text style={styles.answerText}>{date}</Text>
-      </View>
-      <View style={styles.questionItem}>
-        <Icon
-          size={16}
-          style={styles.questionIcon}
-          name="cup"
-          color={colorTextGray}
-        />
-        <Text style={styles.qestionText}>prize money</Text>
-        <Text style={styles.entryFeeText}>{prize + " INR"}</Text>
-      </View>
-      <View style={styles.eventsItem}>
-        <Text style={styles.qestionText}>events</Text>
-        <View style={styles.categoriesWrap}>
-          {events.map((item, i) => {
-            return (
-              <View key={i} style={styles.categoryItem}>
-                <Text style={styles.categoryItemText}>{item.value}</Text>
-              </View>
-            );
-          })}
+        <Text style={styles.cardTitle}>{title}</Text>
+        <View style={styles.questionItem}>
+          <Icon
+            size={16}
+            style={styles.questionIcon}
+            name="location"
+            color={colorLightGreyBlue}
+          />
+          <Text style={styles.answerText}>{location}</Text>
         </View>
-      </View>
-    </TouchableOpacity>
+        <View style={styles.questionItem}>
+          <Icon
+            size={16}
+            style={styles.questionIcon}
+            name="calendar"
+            color={colorLightGreyBlue}
+          />
+          <Text style={styles.answerText}>{date}</Text>
+        </View>
+        <View style={styles.questionItem}>
+          <Icon
+            size={16}
+            style={styles.questionIcon}
+            name="cup"
+            color={colorLightGreyBlue}
+          />
+          <Text style={styles.qestionText}>prize money</Text>
+          <Text style={styles.entryFeeText}>{prize + " INR"}</Text>
+        </View>
+        <View style={styles.eventsItem}>
+          <Text style={styles.qestionText}>events</Text>
+          <View style={styles.categoriesWrap}>
+            {events.map((item, i) => {
+              return (
+                <View key={i} style={styles.categoryItem}>
+                  <Text style={styles.categoryItemText}>{item.value}</Text>
+                </View>
+              );
+            })}
+          </View>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -123,28 +124,29 @@ export const TournamentItems = ({ data }) => {
 const styles = StyleSheet.create({
   card: {
     padding: 15,
+    paddingTop: 0,
     paddingLeft: 25,
     marginVertical: 10,
     marginRight: 30,
     backgroundColor: "white",
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
-    shadowColor: colorShadow,
+    shadowColor: colorShadowGray,
     shadowOffset: {
       width: 0,
-      height: 4
+      height: 6
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
+    shadowOpacity: 0.6,
+    shadowRadius: 7,
     elevation: 6,
     position: "relative"
   },
   triangleShape: {
     width: 0,
     height: 0,
-    borderLeftWidth: 25,
+    borderLeftWidth: 38,
     borderRightWidth: 0,
-    borderBottomWidth: 25,
+    borderBottomWidth: 38,
     borderStyle: "solid",
     backgroundColor: "transparent",
     borderLeftColor: "#00BCD4",
@@ -176,13 +178,13 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 10,
     fontFamily: "montserrat-bold",
-    color: colorBlack,
-    marginBottom: 5
+    color: "#00BCD4"
   },
   cardTitle: {
     fontSize: 14,
     fontFamily: "montserrat-semibold",
-    color: colorBlack
+    color: colorBlack,
+    marginBottom: 5
   },
   cardSubTitle: {
     fontSize: 10,

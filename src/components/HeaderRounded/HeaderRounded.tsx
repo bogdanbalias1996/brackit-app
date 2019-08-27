@@ -12,7 +12,7 @@ export const HeaderRounded = props => {
     navigation,
     title,
     style,
-    getLeftComponent = null,
+    getLeftComponent = () => null,
     getRightComponent = () => null
   } = props;
 

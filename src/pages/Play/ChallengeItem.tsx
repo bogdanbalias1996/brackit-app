@@ -11,7 +11,7 @@ import {
 import { MatchItem } from "../../components/MatchItem/MatchItem";
 import { Icon } from "../../components/Icon/Icon";
 import {
-  colorShadow,
+  colorShadowGray,
   colorTextGray,
   colorBlack,
   colorOrangeText,
@@ -33,7 +33,7 @@ export const renderItem = ({ item }) => {
               <Text style={styles.categoryText}>{item.category}</Text>
             </View>
             <Text style={styles.infoText}>
-              {item.round.toUpperCase() + ", " + item.date}
+              {item.round.toUpperCase() + ",  " + item.date}
             </Text>
           </View>
         </View>
@@ -94,14 +94,14 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
-    shadowColor: colorShadow,
+    shadowColor: colorShadowGray,
     shadowOffset: {
       width: 0,
-      height: 4
+      height: 6
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 8
+    shadowOpacity: 0.6,
+    shadowRadius: 7,
+    elevation: 6
   },
   headerCard: {
     flexDirection: "row",
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   footerCard: {
     flexDirection: "row",
     justifyContent: "flex-end",
-    marginTop: 10,
+    marginTop: -15,
     paddingRight: 15
   },
   wrapIcon: {
@@ -156,7 +156,8 @@ const styles = StyleSheet.create({
   titleCard: {
     fontSize: 15,
     fontFamily: "montserrat-semibold",
-    color: colorBlack
+    color: colorBlack,
+    marginBottom: 3
   },
   wrapCategory: {
     borderRadius: 20,

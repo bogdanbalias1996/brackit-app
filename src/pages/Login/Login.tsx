@@ -95,7 +95,7 @@ export const Component: React.SFC<LoginScreenProps> = ({
               <TouchableOpacity
                 onPress={() => navigation.navigate("ForgotPassword")}
               >
-                <Text style={[styles.btnForgetPasswordText]}>
+                <Text style={styles.btnForgetPasswordText}>
                   Forgot password ?
                 </Text>
               </TouchableOpacity>
