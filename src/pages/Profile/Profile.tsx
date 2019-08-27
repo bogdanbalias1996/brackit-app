@@ -41,18 +41,18 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
   render() {
     const statsItems = [
       {
-        icon: "racket",
+        icon: require("../../../assets/racket.png"),
         points: 1300,
         name: "skill",
         isSolid: true
       },
       {
-        icon: "bar",
+        icon: require("../../../assets/performance.png"),
         points: 1500,
         name: "performance"
       },
       {
-        icon: "flash",
+        icon: require("../../../assets/activity.png"),
         points: 3040,
         name: "activity"
       }
@@ -91,7 +91,7 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
               <View style={styles.profileHeaderInfoWrapper}>
                 <View style={styles.profileHeaderInfo}>
                   <Text style={styles.profileHeaderInfoName}>Erika Mateo</Text>
-                  <Icon name="edit" color={colorLightGreyBlue} size={26} />
+                  <Icon name="edit" color={colorLightGreyBlue} size={24} />
                 </View>
                 <Text
                   style={[

@@ -13,7 +13,9 @@ export const HeaderRounded = props => {
     title,
     style,
     getLeftComponent = () => null,
-    getRightComponent = () => null
+    getRightComponent = () => null,
+    customComponent = () => null,
+    showCustomComponent = false
   } = props;
 
   return (
@@ -21,19 +23,24 @@ export const HeaderRounded = props => {
       start={[0, 0.5]}
       end={[1, 0.5]}
       colors={[colorBlueStart, colorBlueEnd]}
-      style={[styles.container, style || {}]}
     >
-      <View style={styles.leftContainer}>
-        {getLeftComponent === null && navigation.state.routes.length > 1 && (
-          <TouchableOpacity style={styles.back} onPress={goBack}>
-            <Icon size={22} name={"left"} color={"white"} />
-          </TouchableOpacity>
-        )}
-        {!!getLeftComponent && getLeftComponent()}
+      {showCustomComponent ? (
+        customComponent()
+      ) : (
+        <View style={[styles.container, style || {}]}>
+          <View style={styles.leftContainer}>
+            {getLeftComponent === null && navigation.state.routes.length > 1 && (
+              <TouchableOpacity style={styles.back} onPress={goBack}>
+                <Icon size={22} name={"left"} color={"white"} />
+              </TouchableOpacity>
+            )}
+            {!!getLeftComponent && getLeftComponent()}
 
-        {title ? <Text style={styles.title}>{title}</Text> : null}
-      </View>
-      <View style={styles.rightContainer}>{getRightComponent()}</View>
+            {title ? <Text style={styles.title}>{title}</Text> : null}
+          </View>
+          <View style={styles.rightContainer}>{getRightComponent()}</View>
+        </View>
+      )}
     </LinearGradient>
   );
 };

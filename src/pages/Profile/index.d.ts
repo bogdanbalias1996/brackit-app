@@ -6,7 +6,7 @@ export type ProfileScreenProps = ProfileScreenStateProps &
   ProfileScreenDispatchProps;
 
 export interface ProfileStatsItemProps {
-  icon: string;
+  icon: any;
   points: number;
   name: string;
   isSolid?: boolean;

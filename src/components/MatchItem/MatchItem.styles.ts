@@ -1,19 +1,25 @@
-import { StyleSheet } from 'react-native'
-import { colorShadow, colorBorder, colorGreen, colorBlack } from '../../variables';
+import { StyleSheet } from "react-native";
+import {
+  colorShadow,
+  colorBorder,
+  colorGreen,
+  colorBlack,
+  colorShadowGray
+} from "../../variables";
 
 export default StyleSheet.create({
   matchWrap: {
     marginRight: 20,
     borderTopRightRadius: 15,
     borderBottomRightRadius: 15,
-    shadowColor: colorShadow,
+    shadowColor: colorShadowGray,
     shadowOffset: {
       width: 0,
-      height: 4
+      height: 2
     },
-    shadowOpacity: 0.4,
-    shadowRadius: 5,
-    elevation: 4
+    shadowOpacity: 0.6,
+    shadowRadius: 7,
+    elevation: 6
   },
   winnerItem: {
     paddingHorizontal: 20,
@@ -26,7 +32,6 @@ export default StyleSheet.create({
   },
   winnerItemContentWrap: {
     flexDirection: "row",
-    alignItems: "center",
     paddingVertical: 5
   },
   winnerSign: {
@@ -38,12 +43,14 @@ export default StyleSheet.create({
     backgroundColor: colorGreen
   },
   winnerItemContent: {
-    marginLeft: 15
+    marginLeft: 15,
+    height: 50,
+    justifyContent: "center"
   },
   winnerItemTitle: {
     fontSize: 14,
     fontFamily: "montserrat-semibold",
-    color: colorBlack,
+    color: colorBlack
   },
   scoresWrap: {
     flexDirection: "row",
@@ -51,11 +58,10 @@ export default StyleSheet.create({
     right: 20
   },
   winnerScore: {
-    fontSize: 12,
     fontFamily: "montserrat-semibold",
     color: colorBlack,
     marginLeft: 5,
     width: 20,
     textAlign: "center"
   }
-})
+});

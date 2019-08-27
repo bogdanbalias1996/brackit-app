@@ -33,7 +33,7 @@ const Header = props => (
         <View style={styles.wrapHeaderRight}>
           <TouchableOpacity
             style={styles.wrapHeaderRightIcon}
-            onPress={() => navigate({ routeName: "AddBuddies" })}
+            onPress={() => navigate({ routeName: "PlaySearch" })}
           >
             <Icon size={30} name="search" color="white" />
           </TouchableOpacity>

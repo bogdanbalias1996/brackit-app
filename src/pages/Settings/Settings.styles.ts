@@ -26,7 +26,7 @@ export default StyleSheet.create({
     fontFamily: "montserrat-medium"
   },
   signOutText: {
-    fontSize: 12,
+    fontSize: 14,
     color: colorTextGray,
     fontFamily: "montserrat-semibold"
   }

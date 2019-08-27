@@ -7,6 +7,7 @@ import styles from "./MatchItem.styles";
 
 export const MatchItem: React.SFC<MatchItemProps> = ({
   compatitors,
+  sizeScore,
   style = "",
   inside = false
 }): JSX.Element => {
@@ -32,7 +33,13 @@ export const MatchItem: React.SFC<MatchItemProps> = ({
           >
             {team.scores &&
               team.scores.map((score, i) => (
-                <Text key={i} style={styles.winnerScore}>
+                <Text
+                  key={i}
+                  style={[
+                    styles.winnerScore,
+                    { fontSize: sizeScore ? sizeScore : 12 }
+                  ]}
+                >
                   {score}
                 </Text>
               ))}

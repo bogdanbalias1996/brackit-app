@@ -28,7 +28,7 @@ export const renderItem = ({ item }) => {
         <View>
           <Text style={styles.statusCard}>{item.status.toUpperCase()}</Text>
           <Text style={styles.titleCard}>{item.title}</Text>
-          <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
             <View style={styles.wrapCategory}>
               <Text style={styles.categoryText}>{item.category}</Text>
             </View>
@@ -48,6 +48,7 @@ export const renderItem = ({ item }) => {
       </View>
       <MatchItem
         compatitors={item.compatitors}
+        sizeScore={16}
         inside={true}
         style={{
           marginRight: 0,
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     shadowColor: colorShadowGray,
     shadowOffset: {
       width: 0,
-      height: 6
+      height: 3
     },
     shadowOpacity: 0.6,
     shadowRadius: 7,

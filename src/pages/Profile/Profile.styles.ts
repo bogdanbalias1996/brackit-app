@@ -6,7 +6,7 @@ export default StyleSheet.create({
     backgroundColor: "white",
     paddingTop: 25,
     padding: 20,
-    paddingBottom: 0,
+    paddingBottom: 0
   },
   profileHeaderWrapper: {
     flexDirection: "row",
@@ -31,6 +31,7 @@ export default StyleSheet.create({
     paddingVertical: 4
   },
   profileHeaderInfoText: {
+    fontFamily: "montserrat-medium",
     color: colorTextGray,
     fontSize: 13
   },

@@ -45,7 +45,8 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
   });
 
   state = {
-    birthdayDatePickerVisible: false
+    birthdayDatePickerVisible: false,
+    submitBtnText: ""
   };
 
   _storeData = async () => {
@@ -72,31 +73,103 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
     }
   };
 
+  getSubmitBtnName = async () => {
+    if ((await _retrieveData("isFirst")) === null) {
+      this.setState({ submitBtnText: "Next".toUpperCase() });
+    } else {
+      this.setState({ submitBtnText: "Save".toUpperCase() });
+    }
+  };
+
+  componentDidMount() {
+    this.getSubmitBtnName();
+  }
+
   render() {
     const data = [
-      { key: 1, label: "Cookie Dough - First time playing the sport" },
+      {
+        key: 1,
+        label: "Cookie Dough - First time playing the sport",
+        component: (
+          <View>
+            <Text style={styles.optionLabel}>Cookie Dough</Text>
+            <Text style={styles.optionInfo}>First time playing the sport</Text>
+          </View>
+        )
+      },
       {
         key: 2,
-        label: "Healthy Beginner - I know the rules and can play a few strokes"
+        label: "Healthy Beginner - I know the rules and can play a few strokes",
+        component: (
+          <View>
+            <Text style={styles.optionLabel}>Healthy Beginner</Text>
+            <Text style={styles.optionInfo}>
+              I know the rules and can play a few strokes
+            </Text>
+          </View>
+        )
       },
-      { key: 3, label: "Social - I play for fun and not to win" },
-      { key: 4, label: "Intermediate Athlete - Played for at least 3 years" },
+      {
+        key: 3,
+        label: "Social - I play for fun and not to win",
+        component: (
+          <View>
+            <Text style={styles.optionLabel}>Social</Text>
+            <Text style={styles.optionInfo}>I play for fun and not to win</Text>
+          </View>
+        )
+      },
+      {
+        key: 4,
+        label: "Intermediate Athlete - Played for at least 3 years",
+        component: (
+          <View>
+            <Text style={styles.optionLabel}>Intermediate Athlete</Text>
+            <Text style={styles.optionInfo}>Played for at least 3 years</Text>
+          </View>
+        )
+      },
       {
         key: 5,
-        label: "Advanced Athlete - Compete in District, State Circuit"
+        label: "Advanced Athlete - Compete in District, State Circuit",
+        component: (
+          <View>
+            <Text style={styles.optionLabel}>Advanced Athlete</Text>
+            <Text style={styles.optionInfo}>
+              Compete in District, State Circuit
+            </Text>
+          </View>
+        )
       },
       {
         key: 6,
-        label: "Elite Athlete - Compete in National and International Circuit"
+        label: "Elite Athlete - Compete in National and International Circuit",
+        component: (
+          <View>
+            <Text style={styles.optionLabel}>Elite Athlete</Text>
+            <Text style={styles.optionInfo}>
+              Compete in National and International Circuit
+            </Text>
+          </View>
+        )
       },
-      { key: 7, label: "Super Hero - Top of my game. Invincible" }
+      {
+        key: 7,
+        label: "Super Hero - Top of my game. Invincible",
+        component: (
+          <View>
+            <Text style={styles.optionLabel}>Super Hero</Text>
+            <Text style={styles.optionInfo}>Top of my game. Invincible</Text>
+          </View>
+        )
+      }
     ];
     return (
       <Formik
         initialValues={{
           fullName: "",
           birthdayDate: "",
-          train_at: "",
+          trains_at: "",
           city: "",
           country: "",
           levelOfPlay: "",
@@ -148,8 +221,8 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
                   }
                 />
                 <TextInputStyled
-                  name="train_at"
-                  label="train at"
+                  name="trains_at"
+                  label="trains at"
                   formProps={props}
                 />
                 <View
@@ -246,7 +319,7 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
                   onPress={() => {
                     values.fullName.length && handleSubmit();
                   }}
-                  text={"Next".toUpperCase()}
+                  text={this.state.submitBtnText}
                 />
               </View>
             </View>

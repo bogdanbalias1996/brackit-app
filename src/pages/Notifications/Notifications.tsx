@@ -10,10 +10,7 @@ import { colorLightBlue, colorTextGray } from "../../variables";
 const Header = props => (
   <HeaderRounded
     {...props}
-    title="Notifications"
-    style={{
-      backgroundColor: props.feed ? "white" : colorLightBlue
-    }}
+    title={"Notifications".toUpperCase()}
     getRightComponent={() => {}}
   />
 );

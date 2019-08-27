@@ -1,7 +1,6 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet, Image } from "react-native";
 import { colorBorderBlue } from "../../variables";
-import { Icon } from "../../components/Icon/Icon";
 import { ProfileStatsItemProps } from ".";
 import { LinearGradient } from "expo";
 import { getColorsByScore } from "../../utils/skillLevel";
@@ -28,7 +27,11 @@ const ProfileStatsItem: React.FunctionComponent<ProfileStatsItemProps> = ({
         colors={isSolid ? getColorsByScore(points) : ["white", "white"]}
         style={styles.statsItem}
       >
-        <Icon size={24} name={icon} color={textColor} />
+        <Image
+          style={{ width: 20, height: 20 }}
+          source={icon}
+          resizeMode="contain"
+        />
         <Text
           style={{
             ...styles.statsItemPoints,

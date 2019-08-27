@@ -17,6 +17,7 @@ import { TournamentDrawsScreen } from "../pages/TournamentDraws/TournamentDraws"
 import { CommentsScreen } from "../pages/Comments/Comments";
 import { AddBuddiesScreen } from "../pages/AddBuddies/AddBuddies";
 import { SettingsScreen } from "../pages/Settings/Settings";
+import { PlaySearchScreen } from "../pages/PlaySearch/PlaySearch";
 
 // Icons for BottomTabNavigator
 const Play = require("../../assets/play.png");
@@ -123,7 +124,8 @@ export const MainNavigator = createStackNavigator(
     TournamentDraws: TournamentDrawsScreen,
     Comments: CommentsScreen,
     AddBuddies: AddBuddiesScreen,
-    Settings: SettingsScreen
+    Settings: SettingsScreen,
+    PlaySearch: PlaySearchScreen
   }
   // {
   //   initialRouteName: "AddBuddies"

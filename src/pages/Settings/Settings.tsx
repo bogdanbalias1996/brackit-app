@@ -6,7 +6,7 @@ import { Text, TouchableOpacity, ScrollView, View } from "react-native";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./Settings.styles";
-import { goBack } from "../../navigationService";
+import { goBack, navigate } from "../../navigationService";
 import { colorLightGreyBlue } from "../../variables";
 
 const Header = props => (
@@ -19,7 +19,7 @@ const Header = props => (
         </TouchableOpacity>
       );
     }}
-    title="Settings"
+    title={"Settings".toUpperCase()}
     getRightComponent={() => {}}
   />
 );
@@ -78,7 +78,7 @@ export class Component extends React.PureComponent<SettingsScreenProps> {
         <View style={styles.listItemGroup}>
           <ListItem
             title="Sign Out"
-            onPress={() => {}}
+            onPress={() => navigate({ routeName: "Login" })}
             styleText={styles.signOutText}
             style={{ borderTopWidth: 1 }}
           />
