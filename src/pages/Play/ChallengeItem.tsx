@@ -48,7 +48,6 @@ export const renderItem = ({ item }) => {
       </View>
       <MatchItem
         compatitors={item.compatitors}
-        sizeScore={16}
         inside={true}
         style={{
           marginRight: 0,

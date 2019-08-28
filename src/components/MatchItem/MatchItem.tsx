@@ -1,13 +1,13 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
+import { navigate } from "../../navigationService";
 import { AvatarStatus } from "../AvatarStatus/AvatarStatus";
 import { MatchItemProps } from "./";
 import styles from "./MatchItem.styles";
 
 export const MatchItem: React.SFC<MatchItemProps> = ({
   compatitors,
-  sizeScore,
   style = "",
   inside = false
 }): JSX.Element => {
@@ -33,13 +33,7 @@ export const MatchItem: React.SFC<MatchItemProps> = ({
           >
             {team.scores &&
               team.scores.map((score, i) => (
-                <Text
-                  key={i}
-                  style={[
-                    styles.winnerScore,
-                    { fontSize: sizeScore ? sizeScore : 12 }
-                  ]}
-                >
+                <Text key={i} style={styles.winnerScore}>
                   {score}
                 </Text>
               ))}
@@ -49,9 +43,12 @@ export const MatchItem: React.SFC<MatchItemProps> = ({
             <View style={styles.winnerItemContent}>
               {team.players &&
                 team.players.map((player, i) => (
-                  <Text key={i} style={styles.winnerItemTitle}>
-                    {player.name}
-                  </Text>
+                  <TouchableOpacity
+                    key={i}
+                    onPress={() => navigate({ routeName: "ProfileFriend" })}
+                  >
+                    <Text style={styles.winnerItemTitle}>{player.name}</Text>
+                  </TouchableOpacity>
                 ))}
             </View>
           </View>

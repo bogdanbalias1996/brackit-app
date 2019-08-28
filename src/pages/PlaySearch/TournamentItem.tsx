@@ -1,14 +1,7 @@
 import * as React from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  Image,
-  TouchableOpacity
-} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-import { TournamentItem } from "./";
+import { TournamentItemProps } from "./";
 import { Icon } from "../../components/Icon/Icon";
 import {
   colorShadowGray,
@@ -20,7 +13,9 @@ import {
 } from "../../variables";
 import { navigate } from "../../navigationService";
 
-export const renderItem = ({ item }) => {
+export const TournamentItem: React.SFC<TournamentItemProps> = ({
+  data
+}): JSX.Element => {
   const {
     avaliableEntries,
     entries,
@@ -30,7 +25,7 @@ export const renderItem = ({ item }) => {
     location,
     prize,
     events
-  } = item as TournamentItem;
+  } = data;
 
   return (
     <View>
@@ -38,7 +33,7 @@ export const renderItem = ({ item }) => {
         onPress={() =>
           navigate({
             routeName: "TournamentDetail",
-            params: { tournamentData: item }
+            params: { tournamentData: data }
           })
         }
         style={styles.card}
@@ -111,22 +106,12 @@ export const renderItem = ({ item }) => {
   );
 };
 
-export const TournamentItems = ({ data }) => {
-  return (
-    <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={item => item.id}
-    />
-  );
-};
-
 const styles = StyleSheet.create({
   card: {
     padding: 15,
     paddingTop: 0,
     paddingLeft: 25,
-    marginVertical: 10,
+    marginBottom: 15,
     marginRight: 30,
     backgroundColor: "white",
     borderTopRightRadius: 15,

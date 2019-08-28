@@ -2,38 +2,37 @@ import * as React from "react";
 import { connect } from "react-redux";
 import { IGlobalState } from "../../coreTypes";
 import { SafeAreaView, FlatList } from "react-navigation";
-import { ProfileScreenProps } from ".";
+import { ProfileFriendScreenProps } from ".";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Text, View, TouchableOpacity } from "react-native";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
-import { Icon } from "../../components/Icon/Icon";
 import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
 
-import { colorTextGray, colorLightGreyBlue } from "../../variables";
-
-import styles from "./Profile.styles";
+import { Icon } from "../../components/Icon/Icon";
+import styles from "./ProfileFriend.styles";
 import ProfileStatsItem from "./ProfileStatsItem";
-import { navigate } from "../../navigationService";
+import { navigate, goBack } from "../../navigationService";
 import TabListItem from "../../components/TabListItem/TabListItem";
 
 const Header = props => (
   <HeaderRounded
     {...props}
-    title={"Profile".toUpperCase()}
-    getRightComponent={() => {
+    getLeftComponent={() => {
       return (
-        <TouchableOpacity onPress={() => navigate({ routeName: "Settings" })}>
-          <Icon name="nut-icon" />
+        <TouchableOpacity style={styles.iconCancel} onPress={() => goBack()}>
+          <Icon name="left" />
         </TouchableOpacity>
       );
     }}
+    title={"Profile".toUpperCase()}
+    getRightComponent={() => {}}
   />
 );
 
 const mapStateToProps = (state: IGlobalState) => ({});
 const mapDispatchToProps = dispatch => ({});
 
-export class Component extends React.PureComponent<ProfileScreenProps> {
+export class Component extends React.PureComponent<ProfileFriendScreenProps> {
   static navigationOptions = {
     header: props => <Header {...props} />
   };
@@ -78,10 +77,7 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.profileWrapper}>
           <View style={styles.profileHeaderWrapper}>
-            <TouchableOpacity
-              style={styles.profileHeader}
-              onPress={() => navigate({ routeName: "ProfileEdit" })}
-            >
+            <TouchableOpacity style={styles.profileHeader} onPress={() => {}}>
               <AvatarStatus
                 avatar={require("../../../assets/avatar.png")}
                 avatarRate={1300}
@@ -91,7 +87,6 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
               <View style={styles.profileHeaderInfoWrapper}>
                 <View style={styles.profileHeaderInfo}>
                   <Text style={styles.profileHeaderInfoName}>Erika Mateo</Text>
-                  <Icon name="edit" color={colorLightGreyBlue} size={24} />
                 </View>
                 <Text
                   style={[
@@ -143,7 +138,7 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
   }
 }
 
-export const ProfileScreen = connect(
+export const ProfileFriendScreen = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);

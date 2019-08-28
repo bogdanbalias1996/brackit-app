@@ -62,6 +62,7 @@ export default StyleSheet.create({
     color: colorBlack,
     marginLeft: 5,
     width: 20,
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: 14
   }
 });

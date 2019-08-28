@@ -18,6 +18,7 @@ import { CommentsScreen } from "../pages/Comments/Comments";
 import { AddBuddiesScreen } from "../pages/AddBuddies/AddBuddies";
 import { SettingsScreen } from "../pages/Settings/Settings";
 import { PlaySearchScreen } from "../pages/PlaySearch/PlaySearch";
+import { ProfileFriendScreen } from "../pages/ProfileFriend/ProfileFriend";
 
 // Icons for BottomTabNavigator
 const Play = require("../../assets/play.png");
@@ -125,7 +126,8 @@ export const MainNavigator = createStackNavigator(
     Comments: CommentsScreen,
     AddBuddies: AddBuddiesScreen,
     Settings: SettingsScreen,
-    PlaySearch: PlaySearchScreen
+    PlaySearch: PlaySearchScreen,
+    ProfileFriend: ProfileFriendScreen
   }
   // {
   //   initialRouteName: "AddBuddies"

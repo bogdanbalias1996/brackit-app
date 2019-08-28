@@ -42,7 +42,7 @@ export default StyleSheet.create({
   },
   labelStyle: {
     marginTop: 0,
-    fontFamily: "montserrat-semibold",
+    fontFamily: "montserrat-medium",
     color: colorTextGray,
     fontSize: 12,
     alignItems: "center",

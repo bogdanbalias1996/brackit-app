@@ -247,35 +247,33 @@ export class Component extends React.PureComponent<ProfileEditScreenProps> {
                   </View>
                 </View>
                 <View style={styles.wrapSelect}>
-                  <View
-                    style={{
-                      flexDirection: "row",
-                      justifyContent: "space-between"
-                    }}
-                  >
+                  <View style={styles.wrapSelectTitle}>
                     <Text style={styles.selectLabel}>level of play</Text>
                     <Icon name="down" color={colorTextGray} />
                   </View>
-                  <ModalSelector
-                    data={data}
-                    initValue={
-                      values.levelOfPlay.length
-                        ? values.levelOfPlay
-                        : "pick a level"
-                    }
-                    onChange={option => {
-                      this.setState({ coinValue: option.label });
-                      setFieldValue("levelOfPlay", option.label);
-                    }}
-                    cancelStyle={styles.modalCancelStyle}
-                    overlayStyle={styles.modalOverlayStyle}
-                    cancelTextStyle={styles.modalCancelTextStyle}
-                    optionContainerStyle={styles.modalOptionContainer}
-                    optionTextStyle={styles.modalOptionTextStyle}
-                    selectStyle={styles.selectStyle}
-                    selectTextStyle={styles.selectTextStyle}
-                    cancelText="Cancel"
-                  />
+                  <View style={styles.wrapModalSelect}>
+                    <ModalSelector
+                      data={data}
+                      initValue={
+                        values.levelOfPlay.length
+                          ? values.levelOfPlay
+                          : "pick a level"
+                      }
+                      onChange={option => {
+                        this.setState({ coinValue: option.label });
+                        setFieldValue("levelOfPlay", option.label);
+                      }}
+                      cancelStyle={styles.modalCancelStyle}
+                      overlayStyle={styles.modalOverlayStyle}
+                      cancelTextStyle={styles.modalCancelTextStyle}
+                      optionContainerStyle={styles.modalOptionContainer}
+                      optionTextStyle={styles.modalOptionTextStyle}
+                      selectStyle={styles.selectStyle}
+                      selectTextStyle={styles.selectTextStyle}
+                      cancelText="Cancel"
+                      style={{ width: "100%" }}
+                    />
+                  </View>
                 </View>
                 <TextInputStyled
                   name="bio"

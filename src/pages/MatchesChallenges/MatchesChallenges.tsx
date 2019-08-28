@@ -361,6 +361,11 @@ export class Component extends React.PureComponent<
             this.setState({ selectedDate: day.dateString });
           }}
           style={styles.calendar}
+          theme={{
+            textDayFontFamily: "montserrat-medium",
+            textMonthFontFamily: "montserrat-medium",
+            textDayHeaderFontFamily: "montserrat-medium"
+          }}
         />
         {this.getData() ? (
           this.getData().data.map((item, i) => {
