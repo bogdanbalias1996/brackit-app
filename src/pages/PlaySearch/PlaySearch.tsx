@@ -23,6 +23,7 @@ import {
   colorBlueStart,
   colorBlueEnd
 } from "../../variables";
+import { navigate } from "../../navigationService";
 
 const dataBuddies = [
   {
@@ -239,7 +240,11 @@ export class Component extends React.PureComponent<PlaySearchScreenProps> {
         <View style={styles.itemLeft}>
           <AvatarStatus avatar={item.avatar} avatarRate={item.rate} size={36} />
           <View style={styles.wrapItemName}>
-            <Text style={styles.itemName}>{item.name}</Text>
+            <TouchableOpacity
+              onPress={() => navigate({ routeName: "ProfileFriend" })}
+            >
+              <Text style={styles.itemName}>{item.name}</Text>
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.itemRight}>
@@ -357,14 +362,14 @@ export class Component extends React.PureComponent<PlaySearchScreenProps> {
                   data={this.findBuddies()}
                   renderItem={this.renderBuddy}
                   keyExtractor={item => item.id}
-                  style={{ flex: 1, paddingTop: 15 }}
+                  style={{ flex: 1 }}
                 />
               ) : (
                 <FlatList
                   data={this.findTournaments()}
                   renderItem={this.renderTournament}
                   keyExtractor={item => item.id}
-                  style={{ flex: 1, paddingTop: 15 }}
+                  style={{ flex: 1 }}
                 />
               )}
             </View>

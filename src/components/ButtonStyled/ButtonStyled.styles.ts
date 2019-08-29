@@ -1,21 +1,21 @@
-import { StyleSheet } from 'react-native'
-import { colorShadow } from '../../variables';
+import { StyleSheet } from "react-native";
+import { colorShadow, colorBlueStart } from "../../variables";
 
 export default StyleSheet.create({
   btn: {
-    alignSelf: 'center',
-    backgroundColor: 'white',
-    borderRadius: 20,
+    alignSelf: "center",
+    backgroundColor: "white",
+    borderRadius: 20
   },
   btnShadow: {
     shadowColor: colorShadow,
     shadowOffset: {
       width: 0,
-      height: 4,
+      height: 4
     },
     shadowOpacity: 0.4,
     shadowRadius: 5,
-    elevation: 6,
+    elevation: 6
   },
   btnLeft: {
     borderRadius: 0,
@@ -23,11 +23,11 @@ export default StyleSheet.create({
     borderTopRightRadius: 20,
     shadowOffset: {
       width: 0,
-      height: 0,
+      height: 0
     },
     shadowOpacity: 0,
     shadowRadius: 0,
-    elevation: 0,
+    elevation: 0
   },
   btnRight: {
     borderRadius: 0,
@@ -35,22 +35,26 @@ export default StyleSheet.create({
     borderTopLeftRadius: 20,
     shadowOffset: {
       width: 0,
-      height: 0,
+      height: 0
     },
     shadowOpacity: 0,
     shadowRadius: 0,
-    elevation: 0,
+    elevation: 0
+  },
+  btnBorder: {
+    borderWidth: 1,
+    borderColor: colorBlueStart
   },
   btnGradient: {
     borderRadius: 20,
     paddingVertical: 12,
-    paddingHorizontal: 24,
+    paddingHorizontal: 24
   },
   btnText: {
-    textAlign: 'center',
-    color: 'white',
+    textAlign: "center",
+    color: "white",
     fontSize: 10,
-    fontFamily: 'montserrat-bold',
+    fontFamily: "montserrat-bold",
     letterSpacing: 1
-  },
-})
+  }
+});

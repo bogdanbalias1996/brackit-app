@@ -3,8 +3,13 @@ import {
   createStackNavigator,
   createBottomTabNavigator
 } from "react-navigation";
-import { Image } from "react-native";
-import { colorBlack, colorTextGray, colorShadow } from "../variables";
+import { Image, View, Text, StyleSheet } from "react-native";
+import {
+  colorBlack,
+  colorTextGray,
+  colorShadow,
+  colorShadowGray
+} from "../variables";
 
 import { PlayScreen } from "../pages/Play/Play";
 import { ProfileScreen } from "../pages/Profile/Profile";
@@ -99,37 +104,69 @@ export const TabsNavigator = createBottomTabNavigator(
             break;
         }
         return (
-          <Image
-            source={iconName}
-            style={{ width: 24, height: 24 }}
-            resizeMode="contain"
-          />
+          <View style={{ position: "relative" }}>
+            {routeName === "Notifications" ? (
+              <View style={styles.wrapNotification}>
+                <Text style={styles.notificationText}>3</Text>
+              </View>
+            ) : null}
+            <Image
+              source={iconName}
+              style={{ width: 24, height: 24 }}
+              resizeMode="contain"
+            />
+          </View>
         );
       }
     })
   }
 );
 
-export const MainNavigator = createStackNavigator(
-  {
-    Tabs: {
-      screen: TabsNavigator,
-      navigationOptions: {
-        header: null
-      }
+export const MainNavigator = createStackNavigator({
+  Tabs: {
+    screen: TabsNavigator,
+    navigationOptions: {
+      header: null
+    }
+  },
+  ProfileEdit: ProfileEditScreen,
+  MatchesChallenges: MatchesChallengesScreen,
+  MatchesTournaments: MatchesTournamentsScreen,
+  TournamentDetail: TournamentDetailScreen,
+  TournamentDraws: TournamentDrawsScreen,
+  Comments: CommentsScreen,
+  AddBuddies: AddBuddiesScreen,
+  Settings: SettingsScreen,
+  PlaySearch: PlaySearchScreen,
+  ProfileFriend: ProfileFriendScreen
+});
+
+const styles = StyleSheet.create({
+  wrapNotification: {
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: "red",
+    position: "absolute",
+    top: -4,
+    right: -4,
+    borderWidth: 2,
+    borderColor: "white",
+    shadowColor: colorShadowGray,
+    shadowOffset: {
+      width: 0,
+      height: 3
     },
-    ProfileEdit: ProfileEditScreen,
-    MatchesChallenges: MatchesChallengesScreen,
-    MatchesTournaments: MatchesTournamentsScreen,
-    TournamentDetail: TournamentDetailScreen,
-    TournamentDraws: TournamentDrawsScreen,
-    Comments: CommentsScreen,
-    AddBuddies: AddBuddiesScreen,
-    Settings: SettingsScreen,
-    PlaySearch: PlaySearchScreen,
-    ProfileFriend: ProfileFriendScreen
+    shadowOpacity: 0.8,
+    shadowRadius: 4,
+    elevation: 4,
+    zIndex: 20,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  notificationText: {
+    fontSize: 9,
+    fontFamily: "montserrat-semibold",
+    color: "white"
   }
-  // {
-  //   initialRouteName: "AddBuddies"
-  // }
-);
+});

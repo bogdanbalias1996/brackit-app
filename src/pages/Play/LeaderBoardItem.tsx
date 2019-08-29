@@ -1,7 +1,14 @@
 import * as React from "react";
-import { View, Text, FlatList, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native";
 import { connect } from "react-redux";
 
+import { navigate } from "../../navigationService";
 import { LeaderBoardItem } from "./";
 import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
 import { colorShadowGray, colorBlack, colorBorderBlue } from "../../variables";
@@ -24,7 +31,11 @@ export class Component extends React.PureComponent<LeaderBoardItem> {
         <View style={styles.cardLeft}>
           <Text style={styles.cardNumber}>{number}</Text>
           <AvatarStatus avatar={avatar} avatarRate={avatarRate} size={36} />
-          <Text style={styles.cardName}>{name}</Text>
+          <TouchableOpacity
+            onPress={() => navigate({ routeName: "ProfileFriend" })}
+          >
+            <Text style={styles.cardName}>{name}</Text>
+          </TouchableOpacity>
         </View>
         <View style={styles.cardRight}>
           <View style={styles.wrapPerformance}>

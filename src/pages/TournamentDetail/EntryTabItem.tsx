@@ -6,6 +6,7 @@ import { TournamentDetailScreenProps } from "./";
 import { Icon } from "../../components/Icon/Icon";
 import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
 import { colorBlack, colorTextGray, colorBorder } from "../../variables";
+import { navigate } from "../../navigationService";
 
 const mapStateToProps = state => ({});
 const mapDispatchToProps = dispatch => ({});
@@ -44,7 +45,11 @@ export class Component extends React.PureComponent<
             <View key={i} style={styles.entryItem}>
               <AvatarStatus avatar={user.avatar} avatarRate={user.rating} />
               <View style={styles.entryItemContent}>
-                <Text style={styles.entryItemTitle}>{user.name}</Text>
+                <TouchableOpacity
+                  onPress={() => navigate({ routeName: "ProfileFriend" })}
+                >
+                  <Text style={styles.entryItemTitle}>{user.name}</Text>
+                </TouchableOpacity>
                 <Text style={styles.entryItemSubTitle}>{user.info}</Text>
               </View>
             </View>

@@ -1,6 +1,13 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Text, View, SafeAreaView, FlatList, Image } from "react-native";
+import {
+  Text,
+  View,
+  SafeAreaView,
+  FlatList,
+  Image,
+  TouchableOpacity
+} from "react-native";
 
 import { AddBuddiesScreenProps } from ".";
 import { IGlobalState } from "../../coreTypes";
@@ -51,7 +58,11 @@ export class Component extends React.PureComponent<AddBuddiesScreenProps> {
             resizeMode="cover"
           />
           <View>
-            <Text style={styles.itemName}>{item.name}</Text>
+            <TouchableOpacity
+              onPress={() => navigate({ routeName: "ProfileFriend" })}
+            >
+              <Text style={styles.itemName}>{item.name}</Text>
+            </TouchableOpacity>
             <Text style={styles.itemLocation}>{item.location}</Text>
           </View>
         </View>

@@ -37,6 +37,10 @@ export class Component extends React.PureComponent<ProfileFriendScreenProps> {
     header: props => <Header {...props} />
   };
 
+  state = {
+    addBuddy: false
+  };
+
   render() {
     const statsItems = [
       {
@@ -102,8 +106,10 @@ export class Component extends React.PureComponent<ProfileFriendScreenProps> {
 
             <ButtonStyled
               text={"+ Buddy".toUpperCase()}
-              onPress={() => navigate({ routeName: "AddBuddies" })}
+              onPress={() => this.setState({ addBuddy: !this.state.addBuddy })}
               style={styles.profileHeaderButton}
+              type={this.state.addBuddy ? "border" : null}
+              color={this.state.addBuddy ? "white" : "blue"}
             />
           </View>
 

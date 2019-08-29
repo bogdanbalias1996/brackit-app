@@ -35,11 +35,6 @@ export default StyleSheet.create({
     color: colorTextGray,
     fontSize: 13
   },
-  profileHeaderButton: {
-    shadowOpacity: 0,
-    shadowRadius: 0,
-    shadowOffset: { width: 0, height: 0 }
-  },
   profileMainTrains: {
     paddingVertical: 10,
     fontFamily: "montserrat-medium"

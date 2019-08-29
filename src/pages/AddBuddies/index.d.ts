@@ -1,5 +1,12 @@
-export interface AddBuddiesScreenStateProps { }
+import {
+  NavigationScreenProp,
+  NavigationScreenOptions
+} from "react-navigation";
+export interface AddBuddiesScreenStateProps {
+  navigation: NavigationScreenProp<any, any>;
+}
 
-export type AddBuddiesScreenDispatchProps = {}
+export type AddBuddiesScreenDispatchProps = {};
 
-export type AddBuddiesScreenProps = AddBuddiesScreenStateProps & AddBuddiesScreenDispatchProps
+export type AddBuddiesScreenProps = AddBuddiesScreenStateProps &
+  AddBuddiesScreenDispatchProps;

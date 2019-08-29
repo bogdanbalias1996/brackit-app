@@ -70,10 +70,13 @@ export default StyleSheet.create({
     justifyContent: "space-around",
     paddingVertical: 15,
     borderBottomWidth: 1,
-    borderColor: colorBorder
+    borderColor: colorBorder,
+    marginBottom: 10
   },
   activeTab: {
     borderRadius: 8,
+    borderWidth: 1,
+    borderColor: colorBlueStart,
     width: 125,
     height: 30,
     justifyContent: "center",
@@ -117,7 +120,7 @@ export default StyleSheet.create({
     alignItems: "flex-start",
     paddingVertical: 15,
     paddingHorizontal: 10,
-    marginBottom: 15,
+    marginVertical: 10,
     marginRight: 30,
     backgroundColor: "white",
     borderTopRightRadius: 15,

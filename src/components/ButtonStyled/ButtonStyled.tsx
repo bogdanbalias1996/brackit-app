@@ -9,7 +9,8 @@ import {
   colorGradientGreen,
   colorGoldStart,
   colorGoldEnd,
-  colorDisable
+  colorDisable,
+  colorBlack
 } from "../../variables";
 
 export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
@@ -26,6 +27,8 @@ export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
         return styles.btnLeft;
       case "right":
         return styles.btnRight;
+      case "border":
+        return styles.btnBorder;
     }
   };
   const getColorButton = type => {
@@ -36,6 +39,8 @@ export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
         return [colorGoldStart, colorGoldEnd];
       case "disable":
         return [colorDisable, colorDisable];
+      case "white":
+        return ["white", "white"];
     }
   };
   return (
@@ -53,7 +58,14 @@ export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
         colors={getColorButton(color)}
         style={[styles.btnGradient, getTypeButton(type)]}
       >
-        <Text style={styles.btnText}>{text}</Text>
+        <Text
+          style={[
+            styles.btnText,
+            { color: color === "white" ? colorBlack : "white" }
+          ]}
+        >
+          {text}
+        </Text>
       </LinearGradient>
     </TouchableOpacity>
   );

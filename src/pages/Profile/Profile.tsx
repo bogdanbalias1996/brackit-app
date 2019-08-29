@@ -104,12 +104,6 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
                 <Text style={styles.profileHeaderInfoText}>26y</Text>
               </View>
             </TouchableOpacity>
-
-            <ButtonStyled
-              text={"+ Buddy".toUpperCase()}
-              onPress={() => navigate({ routeName: "AddBuddies" })}
-              style={styles.profileHeaderButton}
-            />
           </View>
 
           <View>
