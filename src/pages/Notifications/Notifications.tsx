@@ -91,7 +91,11 @@ export class Component extends React.PureComponent<NotificationsScreenProps> {
       case "user-accept-proposal":
         return (
           <View style={styles.wrapIcon}>
-            <Icon name="left" color="white" />
+            <Image
+              source={require("../../../assets/icon-accept.png")}
+              style={{ width: 24, height: 24 }}
+              resizeMode="contain"
+            />
           </View>
         );
 
@@ -100,7 +104,11 @@ export class Component extends React.PureComponent<NotificationsScreenProps> {
           <View style={styles.wrapImageAvatar}>
             <Image source={avatar} style={styles.avatar} resizeMode="cover" />
             <View style={styles.wrapIconSmall}>
-              <Icon name="left" color="white" size={12} />
+              <Image
+                source={require("../../../assets/icon-proposal.png")}
+                style={{ width: 12, height: 12 }}
+                resizeMode="contain"
+              />
             </View>
           </View>
         );
@@ -110,7 +118,11 @@ export class Component extends React.PureComponent<NotificationsScreenProps> {
           <View style={styles.wrapImageAvatar}>
             <Image source={avatar} style={styles.avatar} resizeMode="cover" />
             <View style={styles.wrapIconSmall}>
-              <Icon name="left" color="white" size={12} />
+              <Image
+                source={require("../../../assets/icon-comment.png")}
+                style={{ width: 12, height: 12 }}
+                resizeMode="contain"
+              />
             </View>
           </View>
         );
@@ -118,7 +130,11 @@ export class Component extends React.PureComponent<NotificationsScreenProps> {
       case "user-leave-proposal":
         return (
           <View style={styles.wrapIcon}>
-            <Icon name="left" color="white" />
+            <Image
+              source={require("../../../assets/icon-proposal.png")}
+              style={{ width: 24, height: 24 }}
+              resizeMode="contain"
+            />
           </View>
         );
 
@@ -127,7 +143,11 @@ export class Component extends React.PureComponent<NotificationsScreenProps> {
           <View style={styles.wrapImageAvatar}>
             <Image source={avatar} style={styles.avatar} resizeMode="cover" />
             <View style={styles.wrapIconSmall}>
-              <Icon name="left" color="white" size={12} />
+              <Image
+                source={require("../../../assets/icon-accept.png")}
+                style={{ width: 12, height: 12 }}
+                resizeMode="contain"
+              />
             </View>
           </View>
         );
@@ -137,7 +157,11 @@ export class Component extends React.PureComponent<NotificationsScreenProps> {
           <View style={styles.wrapImageAvatar}>
             <Image source={avatar} style={styles.avatar} resizeMode="cover" />
             <View style={styles.wrapIconSmall}>
-              <Icon name="left" color="white" size={12} />
+              <Image
+                source={require("../../../assets/icon-star.png")}
+                style={{ width: 12, height: 12 }}
+                resizeMode="contain"
+              />
             </View>
           </View>
         );
@@ -145,14 +169,22 @@ export class Component extends React.PureComponent<NotificationsScreenProps> {
       case "user-leave-comment":
         return (
           <View style={styles.wrapIcon}>
-            <Icon name="left" color="white" />
+            <Image
+              source={require("../../../assets/icon-comment.png")}
+              style={{ width: 24, height: 24 }}
+              resizeMode="contain"
+            />
           </View>
         );
 
       case "user-won":
         return (
           <View style={styles.wrapIcon}>
-            <Icon name="left" color="white" />
+            <Image
+              source={require("../../../assets/icon-star.png")}
+              style={{ width: 24, height: 24 }}
+              resizeMode="contain"
+            />
           </View>
         );
     }
