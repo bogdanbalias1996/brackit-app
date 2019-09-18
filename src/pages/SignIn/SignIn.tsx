@@ -1,25 +1,25 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { View, Text, TouchableOpacity, Image } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { Dispatch } from "redux";
+import { Text, View, Keyboard, Image, TouchableOpacity } from "react-native";
 
-import { SingUpScreenProps, SingUpScreenFromData } from "./";
-import { TextInputPassword } from "../../components/TextInputStyled/TextInputPassword";
+import { SignInScreenProps, SignInScreenFromData } from "./";
+import styles from "./SignIn.styles";
+import { signInUser } from "./actions";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
+import { TextInputPassword } from "../../components/TextInputStyled/TextInputPassword";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
-import { signUpUser } from "./actions";
-import styles from "./SignUp.styles";
 
 const mapStateToProps = state => ({
   isLoading: state.SignUpState.isLoading
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  signUpUser: (data: SingUpScreenFromData, setErrors: any, navigation: any) =>
-    dispatch(signUpUser(data, setErrors, navigation) as any)
+  signInUser: (data: SignInScreenFromData, setErrors: any, navigation: any) =>
+    dispatch(signInUser(data, setErrors, navigation) as any)
 });
 
 const SignupSchema = Yup.object().shape({
@@ -29,16 +29,16 @@ const SignupSchema = Yup.object().shape({
   password: Yup.string().required("Password is required")
 });
 
-export class Component extends React.PureComponent<SingUpScreenProps> {
-  handleSubmit = async (values, { setErrors }: any) => {
-    const { navigation, signUpUser } = this.props;
+export class Component extends React.PureComponent<SignInScreenProps> {
+  handleSubmit = (values: SignInScreenFromData, { setErrors }: any) => {
+    const { navigation, signInUser } = this.props;
 
-    signUpUser(values, setErrors, navigation);
+    signInUser(values, setErrors, navigation);
+    Keyboard.dismiss();
   };
 
   render() {
     const { navigation, isLoading } = this.props;
-
     return (
       <KeyboardAwareScrollView
         contentContainerStyle={styles.container}
@@ -50,15 +50,16 @@ export class Component extends React.PureComponent<SingUpScreenProps> {
           style={styles.logo}
           resizeMode="contain"
         />
-        <Text style={styles.title}>{"Sign Up".toUpperCase()}</Text>
+        <Text style={styles.title}>{"Login".toUpperCase()}</Text>
         <Formik
           initialValues={{
-            email: "",
-            password: "",
-            name: ""
+            email: "pinahix@88av.net",
+            password: "qwerty"
           }}
           validationSchema={SignupSchema}
           onSubmit={this.handleSubmit}
+          validateOnChange={false}
+          validateOnBlur={false}
         >
           {(props: any) => {
             const { handleSubmit, errors, touched } = props;
@@ -87,47 +88,49 @@ export class Component extends React.PureComponent<SingUpScreenProps> {
                   keyboardType="email-address"
                   formProps={props}
                 />
-                <TextInputStyled
-                  name="name"
-                  label="full name"
-                  formProps={props}
-                />
-
                 <TextInputPassword
                   name="password"
                   label="password"
                   formProps={props}
                 />
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("ForgotPassword")}
+                >
+                  <Text style={styles.btnForgetPasswordText}>
+                    Forgot password ?
+                  </Text>
+                </TouchableOpacity>
 
                 <ButtonStyled
                   style={styles.btnSubmit}
                   onPress={() => handleSubmit()}
-                  text={"Sign Up".toUpperCase()}
+                  text={"Log In".toUpperCase()}
                   loading={isLoading}
                 />
               </View>
             );
           }}
         </Formik>
-        <TouchableOpacity
-          style={styles.createAccountContainer}
-          onPress={() => {
-            navigation.navigate("SignIn");
-          }}
-        >
-          <Text style={styles.createAccountText}>
-            Already have an account?{" "}
-            <Text style={styles.createAccountLink}>
-              {"Login".toUpperCase()}
+        <View style={styles.createAccountContainer}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("SignUp");
+            }}
+          >
+            <Text style={styles.createAccountText}>
+              Don’t have an account?{" "}
+              <Text style={styles.createAccountLink}>
+                {"Sign Up".toUpperCase()}
+              </Text>
             </Text>
-          </Text>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
       </KeyboardAwareScrollView>
     );
   }
 }
 
-export const SignUpScreen = connect(
+export const SignInScreen = connect(
   mapStateToProps,
   mapDispatchToProps
 )(Component);

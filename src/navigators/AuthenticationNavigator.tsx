@@ -1,12 +1,13 @@
 import { createStackNavigator } from "react-navigation";
-import { LoginScreen } from "../pages/Login/Login";
+import { SignInScreen } from "../pages/SignIn/SignIn";
 import { ForgotPasswordScreen } from "../pages/ForgotPassword/ForgotPassword";
+import { ResetPasswordScreen } from "../pages/ResetPassword/ResetPassword";
 import { SignUpScreen } from "../pages/SignUp/SignUp";
 
 export const AuthenticationNavigator = createStackNavigator(
   {
-    Login: {
-      screen: LoginScreen,
+    SignIn: {
+      screen: SignInScreen,
       navigationOptions: ({ navigation, screenProps }: any) => ({
         header: null,
         headerTransparent: true,
@@ -24,6 +25,13 @@ export const AuthenticationNavigator = createStackNavigator(
     },
     ForgotPassword: {
       screen: ForgotPasswordScreen,
+      navigationOptions: ({ navigation, screenProps }: any) => ({
+        headerTransparent: true,
+        headerTintColor: "white"
+      })
+    },
+    ResetPassword: {
+      screen: ResetPasswordScreen,
       navigationOptions: ({ navigation, screenProps }: any) => ({
         headerTransparent: true,
         headerTintColor: "white"

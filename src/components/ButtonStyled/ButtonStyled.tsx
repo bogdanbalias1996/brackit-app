@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity, Text, ActivityIndicator } from "react-native";
 import { LinearGradient } from "expo";
 
 import { ButtonStyledProps } from "./";
@@ -19,6 +19,7 @@ export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
   style = "",
   color = "blue",
   shadow = true,
+  loading = false,
   type
 }): JSX.Element => {
   const getTypeButton = type => {
@@ -58,14 +59,18 @@ export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
         colors={getColorButton(color)}
         style={[styles.btnGradient, getTypeButton(type)]}
       >
-        <Text
-          style={[
-            styles.btnText,
-            { color: color === "white" ? colorBlack : "white" }
-          ]}
-        >
-          {text}
-        </Text>
+        {loading ? (
+          <ActivityIndicator size="small" color="white" />
+        ) : (
+          <Text
+            style={[
+              styles.btnText,
+              { color: color === "white" ? colorBlack : "white" }
+            ]}
+          >
+            {text}
+          </Text>
+        )}
       </LinearGradient>
     </TouchableOpacity>
   );

@@ -5,7 +5,8 @@ export default StyleSheet.create({
   btn: {
     alignSelf: "center",
     backgroundColor: "white",
-    borderRadius: 20
+    borderRadius: 20,
+    minWidth: 80
   },
   btnShadow: {
     shadowColor: colorShadow,
@@ -47,8 +48,12 @@ export default StyleSheet.create({
   },
   btnGradient: {
     borderRadius: 20,
-    paddingVertical: 12,
-    paddingHorizontal: 24
+    minHeight: 36,
+    paddingVertical: 5,
+    paddingHorizontal: 24,
+    minWidth: 80,
+    alignItems: "center",
+    justifyContent: "center"
   },
   btnText: {
     textAlign: "center",
