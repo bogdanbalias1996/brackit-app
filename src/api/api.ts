@@ -12,7 +12,9 @@ export enum ApiMethod {
 export enum ApiOperation {
   Create,
   SignIn,
-  ForgotPassword
+  ForgotPassword,
+  GetProfile,
+  GetTournamentList
 }
 
 export interface INetwork<C> {
@@ -91,8 +93,9 @@ export class CitiznApi implements IApi<ApiOperation> {
       case ApiOperation.SignIn:
       case ApiOperation.ForgotPassword:
         return ApiMethod.POST;
-      // case ApiOperation.GetParties:
-      //   return ApiMethod.GET
+      case ApiOperation.GetProfile:
+      case ApiOperation.GetTournamentList:
+        return ApiMethod.GET;
       default:
         return ApiMethod.UNKNOWN;
     }
@@ -100,9 +103,7 @@ export class CitiznApi implements IApi<ApiOperation> {
 
   getUrl(): string {
     const host = "http://dev.brackit.me/mz";
-    // const {
-    //   partyId,
-    // } = (this.getParams() || {}) as any
+    const { userId, page } = (this.getParams() || {}) as any;
 
     switch (this.operation) {
       case ApiOperation.Create:
@@ -111,9 +112,10 @@ export class CitiznApi implements IApi<ApiOperation> {
         return `${host}/user/login`;
       case ApiOperation.ForgotPassword:
         return `${host}/user/reset-password`;
-      // case ApiOperation.GetParties:
-      //   return `${host}/parties`
-
+      case ApiOperation.GetProfile:
+        return `${host}/user/${userId}`;
+      case ApiOperation.GetTournamentList:
+        return `${host}/brackit/tournament/all/${page}/10`;
       default:
         return "";
     }
@@ -137,7 +139,8 @@ export class CitiznApi implements IApi<ApiOperation> {
       case ApiOperation.SignIn:
       case ApiOperation.ForgotPassword:
         return false;
-        // case ApiOperation.GetParties:
+      case ApiOperation.GetProfile:
+      case ApiOperation.GetTournamentList:
         return true;
       default:
         return false;

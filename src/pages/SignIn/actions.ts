@@ -49,12 +49,10 @@ export const signInUser = (
       }
     })
       .then(async res => {
-        console.log(res);
         dispatch(receiveSignInUser(res));
         navigation.navigate({ routeName: "Profile" });
       })
       .catch(err => {
-        console.log(JSON.stringify(err, null, 2));
         dispatch(failureSignInUser());
         const {
           error = "The email/password combination are incorrect"

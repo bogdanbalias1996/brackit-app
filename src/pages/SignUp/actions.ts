@@ -60,7 +60,6 @@ export const signUpUser = (payload: any, setErrors: any, navigation: any) => {
       }
     })
       .then(async res => {
-        console.log(res);
         dispatch(receiveSignUpUser(res));
         if ((await _retrieveData("isFirst")) === null) {
           navigation.navigate({
@@ -72,7 +71,6 @@ export const signUpUser = (payload: any, setErrors: any, navigation: any) => {
         }
       })
       .catch(err => {
-        console.log(JSON.stringify(err, null, 2));
         dispatch(failureSignUpUser());
         const {
           msg = "The email/password combination are incorrect"

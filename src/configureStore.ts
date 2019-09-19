@@ -5,11 +5,13 @@ import thunk from "redux-thunk";
 import { SignUpReducer } from "./pages/SignUp/reducer";
 import { FontReducer } from "./common/font.reducer";
 import { ChallengeReducer } from "./pages/Play/reducer";
+import { ProfileReducer } from "./pages/Profile/reducer";
 
 const getReducerObject = () => ({
   SignUpState: SignUpReducer,
   FontState: FontReducer,
-  ChallengeState: ChallengeReducer
+  ChallengeState: ChallengeReducer,
+  ProfileState: ProfileReducer
 });
 
 const configureReducers = () =>

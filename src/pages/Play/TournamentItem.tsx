@@ -7,6 +7,7 @@ import {
   Image,
   TouchableOpacity
 } from "react-native";
+import { connect } from "react-redux";
 
 import { TournamentItem } from "./";
 import { Icon } from "../../components/Icon/Icon";
@@ -19,107 +20,133 @@ import {
   colorLightGreyBlue
 } from "../../variables";
 import { navigate } from "../../navigationService";
+import { getTournamentList } from "./actions";
 
-export const renderItem = ({ item }) => {
-  const {
-    avaliableEntries,
-    entries,
-    statusTournament,
-    title,
-    date,
-    location,
-    prize,
-    events
-  } = item as TournamentItem;
+const mapStateToProps = state => ({
+  tournamentList: state.ChallengeState.tournamentList
+});
+const mapDispatchToProps = dispatch => ({
+  getTournamentList: (page: any) => dispatch(getTournamentList(page) as any)
+});
 
-  return (
-    <View>
-      <TouchableOpacity
-        onPress={() =>
-          navigate({
-            routeName: "TournamentDetail",
-            params: { tournamentData: item }
-          })
-        }
-        style={styles.card}
-      >
-        <View style={styles.triangleShape} />
-        <View style={styles.wrapTopContent}>
-          <Text style={styles.status}>{statusTournament.toUpperCase()}</Text>
-          <View style={styles.wrapEntries}>
-            <View style={styles.entry}>
-              <Image
-                style={{ width: 20 }}
-                source={require("../../../assets/court.png")}
-                resizeMode="contain"
-              />
-              <Text style={styles.entryText}>{avaliableEntries}</Text>
-            </View>
-            <View style={styles.entry}>
-              <Image
-                style={{ width: 20 }}
-                source={require("../../../assets/player.png")}
-                resizeMode="contain"
-              />
-              <Text style={styles.entryText}>{entries}</Text>
+export class Component extends React.PureComponent<{
+  data: any;
+  getTournamentList: (page: any) => Promise<any>;
+  tournamentList: any;
+}> {
+  state = {
+    page: 0
+  };
+
+  componentDidMount() {
+    const { getTournamentList, tournamentList } = this.props;
+
+    !tournamentList.length && getTournamentList(this.state.page);
+  }
+
+  renderItem = ({ item }) => {
+    const {
+      avaliableEntries,
+      entries,
+      statusTournament,
+      title,
+      date,
+      location,
+      prize,
+      events
+    } = item as TournamentItem;
+
+    return (
+      <View>
+        <TouchableOpacity
+          onPress={() =>
+            navigate({
+              routeName: "TournamentDetail",
+              params: { tournamentData: item }
+            })
+          }
+          style={styles.card}
+        >
+          <View style={styles.triangleShape} />
+          <View style={styles.wrapTopContent}>
+            <Text style={styles.status}>{statusTournament.toUpperCase()}</Text>
+            <View style={styles.wrapEntries}>
+              <View style={styles.entry}>
+                <Image
+                  style={{ width: 20 }}
+                  source={require("../../../assets/court.png")}
+                  resizeMode="contain"
+                />
+                <Text style={styles.entryText}>{avaliableEntries}</Text>
+              </View>
+              <View style={styles.entry}>
+                <Image
+                  style={{ width: 20 }}
+                  source={require("../../../assets/player.png")}
+                  resizeMode="contain"
+                />
+                <Text style={styles.entryText}>{entries}</Text>
+              </View>
             </View>
           </View>
-        </View>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <View style={styles.questionItem}>
-          <Icon
-            size={16}
-            style={styles.questionIcon}
-            name="location"
-            color={colorLightGreyBlue}
-          />
-          <Text style={styles.answerText}>{location}</Text>
-        </View>
-        <View style={styles.questionItem}>
-          <Icon
-            size={16}
-            style={styles.questionIcon}
-            name="calendar"
-            color={colorLightGreyBlue}
-          />
-          <Text style={styles.answerText}>{date}</Text>
-        </View>
-        <View style={styles.questionItem}>
-          <Icon
-            size={16}
-            style={styles.questionIcon}
-            name="cup"
-            color={colorLightGreyBlue}
-          />
-          <Text style={styles.qestionText}>prize money</Text>
-          <Text style={styles.entryFeeText}>{prize + " INR"}</Text>
-        </View>
-        <View style={styles.eventsItem}>
-          <Text style={styles.qestionText}>events</Text>
-          <View style={styles.categoriesWrap}>
-            {events.map((item, i) => {
-              return (
-                <View key={i} style={styles.categoryItem}>
-                  <Text style={styles.categoryItemText}>{item.value}</Text>
-                </View>
-              );
-            })}
+          <Text style={styles.cardTitle}>{title}</Text>
+          <View style={styles.questionItem}>
+            <Icon
+              size={16}
+              style={styles.questionIcon}
+              name="location"
+              color={colorLightGreyBlue}
+            />
+            <Text style={styles.answerText}>{location}</Text>
           </View>
-        </View>
-      </TouchableOpacity>
-    </View>
-  );
-};
+          <View style={styles.questionItem}>
+            <Icon
+              size={16}
+              style={styles.questionIcon}
+              name="calendar"
+              color={colorLightGreyBlue}
+            />
+            <Text style={styles.answerText}>{date}</Text>
+          </View>
+          <View style={styles.questionItem}>
+            <Icon
+              size={16}
+              style={styles.questionIcon}
+              name="cup"
+              color={colorLightGreyBlue}
+            />
+            <Text style={styles.qestionText}>prize money</Text>
+            <Text style={styles.entryFeeText}>{prize + " INR"}</Text>
+          </View>
+          <View style={styles.eventsItem}>
+            <Text style={styles.qestionText}>events</Text>
+            <View style={styles.categoriesWrap}>
+              {events.map((item, i) => {
+                return (
+                  <View key={i} style={styles.categoryItem}>
+                    <Text style={styles.categoryItemText}>{item.value}</Text>
+                  </View>
+                );
+              })}
+            </View>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
+  };
 
-export const TournamentItems = ({ data }) => {
-  return (
-    <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={item => item.id}
-    />
-  );
-};
+  render() {
+    const { data, tournamentList } = this.props;
+
+    return (
+      <FlatList
+        data={data}
+        renderItem={this.renderItem}
+        keyExtractor={item => item.id}
+      />
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   card: {
@@ -256,3 +283,8 @@ const styles = StyleSheet.create({
     color: colorBlack
   }
 });
+
+export const TournamentItems = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Component);

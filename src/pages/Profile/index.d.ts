@@ -1,6 +1,11 @@
-export interface ProfileScreenStateProps {}
+export interface ProfileScreenStateProps {
+  userId: string;
+  profileInfo: any;
+}
 
-export type ProfileScreenDispatchProps = {};
+export type ProfileScreenDispatchProps = {
+  getProfile: (id: string) => Promise<any>;
+};
 
 export type ProfileScreenProps = ProfileScreenStateProps &
   ProfileScreenDispatchProps;

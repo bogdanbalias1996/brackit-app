@@ -46,8 +46,7 @@ export const forgotPassword = (
         "content-type": "application/x-www-form-urlencoded"
       }
     })
-      .then(async res => {
-        console.log(res);
+      .then(res => {
         dispatch(receiveForgotPasswordUser());
         navigation.navigate({
           routeName: "ResetPassword",
@@ -55,7 +54,6 @@ export const forgotPassword = (
         });
       })
       .catch(err => {
-        console.log(JSON.stringify(err, null, 2));
         dispatch(failureForgotPassword());
         const {
           error = "The email/password combination are incorrect"

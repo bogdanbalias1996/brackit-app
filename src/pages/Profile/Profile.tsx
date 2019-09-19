@@ -1,20 +1,19 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { IGlobalState } from "../../coreTypes";
 import { SafeAreaView, FlatList } from "react-navigation";
-import { ProfileScreenProps } from ".";
-import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Text, View, TouchableOpacity } from "react-native";
-import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
+import { Dispatch } from "redux";
+
 import { Icon } from "../../components/Icon/Icon";
 import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";
-
-import { colorTextGray, colorLightGreyBlue } from "../../variables";
-
+import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
+import { colorLightGreyBlue } from "../../variables";
+import { ProfileScreenProps } from ".";
 import styles from "./Profile.styles";
 import ProfileStatsItem from "./ProfileStatsItem";
 import { navigate } from "../../navigationService";
 import TabListItem from "../../components/TabListItem/TabListItem";
+import { getProfile } from "./actions";
 
 const Header = props => (
   <HeaderRounded
@@ -30,13 +29,24 @@ const Header = props => (
   />
 );
 
-const mapStateToProps = (state: IGlobalState) => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapStateToProps = state => ({
+  userId: state.SignUpState.userId,
+  profileInfo: state.ProfileState.profileInfo
+});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  getProfile: (id: string) => dispatch(getProfile(id) as any)
+});
 
 export class Component extends React.PureComponent<ProfileScreenProps> {
   static navigationOptions = {
     header: props => <Header {...props} />
   };
+
+  componentDidMount() {
+    const { getProfile, userId } = this.props;
+
+    userId && userId.length && getProfile(userId);
+  }
 
   render() {
     const statsItems = [
@@ -73,6 +83,7 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
         component: "MatchesTournaments"
       }
     ];
+    const { profileInfo } = this.props;
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
@@ -90,7 +101,9 @@ export class Component extends React.PureComponent<ProfileScreenProps> {
 
               <View style={styles.profileHeaderInfoWrapper}>
                 <View style={styles.profileHeaderInfo}>
-                  <Text style={styles.profileHeaderInfoName}>Erika Mateo</Text>
+                  <Text style={styles.profileHeaderInfoName}>
+                    {profileInfo.name ? profileInfo.name : "-"}
+                  </Text>
                   <Icon name="edit" color={colorLightGreyBlue} size={24} />
                 </View>
                 <Text

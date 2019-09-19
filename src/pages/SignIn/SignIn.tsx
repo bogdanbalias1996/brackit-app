@@ -53,8 +53,8 @@ export class Component extends React.PureComponent<SignInScreenProps> {
         <Text style={styles.title}>{"Login".toUpperCase()}</Text>
         <Formik
           initialValues={{
-            email: "pinahix@88av.net",
-            password: "qwerty"
+            email: "prashanth238@gmail.com",
+            password: "testing"
           }}
           validationSchema={SignupSchema}
           onSubmit={this.handleSubmit}
