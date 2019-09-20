@@ -19,10 +19,11 @@ export const setActiveTab = data => {
 };
 
 export const RECEIVE_GET_TOURNAMENT_LIST = "RECEIVE_GET_TOURNAMENT_LIST";
-export const receiveGetTournamentList = (data): IAction<void> => {
+export const receiveGetTournamentList = (data, page) => {
   return {
     type: RECEIVE_GET_TOURNAMENT_LIST,
-    data: data
+    data: data,
+    page: page
   };
 };
 
@@ -30,12 +31,13 @@ export const getTournamentList = (page: any) => {
   return (dispatch: Dispatch) => {
     request({
       operation: ApiOperation.GetTournamentList,
-      params: {
-        page: page
+      variables: {
+        first: page,
+        max: 10
       }
     })
       .then(res => {
-        dispatch(receiveGetTournamentList(res));
+        dispatch(receiveGetTournamentList(res, page));
       })
       .catch(err => {
         console.log(JSON.stringify(err, null, 2));

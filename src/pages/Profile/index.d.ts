@@ -1,6 +1,6 @@
 export interface ProfileScreenStateProps {
   userId: string;
-  profileInfo: any;
+  profileInfo: Profile;
 }
 
 export type ProfileScreenDispatchProps = {
@@ -16,3 +16,20 @@ export interface ProfileStatsItemProps {
   name: string;
   isSolid?: boolean;
 }
+
+export type Profile = {
+  id: string;
+  name: string;
+  handle: string;
+  email: string;
+  status: string;
+  role: string;
+  verified: boolean;
+  flagged: boolean;
+  followingCnt: number;
+  followerCnt: number;
+  following: boolean;
+  fbConnected: boolean;
+  twitterConnected: boolean;
+  profileInfo: any;
+};

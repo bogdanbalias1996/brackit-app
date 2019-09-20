@@ -7,6 +7,7 @@ import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Text, View, TouchableOpacity, FlatList } from "react-native";
 import { Icon } from "../../components/Icon/Icon";
 import { Tabs, defaultTabsStyles } from "../../components/Tabs/Tabs";
+import { format } from "date-fns";
 
 import { colorTextGray, colorLightGreyBlue } from "../../variables";
 
@@ -44,12 +45,12 @@ export class Component extends React.PureComponent<
   render() {
     const { params } = this.props.navigation.state;
 
-    const drawsData = params.tournamentData.events.map(val => {
-      return {
-        title: val.value,
-        component: "TournamentDraws"
-      };
-    });
+    // const drawsData = params.tournamentData.events.map(val => {
+    //   return {
+    //     title: val.value,
+    //     component: "TournamentDraws"
+    //   };
+    // });
 
     const tabsConfig = [
       // {
@@ -64,32 +65,37 @@ export class Component extends React.PureComponent<
       //     />
       //   )
       // },
-      {
-        title: "Entries",
-        component: () => <EntryTab events={params.tournamentData.events} />
-      },
-      {
-        title: "Draws",
-        component: () => (
-          <FlatList
-            data={drawsData}
-            renderItem={TabListItem}
-            keyExtractor={item => item.title}
-            style={{ flex: 1 }}
-          />
-        )
-      },
-      {
-        title: "Winners",
-        component: () => <WinnerTab events={params.tournamentData.events} />
-      }
+      // {
+      //   title: "Entries",
+      //   component: () => <EntryTab events={params.tournamentData.events} />
+      // },
+      // {
+      //   title: "Draws",
+      //   component: () => (
+      //     <FlatList
+      //       data={drawsData}
+      //       renderItem={TabListItem}
+      //       keyExtractor={item => item.title}
+      //       style={{ flex: 1 }}
+      //     />
+      //   )
+      // },
+      // {
+      //   title: "Winners",
+      //   component: () => <WinnerTab events={params.tournamentData.events} />
+      // }
     ];
 
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <View style={styles.tournamentContent}>
-          <Text style={styles.status}>
-            {params && params.tournamentData.statusTournament.toUpperCase()}
+          <Text
+            style={[
+              styles.status,
+              { color: params ? params.tournamentData.gradeColorCode : "white" }
+            ]}
+          >
+            {params && params.tournamentData.grade.toUpperCase()}
           </Text>
           <Text style={styles.title}>
             {params && params.tournamentData.title}
@@ -102,7 +108,19 @@ export class Component extends React.PureComponent<
               color={colorLightGreyBlue}
             />
             <Text style={styles.text}>
-              {params && params.tournamentData.date}
+              {params && params.tournamentData.startDate
+                ? format(
+                    new Date(params.tournamentData.startDate),
+                    "dd MMMM, yyyy"
+                  )
+                : ""}
+              {params && params.tournamentData.endDate
+                ? " - " +
+                  format(
+                    new Date(params.tournamentData.endDate),
+                    "dd MMMM, yyyy"
+                  )
+                : ""}
             </Text>
           </View>
           <View style={styles.textItem}>
@@ -113,12 +131,16 @@ export class Component extends React.PureComponent<
               color={colorLightGreyBlue}
             />
             <Text style={styles.text}>
-              {params && params.tournamentData.prize + " INR"}
+              {params.tournamentData.currency
+                ? params.tournamentData.prizeMoney +
+                  " " +
+                  params.tournamentData.currency
+                : ""}
             </Text>
           </View>
         </View>
 
-        <View style={{ flex: 1 }}>
+        {/* <View style={{ flex: 1 }}>
           <Tabs
             config={tabsConfig}
             style={{ flex: 1 }}
@@ -126,7 +148,7 @@ export class Component extends React.PureComponent<
             stylesItemText={styles.tabsItemText}
             stylesTabsContainer={styles.tabsContainer}
           />
-        </View>
+        </View> */}
       </SafeAreaView>
     );
   }

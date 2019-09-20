@@ -103,7 +103,7 @@ export class CitiznApi implements IApi<ApiOperation> {
 
   getUrl(): string {
     const host = "http://dev.brackit.me/mz";
-    const { userId, page } = (this.getParams() || {}) as any;
+    const { userId } = (this.getParams() || {}) as any;
 
     switch (this.operation) {
       case ApiOperation.Create:
@@ -115,7 +115,7 @@ export class CitiznApi implements IApi<ApiOperation> {
       case ApiOperation.GetProfile:
         return `${host}/user/${userId}`;
       case ApiOperation.GetTournamentList:
-        return `${host}/brackit/tournament/all/${page}/10`;
+        return `${host}/brackit/tournament/all/`;
       default:
         return "";
     }

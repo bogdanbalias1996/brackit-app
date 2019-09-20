@@ -28,6 +28,7 @@ export class ChallengeState {
   activeTab: number;
   acceptedProposalUser: any;
   tournamentList: any;
+  page: number;
 
   constructor() {
     this.challengeName = "";
@@ -40,6 +41,7 @@ export class ChallengeState {
     this.activeTab = null;
     this.acceptedProposalUser = {};
     this.tournamentList = [];
+    this.page = 0;
   }
 }
 
@@ -120,7 +122,11 @@ export const ChallengeReducer = (
     case RECEIVE_GET_TOURNAMENT_LIST:
       return {
         ...state,
-        tournamentList: action.data
+        tournamentList:
+          action.page > 1
+            ? state.tournamentList.concat(action.data)
+            : action.data,
+        page: action.page
       };
 
     default:

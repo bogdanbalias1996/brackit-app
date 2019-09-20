@@ -3,27 +3,23 @@ import {
   View,
   Text,
   FlatList,
-  StyleSheet,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  ActivityIndicator
 } from "react-native";
 import { connect } from "react-redux";
+import { format } from "date-fns";
 
 import { TournamentItem } from "./";
 import { Icon } from "../../components/Icon/Icon";
-import {
-  colorShadowGray,
-  colorTextGray,
-  colorBlack,
-  colorGradientBlue,
-  colorOrangeText,
-  colorLightGreyBlue
-} from "../../variables";
+import { colorLightGreyBlue, colorBlueStart } from "../../variables";
 import { navigate } from "../../navigationService";
 import { getTournamentList } from "./actions";
+import styles from "./TournamentItem.styles";
 
 const mapStateToProps = state => ({
-  tournamentList: state.ChallengeState.tournamentList
+  tournamentList: state.ChallengeState.tournamentList,
+  page: state.ChallengeState.page
 });
 const mapDispatchToProps = dispatch => ({
   getTournamentList: (page: any) => dispatch(getTournamentList(page) as any)
@@ -33,28 +29,30 @@ export class Component extends React.PureComponent<{
   data: any;
   getTournamentList: (page: any) => Promise<any>;
   tournamentList: any;
+  page: number;
 }> {
-  state = {
-    page: 0
-  };
-
   componentDidMount() {
-    const { getTournamentList, tournamentList } = this.props;
+    const { getTournamentList, tournamentList, page } = this.props;
 
-    !tournamentList.length && getTournamentList(this.state.page);
+    !tournamentList.length && getTournamentList(page);
   }
 
   renderItem = ({ item }) => {
     const {
-      avaliableEntries,
+      currency,
+      endDate,
       entries,
-      statusTournament,
+      events,
+      grade,
+      gradeColorCode,
+      players,
+      prizeMoney,
+      startDate,
       title,
-      date,
-      location,
-      prize,
-      events
+      tournamentLoc
     } = item as TournamentItem;
+
+    const eventsArr = events ? events.split(",") : [];
 
     return (
       <View>
@@ -67,9 +65,24 @@ export class Component extends React.PureComponent<{
           }
           style={styles.card}
         >
-          <View style={styles.triangleShape} />
+          <View
+            style={[
+              styles.triangleShape,
+              {
+                borderLeftColor: gradeColorCode ? gradeColorCode : "white",
+                borderRightColor: gradeColorCode ? gradeColorCode : "white"
+              }
+            ]}
+          />
           <View style={styles.wrapTopContent}>
-            <Text style={styles.status}>{statusTournament.toUpperCase()}</Text>
+            <Text
+              style={[
+                styles.status,
+                { color: gradeColorCode ? gradeColorCode : "white" }
+              ]}
+            >
+              {grade ? grade.toUpperCase() : ""}
+            </Text>
             <View style={styles.wrapEntries}>
               <View style={styles.entry}>
                 <Image
@@ -77,7 +90,7 @@ export class Component extends React.PureComponent<{
                   source={require("../../../assets/court.png")}
                   resizeMode="contain"
                 />
-                <Text style={styles.entryText}>{avaliableEntries}</Text>
+                <Text style={styles.entryText}>{entries ? entries : 0}</Text>
               </View>
               <View style={styles.entry}>
                 <Image
@@ -85,11 +98,11 @@ export class Component extends React.PureComponent<{
                   source={require("../../../assets/player.png")}
                   resizeMode="contain"
                 />
-                <Text style={styles.entryText}>{entries}</Text>
+                <Text style={styles.entryText}>{players ? players : 0}</Text>
               </View>
             </View>
           </View>
-          <Text style={styles.cardTitle}>{title}</Text>
+          <Text style={styles.cardTitle}>{title ? title : ""}</Text>
           <View style={styles.questionItem}>
             <Icon
               size={16}
@@ -97,7 +110,9 @@ export class Component extends React.PureComponent<{
               name="location"
               color={colorLightGreyBlue}
             />
-            <Text style={styles.answerText}>{location}</Text>
+            <Text style={styles.answerText}>
+              {tournamentLoc ? tournamentLoc : ""}
+            </Text>
           </View>
           <View style={styles.questionItem}>
             <Icon
@@ -106,7 +121,12 @@ export class Component extends React.PureComponent<{
               name="calendar"
               color={colorLightGreyBlue}
             />
-            <Text style={styles.answerText}>{date}</Text>
+            <Text style={styles.answerText}>
+              {startDate ? format(new Date(startDate), "dd MMMM, yyyy") : ""}
+              {endDate
+                ? " - " + format(new Date(endDate), "dd MMMM, yyyy")
+                : ""}
+            </Text>
           </View>
           <View style={styles.questionItem}>
             <Icon
@@ -116,15 +136,17 @@ export class Component extends React.PureComponent<{
               color={colorLightGreyBlue}
             />
             <Text style={styles.qestionText}>prize money</Text>
-            <Text style={styles.entryFeeText}>{prize + " INR"}</Text>
+            <Text style={styles.entryFeeText}>
+              {currency ? prizeMoney + " " + currency : ""}
+            </Text>
           </View>
           <View style={styles.eventsItem}>
             <Text style={styles.qestionText}>events</Text>
             <View style={styles.categoriesWrap}>
-              {events.map((item, i) => {
+              {eventsArr.map((item, i) => {
                 return (
                   <View key={i} style={styles.categoryItem}>
-                    <Text style={styles.categoryItemText}>{item.value}</Text>
+                    <Text style={styles.categoryItemText}>{item}</Text>
                   </View>
                 );
               })}
@@ -135,154 +157,35 @@ export class Component extends React.PureComponent<{
     );
   };
 
-  render() {
-    const { data, tournamentList } = this.props;
+  paginationFunc = () => {
+    const { getTournamentList, page } = this.props;
+    console.log("page", page);
+    let newpage = page + 1;
 
-    return (
+    getTournamentList(newpage);
+  };
+
+  render() {
+    const { tournamentList } = this.props;
+    return tournamentList.length ? (
       <FlatList
-        data={data}
+        data={tournamentList}
         renderItem={this.renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={(item, index) => index.toString()}
+        onEndReached={() => this.paginationFunc()}
+        onEndReachedThreshold={0.1}
       />
+    ) : (
+      <View style={{ flex: 1, justifyContent: "center" }}>
+        <ActivityIndicator
+          size="large"
+          color={colorBlueStart}
+          style={{ alignSelf: "center" }}
+        />
+      </View>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  card: {
-    padding: 15,
-    paddingTop: 0,
-    paddingLeft: 25,
-    marginVertical: 10,
-    marginRight: 30,
-    backgroundColor: "white",
-    borderTopRightRadius: 15,
-    borderBottomRightRadius: 15,
-    shadowColor: colorShadowGray,
-    shadowOffset: {
-      width: 0,
-      height: 3
-    },
-    shadowOpacity: 0.6,
-    shadowRadius: 7,
-    elevation: 6,
-    position: "relative"
-  },
-  triangleShape: {
-    width: 0,
-    height: 0,
-    borderLeftWidth: 38,
-    borderRightWidth: 0,
-    borderBottomWidth: 38,
-    borderStyle: "solid",
-    backgroundColor: "transparent",
-    borderLeftColor: "#00BCD4",
-    borderRightColor: "#00BCD4",
-    borderBottomColor: "transparent",
-    position: "absolute",
-    top: 0,
-    left: 0
-  },
-  wrapTopContent: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "flex-end"
-  },
-  wrapEntries: {
-    flexDirection: "row"
-  },
-  entry: {
-    flexDirection: "row",
-    marginLeft: 15,
-    alignItems: "center"
-  },
-  entryText: {
-    fontSize: 10,
-    fontFamily: "montserrat-medium",
-    color: colorBlack,
-    marginLeft: 5
-  },
-  status: {
-    fontSize: 10,
-    fontFamily: "montserrat-bold",
-    color: "#00BCD4"
-  },
-  cardTitle: {
-    fontSize: 14,
-    fontFamily: "montserrat-semibold",
-    color: colorBlack,
-    marginBottom: 5
-  },
-  cardSubTitle: {
-    fontSize: 10,
-    fontFamily: "montserrat-medium",
-    color: colorBlack
-  },
-  questionItem: {
-    marginVertical: 5,
-    paddingLeft: 25,
-    position: "relative",
-    paddingRight: 15
-  },
-  eventsItem: {
-    marginVertical: 5,
-    paddingRight: 15
-  },
-  questionIcon: {
-    position: "absolute",
-    top: 0,
-    left: 0
-  },
-  qestionText: {
-    fontSize: 12,
-    fontFamily: "montserrat-medium",
-    color: colorTextGray
-  },
-  answerText: {
-    fontSize: 13,
-    fontFamily: "montserrat-medium",
-    color: colorBlack
-  },
-  prizeText: {
-    fontFamily: "montserrat-semibold",
-    fontSize: 14,
-    color: colorOrangeText
-  },
-  entryFeeText: {
-    fontFamily: "montserrat-semibold",
-    fontSize: 14,
-    color: colorGradientBlue
-  },
-  questionItemContent: {
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  itemIcon: {
-    width: 15,
-    height: 15,
-    marginRight: 5,
-    marginTop: 2
-  },
-  categoriesWrap: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 5
-  },
-  categoryItem: {
-    paddingVertical: 5,
-    paddingHorizontal: 15,
-    borderRadius: 20,
-    borderWidth: 1,
-    borderColor: colorGradientBlue,
-    marginRight: 5,
-    marginBottom: 5
-  },
-  categoryItemText: {
-    fontSize: 10,
-    fontFamily: "montserrat-bold",
-    color: colorBlack
-  }
-});
 
 export const TournamentItems = connect(
   mapStateToProps,
