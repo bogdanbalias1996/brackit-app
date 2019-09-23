@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 import styles from "./ButtonGroup.styles";
 import { ButtonGroupProps, ButtonGroupItem } from "./";
 import { colorBlueStart, colorBlueEnd } from "../../variables";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { Font } from "expo";
+import * as Font from "expo-font";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { Provider } from "react-redux";
 import { getStore } from "./src/configureStore";

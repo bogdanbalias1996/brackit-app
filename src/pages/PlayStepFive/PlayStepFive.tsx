@@ -2,7 +2,7 @@ import * as React from "react";
 import { Text, View, TouchableOpacity, Image } from "react-native";
 import { connect } from "react-redux";
 import { SafeAreaView } from "react-navigation";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 import ModalSelector from "react-native-modal-selector";
 
 import { clearChallengeData } from "../Play/actions";

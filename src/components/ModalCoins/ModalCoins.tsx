@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TouchableOpacity, Text, View, Image, FlatList } from "react-native";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 import Modal from "react-native-modal";
 
 import { Icon } from "../../components/Icon/Icon";

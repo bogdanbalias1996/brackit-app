@@ -8,7 +8,7 @@ import {
   Platform
 } from "react-native";
 import { connect } from "react-redux";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { Icon } from "../../components/Icon/Icon";
 import { SelectCustomProps } from "./";

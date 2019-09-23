@@ -1,6 +1,6 @@
 import * as React from "react";
 import { View, Text, Image } from "react-native";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { AvatarStatusProps } from "./";
 import styles from "./AvatarStatus.styles";

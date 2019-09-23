@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text, View, Image } from "react-native";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 import Modal from "react-native-modal";
 
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";

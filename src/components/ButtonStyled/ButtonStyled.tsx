@@ -1,6 +1,6 @@
 import * as React from "react";
 import { TouchableOpacity, Text, ActivityIndicator } from "react-native";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { ButtonStyledProps } from "./";
 import styles from "./ButtonStyled.styles";
@@ -20,7 +20,7 @@ export const ButtonStyled: React.SFC<ButtonStyledProps> = ({
   color = "blue",
   shadow = true,
   loading = false,
-  type
+  type = ""
 }): JSX.Element => {
   const getTypeButton = type => {
     switch (type) {

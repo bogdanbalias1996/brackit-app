@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity, Text, StyleSheet, Image } from "react-native";
 import { colorBorderBlue } from "../../variables";
 import { ProfileStatsItemProps } from ".";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 import { getColorsByScore } from "../../utils/skillLevel";
 
 const ProfileStatsItem: React.FunctionComponent<ProfileStatsItemProps> = ({

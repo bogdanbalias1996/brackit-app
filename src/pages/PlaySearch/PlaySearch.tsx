@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   TextInput
 } from "react-native";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { TournamentItem } from "./TournamentItem";
 import { AvatarStatus } from "../../components/AvatarStatus/AvatarStatus";

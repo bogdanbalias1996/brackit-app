@@ -7,7 +7,7 @@ import {
   FlatList
 } from "react-native";
 import { connect } from "react-redux";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { IGlobalState } from "../../coreTypes";
 import { goBack } from "../../navigationService";

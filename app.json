@@ -3,11 +3,8 @@
     "name": "BrackIt",
     "slug": "brackit",
     "privacy": "public",
-    "sdkVersion": "32.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "sdkVersion": "35.0.0",
+    "platforms": ["ios", "android"],
     "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,9 +16,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "in.bitsport.brackit"
@@ -30,11 +25,7 @@
       "package": "in.bitsport.brackit"
     },
     "packagerOpts": {
-      "sourceExts": [
-        "ts",
-        "tsx",
-        "js"
-      ],
+      "sourceExts": ["ts", "tsx", "js"],
       "transformer": "node_modules/react-native-typescript-transformer/index.js"
     }
   }

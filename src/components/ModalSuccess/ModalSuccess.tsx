@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Text, View } from "react-native";
 import Modal from "react-native-modal";
-import { LinearGradient } from "expo";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { ModalSuccessProps } from "./";
 import { Icon } from "../../components/Icon/Icon";
