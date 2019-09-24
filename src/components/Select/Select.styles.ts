@@ -1,32 +1,26 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   selectedValue: {
     paddingRight: 10
   },
   selectOptionsContainer: {
-    position: 'absolute',
-    top: '100%',
+    position: "absolute",
+    top: "100%",
     zIndex: 20,
-    width: '100%'
+    width: "100%"
   },
   option: {
     height: 42,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: 10,
     paddingLeft: 16,
     paddingRight: 16,
-    backgroundColor: 'white'
+    backgroundColor: "white"
   },
   selectedOption: {
-    // shadowColor: 'black',
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 3
-    // },
-    // shadowOpacity: 0.1,
     borderRadius: 5
   },
   preview: {
@@ -35,7 +29,7 @@ export default StyleSheet.create({
     marginRight: 10
   },
   optionContent: {
-    flexDirection: 'row',
-    alignItems: 'center'
+    flexDirection: "row",
+    alignItems: "center"
   }
-})
+});

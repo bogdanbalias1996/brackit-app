@@ -7,14 +7,15 @@ export interface ForgotPasswordScreenStateProps {
   navigation: NavigationScreenProp<any, any>;
   navigationOptions?: NavigationScreenOptions;
   isLoading: boolean;
+  errorMsg: string;
 }
 
 export type ForgotPasswordScreenDispatchProps = {
   forgotPassword: (
     data: ForgotPasswordScreenFromData,
-    setErrors: any,
     navigation: any
   ) => Promise<any>;
+  clearErrorAuth: () => any;
 };
 
 export type ForgotPasswordScreenProps = ForgotPasswordScreenStateProps &

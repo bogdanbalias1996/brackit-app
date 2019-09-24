@@ -1,5 +1,4 @@
 import { Dispatch } from "redux";
-import { IAction } from "../../coreTypes";
 import { ApiOperation } from "../../api/api";
 import { request } from "../../api/network";
 

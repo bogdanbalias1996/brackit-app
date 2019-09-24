@@ -6,7 +6,7 @@ export default StyleSheet.create({
     position: "relative",
     justifyContent: "center",
     alignItems: "center",
-    minWidth: 65,
+    minWidth: 65
   },
   avatar: {
     width: 50,
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     bottom: 10,
     width: 40,
     height: 15,
-    borderRadius: 15,
+    borderRadius: 7.5,
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,

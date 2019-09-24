@@ -9,17 +9,20 @@ import { Text, View, Keyboard, Image, TouchableOpacity } from "react-native";
 import { SignInScreenProps, SignInScreenFromData } from "./";
 import styles from "./SignIn.styles";
 import { signInUser } from "./actions";
+import { clearErrorAuth } from "../SignUp/actions";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { TextInputPassword } from "../../components/TextInputStyled/TextInputPassword";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 
 const mapStateToProps = state => ({
-  isLoading: state.SignUpState.isLoading
+  isLoading: state.SignUpState.isLoading,
+  errorMsg: state.SignUpState.errorMsg
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  signInUser: (data: SignInScreenFromData, setErrors: any, navigation: any) =>
-    dispatch(signInUser(data, setErrors, navigation) as any)
+  signInUser: (data: SignInScreenFromData, navigation: any) =>
+    dispatch(signInUser(data, navigation) as any),
+  clearErrorAuth: () => dispatch(clearErrorAuth() as any)
 });
 
 const SignupSchema = Yup.object().shape({
@@ -30,15 +33,16 @@ const SignupSchema = Yup.object().shape({
 });
 
 export class Component extends React.PureComponent<SignInScreenProps> {
-  handleSubmit = (values: SignInScreenFromData, { setErrors }: any) => {
+  handleSubmit = (values: SignInScreenFromData) => {
     const { navigation, signInUser } = this.props;
 
-    signInUser(values, setErrors, navigation);
+    signInUser(values, navigation);
     Keyboard.dismiss();
   };
 
   render() {
-    const { navigation, isLoading } = this.props;
+    const { navigation, isLoading, errorMsg, clearErrorAuth } = this.props;
+
     return (
       <KeyboardAwareScrollView
         contentContainerStyle={styles.container}
@@ -76,11 +80,13 @@ export class Component extends React.PureComponent<SignInScreenProps> {
 
             return (
               <View style={styles.form}>
-                {Boolean(formattedErrorString) && (
+                {Boolean(formattedErrorString) || errorMsg.length ? (
                   <View style={styles.formErrorContainer}>
-                    <Text style={styles.formError}>{formattedErrorString}</Text>
+                    <Text style={styles.formError}>
+                      {formattedErrorString || errorMsg}
+                    </Text>
                   </View>
-                )}
+                ) : null}
                 <TextInputStyled
                   borderTop={true}
                   name="email"
@@ -94,7 +100,10 @@ export class Component extends React.PureComponent<SignInScreenProps> {
                   formProps={props}
                 />
                 <TouchableOpacity
-                  onPress={() => navigation.navigate("ForgotPassword")}
+                  onPress={() => {
+                    navigation.navigate("ForgotPassword");
+                    clearErrorAuth();
+                  }}
                 >
                   <Text style={styles.btnForgetPasswordText}>
                     Forgot password ?
@@ -115,6 +124,7 @@ export class Component extends React.PureComponent<SignInScreenProps> {
           <TouchableOpacity
             onPress={() => {
               navigation.navigate("SignUp");
+              clearErrorAuth();
             }}
           >
             <Text style={styles.createAccountText}>

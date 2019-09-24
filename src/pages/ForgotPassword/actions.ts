@@ -3,37 +3,34 @@ import { ApiOperation } from "../../api/api";
 import { request } from "../../api/network";
 import { ForgotPasswordScreenFromData } from "./";
 import { IAction } from "../../coreTypes";
+let get = require("lodash.get");
 
 export const REQUEST_FORGOTPASSWORD_USER = "REQUEST_FORGOTPASSWORD_USER ";
-export const requestForgotPassword = (): IAction<void> => {
+export const requestForgotPassword = () => {
   return {
-    type: REQUEST_FORGOTPASSWORD_USER,
-    data: undefined
+    type: REQUEST_FORGOTPASSWORD_USER
   };
 };
 
 export const RECEIVE_FORGOTPASSWORD_USER = "RECEIVE_FORGOTPASSWORD_USER";
-export const receiveForgotPasswordUser = (): IAction<void> => {
+export const receiveForgotPasswordUser = () => {
   return {
-    type: RECEIVE_FORGOTPASSWORD_USER,
-    data: undefined
+    type: RECEIVE_FORGOTPASSWORD_USER
   };
 };
 
 export const FAILURE_FORGOTPASSWORD_USER = "FAILURE_FORGOTPASSWORD_USER";
-export const failureForgotPassword = (): IAction<void> => {
+export const failureForgotPassword = (data): IAction<string> => {
   return {
     type: FAILURE_FORGOTPASSWORD_USER,
-    data: undefined
+    data: data
   };
 };
 
 export const forgotPassword = (
   payload: ForgotPasswordScreenFromData,
-  setErrors: any,
   navigation: any
 ) => {
-  console.log(payload);
   return (dispatch: Dispatch) => {
     const { emailId } = payload;
     dispatch(requestForgotPassword());
@@ -54,14 +51,8 @@ export const forgotPassword = (
         });
       })
       .catch(err => {
-        dispatch(failureForgotPassword());
-        const {
-          error = "The email/password combination are incorrect"
-        } = err.response.body;
-
-        setErrors({
-          email: error
-        });
+        const error = get(err, `response.body.msg`, "");
+        dispatch(failureForgotPassword(error));
       });
   };
 };

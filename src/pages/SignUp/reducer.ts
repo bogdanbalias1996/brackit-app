@@ -3,7 +3,9 @@ import {
   RECEIVE_SIGNUP_USER,
   REMOVE_SESSION,
   REQUEST_SIGNUP_USER,
-  FAILURE_SIGNUP_USER
+  FAILURE_SIGNUP_USER,
+  CLEAR_ERROR_AUTH,
+  SET_USER_ID
 } from "./actions";
 import {
   RECEIVE_SIGNIN_USER,
@@ -25,11 +27,13 @@ export class SignUpState {
   accessToken: string;
   userId: string;
   isLoading: boolean;
+  errorMsg: string;
 
   constructor() {
     this.accessToken = "";
     this.userId = "";
     this.isLoading = false;
+    this.errorMsg = "";
   }
 }
 
@@ -49,7 +53,8 @@ export const SignUpReducer = (
     case FAILURE_SIGNUP_USER:
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        errorMsg: action.data
       };
 
     case RECEIVE_SIGNUP_USER:
@@ -71,7 +76,8 @@ export const SignUpReducer = (
     case FAILURE_SIGNIN_USER:
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        errorMsg: action.data
       };
 
     case RECEIVE_SIGNIN_USER:
@@ -93,7 +99,8 @@ export const SignUpReducer = (
     case FAILURE_FORGOTPASSWORD_USER:
       return {
         ...state,
-        isLoading: false
+        isLoading: false,
+        errorMsg: action.data
       };
 
     case RECEIVE_FORGOTPASSWORD_USER:
@@ -102,9 +109,21 @@ export const SignUpReducer = (
         isLoading: false
       };
 
+    case SET_USER_ID:
+      return {
+        ...state,
+        userId: action.data
+      };
+
     case REMOVE_SESSION:
       clearLocalStorage();
       return new SignUpState();
+
+    case CLEAR_ERROR_AUTH:
+      return {
+        ...state,
+        errorMsg: ""
+      };
 
     default:
       return state;

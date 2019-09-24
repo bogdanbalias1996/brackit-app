@@ -10,16 +10,18 @@ import { SingUpScreenProps, SingUpScreenFromData } from "./";
 import { TextInputPassword } from "../../components/TextInputStyled/TextInputPassword";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
-import { signUpUser } from "./actions";
+import { signUpUser, clearErrorAuth } from "./actions";
 import styles from "./SignUp.styles";
 
 const mapStateToProps = state => ({
-  isLoading: state.SignUpState.isLoading
+  isLoading: state.SignUpState.isLoading,
+  errorMsg: state.SignUpState.errorMsg
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  signUpUser: (data: SingUpScreenFromData, setErrors: any, navigation: any) =>
-    dispatch(signUpUser(data, setErrors, navigation) as any)
+  signUpUser: (data: SingUpScreenFromData, navigation: any) =>
+    dispatch(signUpUser(data, navigation) as any),
+  clearErrorAuth: () => dispatch(clearErrorAuth() as any)
 });
 
 const SignupSchema = Yup.object().shape({
@@ -30,14 +32,14 @@ const SignupSchema = Yup.object().shape({
 });
 
 export class Component extends React.PureComponent<SingUpScreenProps> {
-  handleSubmit = async (values, { setErrors }: any) => {
+  handleSubmit = async values => {
     const { navigation, signUpUser } = this.props;
 
-    signUpUser(values, setErrors, navigation);
+    signUpUser(values, navigation);
   };
 
   render() {
-    const { navigation, isLoading } = this.props;
+    const { navigation, isLoading, errorMsg, clearErrorAuth } = this.props;
 
     return (
       <KeyboardAwareScrollView
@@ -75,11 +77,13 @@ export class Component extends React.PureComponent<SingUpScreenProps> {
 
             return (
               <View style={styles.form}>
-                {Boolean(formattedErrorString) && (
+                {Boolean(formattedErrorString) || errorMsg.length ? (
                   <View style={styles.formErrorContainer}>
-                    <Text style={styles.formError}>{formattedErrorString}</Text>
+                    <Text style={styles.formError}>
+                      {formattedErrorString || errorMsg}
+                    </Text>
                   </View>
-                )}
+                ) : null}
                 <TextInputStyled
                   borderTop={true}
                   name="email"
@@ -113,6 +117,7 @@ export class Component extends React.PureComponent<SingUpScreenProps> {
           style={styles.createAccountContainer}
           onPress={() => {
             navigation.navigate("SignIn");
+            clearErrorAuth();
           }}
         >
           <Text style={styles.createAccountText}>

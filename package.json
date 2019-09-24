@@ -13,6 +13,7 @@
     "expo-linear-gradient": "^7.0.0",
     "expo-svg-uri": "^1.0.1",
     "formik": "^1.5.1",
+    "jwt-decode": "^2.2.0",
     "lodash.get": "^4.4.2",
     "ramda": "^0.26.1",
     "react": "16.8.3",

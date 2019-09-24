@@ -5,7 +5,7 @@ export default StyleSheet.create({
   btn: {
     alignSelf: "center",
     backgroundColor: "white",
-    borderRadius: 20,
+    borderRadius: 18,
     minWidth: 80
   },
   btnShadow: {
@@ -47,7 +47,7 @@ export default StyleSheet.create({
     borderColor: colorBlueStart
   },
   btnGradient: {
-    borderRadius: 20,
+    borderRadius: 18,
     minHeight: 36,
     paddingVertical: 5,
     paddingHorizontal: 24,

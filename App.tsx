@@ -20,7 +20,7 @@ const AppNavigator = createSwitchNavigator(
     Main: MainNavigator
   },
   {
-    initialRouteName: "Auth"
+    initialRouteName: "Pages"
   }
 );
 

@@ -8,14 +8,12 @@ export interface SignInScreenStateProps {
   isFontLoaded: boolean;
   navigationOptions?: NavigationScreenOptions;
   isLoading: boolean;
+  errorMsg: string;
 }
 
 export type SignInScreenDispatchProps = {
-  signInUser: (
-    data: SignInScreenFromData,
-    setErrors: any,
-    navigation: any
-  ) => Promise<any>;
+  signInUser: (data: SignInScreenFromData, navigation: any) => Promise<any>;
+  clearErrorAuth: () => any;
 };
 
 export type SignInScreenProps = SignInScreenStateProps &

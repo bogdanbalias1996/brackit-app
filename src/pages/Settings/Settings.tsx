@@ -6,7 +6,8 @@ import { Text, TouchableOpacity, ScrollView, View } from "react-native";
 import { HeaderRounded } from "../../components/HeaderRounded/HeaderRounded";
 import { Icon } from "../../components/Icon/Icon";
 import styles from "./Settings.styles";
-import { goBack, navigate } from "../../navigationService";
+import { goBack } from "../../navigationService";
+import { logoutUser } from "../SignUp/actions";
 import { colorLightGreyBlue } from "../../variables";
 
 const Header = props => (
@@ -25,7 +26,9 @@ const Header = props => (
 );
 
 const mapStateToProps = state => ({});
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  logoutUser: () => dispatch(logoutUser() as any)
+});
 
 const ListItem = ({
   title,
@@ -51,6 +54,7 @@ export class Component extends React.PureComponent<SettingsScreenProps> {
   };
 
   render() {
+    const { logoutUser } = this.props;
     return (
       <ScrollView style={styles.container}>
         <View style={styles.listItemGroup}>
@@ -78,7 +82,7 @@ export class Component extends React.PureComponent<SettingsScreenProps> {
         <View style={styles.listItemGroup}>
           <ListItem
             title="Sign Out"
-            onPress={() => navigate({ routeName: "Login" })}
+            onPress={() => logoutUser()}
             styleText={styles.signOutText}
             style={{ borderTopWidth: 1 }}
           />

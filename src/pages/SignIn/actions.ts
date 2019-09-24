@@ -3,12 +3,12 @@ import { ApiOperation } from "../../api/api";
 import { request } from "../../api/network";
 import { SignInScreenFromData, AuthResponse } from "./";
 import { IAction } from "../../coreTypes";
+let get = require("lodash.get");
 
 export const REQUEST_SIGNIN_USER = "REQUEST_SIGNIN_USER ";
-export const requestSignInUser = (): IAction<void> => {
+export const requestSignInUser = () => {
   return {
-    type: REQUEST_SIGNIN_USER,
-    data: undefined
+    type: REQUEST_SIGNIN_USER
   };
 };
 
@@ -23,18 +23,14 @@ export const receiveSignInUser = (
 };
 
 export const FAILURE_SIGNIN_USER = "FAILURE_SIGNIN_USER";
-export const failureSignInUser = (): IAction<void> => {
+export const failureSignInUser = (data): IAction<string> => {
   return {
     type: FAILURE_SIGNIN_USER,
-    data: undefined
+    data: data
   };
 };
 
-export const signInUser = (
-  payload: SignInScreenFromData,
-  setErrors: any,
-  navigation: any
-) => {
+export const signInUser = (payload: SignInScreenFromData, navigation: any) => {
   return (dispatch: Dispatch) => {
     const { email, password } = payload;
     dispatch(requestSignInUser());
@@ -53,15 +49,8 @@ export const signInUser = (
         navigation.navigate({ routeName: "Profile" });
       })
       .catch(err => {
-        dispatch(failureSignInUser());
-        const {
-          error = "The email/password combination are incorrect"
-        } = err.response.body;
-
-        setErrors({
-          email: error,
-          password: error
-        });
+        const error = get(err, `response.body.msg`, "");
+        dispatch(failureSignInUser(error));
       });
   };
 };

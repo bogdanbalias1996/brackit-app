@@ -9,19 +9,19 @@ import { Dispatch } from "redux";
 import styles from "./ForgotPassword.styles";
 import { ForgotPasswordScreenProps, ForgotPasswordScreenFromData } from "./";
 import { forgotPassword } from "./actions";
+import { clearErrorAuth } from "../SignUp/actions";
 import { TextInputStyled } from "../../components/TextInputStyled/TextInputStyled";
 import { ButtonStyled } from "../../components/ButtonStyled/ButtonStyled";
 import { navigate } from "../../navigationService";
 
 const mapStateToProps = state => ({
-  isLoading: state.SignUpState.isLoading
+  isLoading: state.SignUpState.isLoading,
+  errorMsg: state.SignUpState.errorMsg
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  forgotPassword: (
-    data: ForgotPasswordScreenFromData,
-    setErrors: any,
-    navigation: any
-  ) => dispatch(forgotPassword(data, setErrors, navigation) as any)
+  forgotPassword: (data: ForgotPasswordScreenFromData, navigation: any) =>
+    dispatch(forgotPassword(data, navigation) as any),
+  clearErrorAuth: () => dispatch(clearErrorAuth() as any)
 });
 
 const SignupSchema = Yup.object().shape({
@@ -35,14 +35,14 @@ export class Component extends React.PureComponent<ForgotPasswordScreenProps> {
     sendEmail: false
   };
 
-  handleSubmit = (values, { setErrors }: any) => {
+  handleSubmit = values => {
     const { navigation, forgotPassword } = this.props;
 
-    forgotPassword(values, setErrors, navigation);
+    forgotPassword(values, navigation);
   };
 
   render() {
-    const { isLoading } = this.props;
+    const { isLoading, errorMsg, clearErrorAuth } = this.props;
 
     return (
       <KeyboardAwareScrollView
@@ -84,13 +84,13 @@ export class Component extends React.PureComponent<ForgotPasswordScreenProps> {
 
               return (
                 <View style={styles.form}>
-                  {Boolean(formattedErrorString) && (
+                  {Boolean(formattedErrorString) || errorMsg.length ? (
                     <View style={styles.formErrorContainer}>
                       <Text style={styles.formError}>
-                        {formattedErrorString}
+                        {formattedErrorString || errorMsg}
                       </Text>
                     </View>
-                  )}
+                  ) : null}
                   <TextInputStyled
                     name="emailId"
                     label="email"
@@ -114,6 +114,7 @@ export class Component extends React.PureComponent<ForgotPasswordScreenProps> {
             <TouchableOpacity
               onPress={() => {
                 navigate({ routeName: "SignIn" });
+                clearErrorAuth();
               }}
             >
               <Text style={styles.createAccountText}>

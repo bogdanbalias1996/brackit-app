@@ -35,7 +35,7 @@ export default StyleSheet.create({
     position: "absolute",
     width: "45%",
     height: 2,
-    borderRadius: 2,
+    borderRadius: 1,
     bottom: 0,
     left: 9,
     alignItems: "flex-end"
@@ -53,6 +53,6 @@ export default StyleSheet.create({
     backgroundColor: colorBlueEnd,
     width: 2,
     height: 2,
-    borderRadius: 2
+    borderRadius: 1
   }
 });
